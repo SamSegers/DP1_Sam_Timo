@@ -9,12 +9,15 @@
 class Filereader
 {
 protected:
-	FILE *pFile;
+	std::ifstream _file;
 	std::string _path;
+
+	int ReadNodes(std::string);
+	int ReadEdges(std::string);
 public:
 	Filereader(std::string Path);
 	~Filereader();
-	void Read();
+	int Read();
 };
 
 #endif // _FILEREADER_H

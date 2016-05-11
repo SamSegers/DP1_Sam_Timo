@@ -14,6 +14,11 @@ protected:
 
 	int ReadNodes(std::string);
 	int ReadEdges(std::string);
+	
+	int CreateNode(std::string);
+	int CreateProbe(std::string);
+	int CreateInput(std::string);
+
 public:
 	Filereader(std::string Path);
 	~Filereader();

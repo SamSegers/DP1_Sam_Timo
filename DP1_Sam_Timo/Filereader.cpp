@@ -35,10 +35,10 @@ int Filereader::Read()
 		}
 
 		if (!PassedNodes)
-			if (ReadNodes(Line))
+			if (!ReadNodes(Line))
 				return 0; // er is een error ga uit de reader.
 		if (PassedNodes)
-			if (ReadEdges(Line))
+			if (!ReadEdges(Line))
 				return 0; // er is een error ga uit de reader.
 	}
 
@@ -48,13 +48,34 @@ int Filereader::Read()
 
 int Filereader::ReadNodes(std::string Line)
 {
+	if (Line.find("NODE") != std::string::npos)
+		return CreateNode(Line);
+	else if (Line.find("PROBE") != std::string::npos)
+		return CreateProbe(Line);
+	else if (Line.find("INPUT") != std::string::npos)
+		return CreateInput(Line);
 	
-
-	return 1;
+	// niet kunnen vinden klopt iets niet.
+	return 0;
 }
 
 int Filereader::ReadEdges(std::string Line)
 {
 
+	return 1;
+}
+
+int Filereader::CreateNode(std::string Line)
+{
+	return 1;
+}
+
+int Filereader::CreateProbe(std::string Line)
+{
+	return 1;
+}
+
+int Filereader::CreateInput(std::string Line)
+{
 	return 1;
 }

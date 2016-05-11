@@ -64,11 +64,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circuit.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Filereader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Output.cpp" />
+    <ClCompile Include="Probe.cpp" />
+    <ClCompile Include="Simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Circuit.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="Filereader.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Output.h" />
+    <ClInclude Include="Probe.h" />
+    <ClInclude Include="Simulation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

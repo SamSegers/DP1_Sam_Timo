@@ -2,11 +2,14 @@
 #define _NODE_H
 
 #include "Component.h"
+#include "Edge.h"
 
+class Edge;
 class Node : public Component 
 {
 protected:
 	std::string Identifier;
+	Edge* pEdges[2];
 public:
 	Node();
 	~Node();

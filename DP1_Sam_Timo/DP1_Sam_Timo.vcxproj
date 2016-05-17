@@ -64,26 +64,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AND.cpp" />
     <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Filereader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NOR.cpp" />
+    <ClCompile Include="NOT.cpp" />
+    <ClCompile Include="OR.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Probe.cpp" />
     <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="NAND.cpp" />
+    <ClCompile Include="XNOR.cpp" />
+    <ClCompile Include="XOR.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AND.h" />
     <ClInclude Include="Circuit.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Filereader.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NOR.h" />
+    <ClInclude Include="NOT.h" />
+    <ClInclude Include="OR.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Probe.h" />
     <ClInclude Include="Simulation.h" />
+    <ClInclude Include="NAND.h" />
+    <ClInclude Include="XNOR.h" />
+    <ClInclude Include="XOR.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

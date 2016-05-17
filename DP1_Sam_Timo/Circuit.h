@@ -1,5 +1,4 @@
 #ifndef _CIRCUIT_H
-#ifndef _CIRCUIT_H
 #define _CIRCUIT_H
 
 #include <vector>
@@ -25,4 +24,4 @@ public:
 
 };
 
-#endif
+#endif _CIRCUIT_H

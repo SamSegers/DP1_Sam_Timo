@@ -11,7 +11,7 @@ protected:
 	Output *pOutput;
 	std::vector<Component *> Components;
 	
-	int ErrorFound();
+	int ErrorFound(std::string error);
 public:
 	Circuit();
 	~Circuit();

@@ -4,9 +4,7 @@
 int main()
 {
 	Simulation simulation = Simulation();
-	Filereader *f = new Filereader("circuit1.txt");
-	f->Read();
+	simulation.Start();
 	std::cin.get();
-	delete f;
 	return 1;
 }

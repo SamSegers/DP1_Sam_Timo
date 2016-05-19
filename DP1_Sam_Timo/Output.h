@@ -7,7 +7,11 @@
 class Output
 {
 public:
+	Output();
+	~Output();
+
 	void Print(int& value);
+	void Print(std::string value);
 };
 
 #endif

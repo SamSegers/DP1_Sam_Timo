@@ -6,7 +6,7 @@
 class NOT : public Node
 {
 public:
-	void ExecuteOperation() override;
+	void ExecuteOperation();
 };
 
 #endif _NOT_H

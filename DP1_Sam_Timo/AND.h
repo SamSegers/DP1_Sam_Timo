@@ -6,7 +6,7 @@
 class AND : public Node
 {
 public:
-	void ExecuteOperation() override;
+	void ExecuteOperation();
 };
 
 #endif _AND_H

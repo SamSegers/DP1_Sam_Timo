@@ -69,8 +69,9 @@ int Circuit::LinkAll()
 	return 1;
 }
 
-int Circuit::ErrorFound()
+int Circuit::ErrorFound(std::string error = "")
 {
+	this->pOutput->Print(error);
 
 	return 0;
 }

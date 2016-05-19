@@ -6,7 +6,7 @@
 class OR : public Node
 {
 public:
-	void ExecuteOperation() override;
+	void ExecuteOperation();
 };
 
 #endif _OR_H

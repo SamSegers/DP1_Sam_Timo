@@ -6,7 +6,7 @@
 class XOR : public Node
 {
 public:
-	void ExecuteOperation() override;
+	void ExecuteOperation();
 };
 
 #endif _XOR_H

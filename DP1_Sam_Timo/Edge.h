@@ -8,9 +8,10 @@ class Node;
 class Edge : public Component
 {
 private:
-	Node* pNodes[2];
+	// in de super classe component zit een std::vector components hoeft dus geen array te maken
+	//Node* pNodes[2];
 public:
-	void CallNext() override;
+	void CallNext();
 };
 
 #endif

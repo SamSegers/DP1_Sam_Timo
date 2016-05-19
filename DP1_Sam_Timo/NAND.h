@@ -6,7 +6,7 @@
 class NAND : public Node
 {
 public:
-	void ExecuteOperation() override;
+	void ExecuteOperation();
 };
 
 #endif _XAND_H

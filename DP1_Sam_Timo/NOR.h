@@ -6,7 +6,7 @@
 class NOR : public Node
 {
 public:
-	void ExecuteOperation() override;
+	void ExecuteOperation();
 };
 
 #endif _NOR_H

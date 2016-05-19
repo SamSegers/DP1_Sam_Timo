@@ -9,7 +9,8 @@ class Node : public Component
 {
 protected:
 	std::string Identifier;
-	Edge* pEdges[2];
+	// er zit een std::vector in component hoeft geen array te maken
+	//Edge* pEdges[2];
 public:
 	Node();
 	~Node();

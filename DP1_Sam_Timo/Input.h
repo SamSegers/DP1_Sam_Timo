@@ -1,7 +1,9 @@
 #ifndef _INPUT_H
 #define _INPUT_H
 
-class Input
+#include "Component.h"
+
+class Input : public Component
 {
 
 };

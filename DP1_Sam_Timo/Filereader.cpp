@@ -1,3 +1,4 @@
+#include "Factory.h"
 #include "Filereader.h"
 
 Filereader::Filereader(std::string Path)
@@ -61,12 +62,27 @@ int Filereader::ReadNodes(std::string Line)
 
 int Filereader::ReadEdges(std::string Line)
 {
-
+	
 	return 1;
 }
 
 int Filereader::CreateNode(std::string Line)
 {
+	if (Line.find("AND") != std::string::npos)
+		Factory::RequestComponent(AND);
+	if (Line.find("NAND") != std::string::npos)
+		Factory::RequestComponent(NAND);
+	if (Line.find("NOR") != std::string::npos)
+		Factory::RequestComponent(NOR);
+	if (Line.find("NOT") != std::string::npos)
+		Factory::RequestComponent(NOT);
+	if (Line.find("OR") != std::string::npos)
+		Factory::RequestComponent(OR);
+	if (Line.find("XNOR") != std::string::npos)
+		Factory::RequestComponent(XNOR);
+	if (Line.find("XOR") != std::string::npos)
+		Factory::RequestComponent(XOR) ;
+
 	return 1;
 }
 

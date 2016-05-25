@@ -4,7 +4,6 @@
 #include "Component.h"
 #include "Edge.h"
 
-class Edge;
 class Node : public Component 
 {
 protected:

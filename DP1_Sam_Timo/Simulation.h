@@ -9,6 +9,7 @@ class Simulation
 protected:
 	Circuit *pCircuit;
 	Filereader *pReader;
+	Output *pOutput;
 	int Load();
 	int CreateCircuit();
 public:

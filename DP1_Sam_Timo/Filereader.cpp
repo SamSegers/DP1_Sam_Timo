@@ -1,4 +1,3 @@
-#include "Factory.h"
 #include "Filereader.h"
 
 Filereader::Filereader(std::string Path)
@@ -62,36 +61,85 @@ int Filereader::ReadNodes(std::string Line)
 
 int Filereader::ReadEdges(std::string Line)
 {
-	
-	return 1;
+	return CreateEdge(Line);
+}
+
+int Filereader::CreateEdge(std::string Line)
+{
+	Edge *pEdge = (Edge *)Factory::RequestComponent(EDGE);
+
+	if (pEdge != nullptr)
+	{
+		this->Edges.push_back(pEdge);
+		return 1;
+	}
+
+	return 0;
 }
 
 int Filereader::CreateNode(std::string Line)
 {
-	if (Line.find("AND") != std::string::npos)
-		Factory::RequestComponent(AND);
+	Node *pNode = nullptr;
 	if (Line.find("NAND") != std::string::npos)
-		Factory::RequestComponent(NAND);
-	if (Line.find("NOR") != std::string::npos)
-		Factory::RequestComponent(NOR);
-	if (Line.find("NOT") != std::string::npos)
-		Factory::RequestComponent(NOT);
-	if (Line.find("OR") != std::string::npos)
-		Factory::RequestComponent(OR);
-	if (Line.find("XNOR") != std::string::npos)
-		Factory::RequestComponent(XNOR);
-	if (Line.find("XOR") != std::string::npos)
-		Factory::RequestComponent(XOR) ;
+		pNode = (Node *)Factory::RequestComponent(NAND);
+	else if (Line.find("NOT") != std::string::npos)
+		pNode = (Node *)Factory::RequestComponent(NOT);
+	else if (Line.find("XNOR") != std::string::npos)
+		pNode = (Node *)Factory::RequestComponent(XNOR);
+	else if (Line.find("NOR") != std::string::npos)
+		pNode = (Node *)Factory::RequestComponent(NOR);
+	else if (Line.find("XOR") != std::string::npos)
+		pNode = (Node *)Factory::RequestComponent(XOR);
+	else if (Line.find("OR") != std::string::npos)
+		pNode = (Node *)Factory::RequestComponent(OR);
+	else if (Line.find("AND") != std::string::npos)
+		pNode = (Node *)Factory::RequestComponent(AND);
+	else
+		return 0;
+	// store component.
 
 	return 1;
 }
 
 int Filereader::CreateProbe(std::string Line)
 {
-	return 1;
+	Probe *pProbe = (Probe *)Factory::RequestComponent(PROBE);
+
+	if (pProbe != nullptr)
+	{
+		this->Probes.push_back(pProbe);
+		return 1;
+	}
+
+	return 0;
 }
 
 int Filereader::CreateInput(std::string Line)
 {
-	return 1;
+	Input *pInput = (Input *)Factory::RequestComponent(INPUT);
+
+	if (pInput != nullptr)
+	{
+		this->Inputs.push_back(pInput);
+		return 1;
+	}
+
+	return 0;
+}
+
+std::vector<Node *> Filereader::GetNodes()
+{
+	return this->Nodes;
+}
+std::vector<Probe *> Filereader::GetProbes()
+{
+	return this->Probes;
+}
+std::vector<Input *> Filereader::GetInputs()
+{
+	return this->Inputs;
+}
+std::vector<Edge *> Filereader::GetEdges()
+{
+	return this->Edges;
 }

@@ -18,6 +18,8 @@ public:
 
 	int CreateNodes();
 	int CreateEdges();
+	int CreateProbes();
+	int CreateInputs();
 	int LinkAll();
 
 	void Start();

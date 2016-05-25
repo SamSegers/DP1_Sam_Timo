@@ -2,6 +2,7 @@
 
 Simulation::Simulation()
 {
+	pOutput = new Output();
 	pReader = new Filereader("circuit1.txt");
 }
 
@@ -20,14 +21,18 @@ Simulation::~Simulation()
 		delete pCircuit;
 		pCircuit = nullptr;
 	}
+
+	if (pOutput != nullptr)
+	{
+		delete pOutput;
+		pOutput = nullptr;
+	}
 }
 
 int Simulation::Load()
 {
 	if (pReader->Read())
-	{
 		return 1;
-	}
 
 	return 0;
 }
@@ -47,10 +52,13 @@ void Simulation::Start()
 	if (Load())
 	{
 		if (CreateCircuit())
-		{
 			pCircuit->Start();
-		}
+		else
+			pOutput->Print("Could not create the circuit!");
 	}
+	else
+		pOutput->Print("Failed loading the file!");
+	
 	
 }
 

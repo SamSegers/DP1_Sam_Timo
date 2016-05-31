@@ -5,10 +5,8 @@
 #include <sstream>
 #include <istream>
 #include <iostream>
-#include "Factory.h"
-#include "Probe.h"
-#include "Input.h"
-#include "Edge.h"
+#include <vector>
+#include <string>
 
 class Filereader
 {
@@ -24,20 +22,20 @@ protected:
 	int CreateProbe(std::string);
 	int CreateInput(std::string);
 
-	std::vector<Node *> Nodes;
-	std::vector<Probe *>Probes;
-	std::vector<Input *>Inputs;
-	std::vector<Edge *>Edges;
+	std::vector<std::string> Nodes;
+	std::vector<std::string>Probes;
+	std::vector<std::string>Inputs;
+	std::vector<std::string>Edges;
 
 public:
 	Filereader(std::string Path);
 	~Filereader();
 	int Read();
 
-	std::vector<Node *> GetNodes();
-	std::vector<Probe *> GetProbes();
-	std::vector<Input *> GetInputs();
-	std::vector<Edge *> GetEdges();
+	std::vector<std::string> GetNodes();
+	std::vector<std::string> GetProbes();
+	std::vector<std::string> GetInputs();
+	std::vector<std::string> GetEdges();
 };
 
 #endif // _FILEREADER_H

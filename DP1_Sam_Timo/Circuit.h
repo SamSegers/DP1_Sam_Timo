@@ -2,6 +2,10 @@
 #define _CIRCUIT_H
 
 #include <vector>
+#include "Factory.h"
+#include "Probe.h"
+#include "Input.h"
+#include "Edge.h"
 #include "Component.h"
 #include "Output.h"
 
@@ -16,10 +20,10 @@ public:
 	Circuit();
 	~Circuit();
 
-	int CreateNodes();
-	int CreateEdges();
-	int CreateProbes();
-	int CreateInputs();
+	int CreateNodes(std::vector<std::string>);
+	int CreateEdges(std::vector<std::string>);
+	int CreateProbes(std::vector<std::string>);
+	int CreateInputs(std::vector<std::string>);
 	int LinkAll();
 
 	void Start();

@@ -22,7 +22,7 @@ void Component::WaitForValues()
 	mutex.unlock();
 }
 
-void Component::SetValues(int value1 = -1,int value2 = -1)
+void Component::SetValues(int value1,int value2)
 {
 	this->_value1 = value1;
 	this->_value2 = value2;

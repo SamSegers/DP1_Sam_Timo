@@ -15,7 +15,7 @@ public:
 	~Node();
 
 	void CallNext();
-	virtual void ExecuteOperation() = 0;
+	virtual void ExecuteOperation();
 	void WaitForValues();
 };
 

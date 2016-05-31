@@ -13,6 +13,11 @@ void Node::CallNext() {
 	}
 }
 
+void Node::ExecuteOperation()
+{
+
+}
+
 void Node::WaitForValues() {
 
 }

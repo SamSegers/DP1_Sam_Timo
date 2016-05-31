@@ -3,15 +3,27 @@
 
 #include "Component.h"
 #include "Defines.h"
+#include "Node.h"
+#include "AND.h"
+#include "NAND.h"
+#include "NOR.h"
+#include "NOT.h"
+#include "OR.h"
+#include "XNOR.h"
+#include "XOR.h"
+#include "Input.h"
+#include "Probe.h"
 #include <stdint.h>
 
-static class Factory
+class Factory
 {
 protected:
 	//std::vector <Component> Types;
+	static Factory *pFactory;
 public:
-	static Component *RequestComponent(uint _type);
-	static void ReleaseComponent(Component *_component);
+	static Factory *instance();
+	Component *RequestComponent(uint _type);
+	void ReleaseComponent(Component *_component);
 };
 
 #endif

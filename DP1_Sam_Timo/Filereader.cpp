@@ -66,80 +66,46 @@ int Filereader::ReadEdges(std::string Line)
 
 int Filereader::CreateEdge(std::string Line)
 {
-	Edge *pEdge = (Edge *)Factory::RequestComponent(EDGE);
-
-	if (pEdge != nullptr)
-	{
-		this->Edges.push_back(pEdge);
-		return 1;
-	}
+	this->Edges.push_back(Line);
 
 	return 0;
 }
 
 int Filereader::CreateNode(std::string Line)
 {
-	Node *pNode = nullptr;
-	if (Line.find("NAND") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(NAND);
-	else if (Line.find("NOT") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(NOT);
-	else if (Line.find("XNOR") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(XNOR);
-	else if (Line.find("NOR") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(NOR);
-	else if (Line.find("XOR") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(XOR);
-	else if (Line.find("OR") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(OR);
-	else if (Line.find("AND") != std::string::npos)
-		pNode = (Node *)Factory::RequestComponent(AND);
-	else
-		return 0;
 	// store component.
+
+	this->Nodes.push_back(Line);
 
 	return 1;
 }
 
 int Filereader::CreateProbe(std::string Line)
 {
-	Probe *pProbe = (Probe *)Factory::RequestComponent(PROBE);
-
-	if (pProbe != nullptr)
-	{
-		this->Probes.push_back(pProbe);
-		return 1;
-	}
-
+	
+	this->Probes.push_back(Line);
 	return 0;
 }
 
 int Filereader::CreateInput(std::string Line)
 {
-	Input *pInput = (Input *)Factory::RequestComponent(INPUT);
-
-	if (pInput != nullptr)
-	{
-		this->Inputs.push_back(pInput);
-		return 1;
-	}
-
+	this->Inputs.push_back(Line);
 	return 0;
 }
 
-std::vector<Node *> Filereader::GetNodes()
+std::vector<std::string> Filereader::GetNodes()
 {
 	return this->Nodes;
 }
-std::vector<Probe *> Filereader::GetProbes()
+std::vector<std::string> Filereader::GetProbes()
 {
 	return this->Probes;
 }
-std::vector<Input *> Filereader::GetInputs()
+std::vector<std::string> Filereader::GetInputs()
 {
 	return this->Inputs;
 }
-std::vector<Edge *> Filereader::GetEdges()
+std::vector<std::string> Filereader::GetEdges()
 {
 	return this->Edges;
 }

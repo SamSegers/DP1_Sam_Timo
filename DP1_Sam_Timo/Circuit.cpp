@@ -8,19 +8,62 @@ Circuit::Circuit()
 
 Circuit::~Circuit()
 {
-	for (int i = 0; i < this->Components.size(); i++)
+	for (int i = 0; i < this->Nodes.size(); i++)
 	{
-		Component *pComponent = Components.at(i);
+		Node *pNode = Nodes.at(i);
 
-		if (pComponent != nullptr)
+		if (pNode != nullptr)
 		{
-			delete pComponent;
-			Components.at(i) = nullptr;
-			pComponent = nullptr;
+			delete pNode;
+			Nodes.at(i) = nullptr;
+			pNode = nullptr;
 		}
 	}
 
-	Components.clear();
+	Nodes.clear();
+
+	for (int i = 0; i < this->Edges.size(); i++)
+	{
+		Edge *pEdge = Edges.at(i);
+
+		if (pEdge != nullptr)
+		{
+			delete pEdge;
+			Edges.at(i) = nullptr;
+			pEdge = nullptr;
+		}
+	}
+
+	Edges.clear();
+
+	for (int i = 0; i < this->Probes.size(); i++)
+	{
+		Probe *pProbe = Probes.at(i);
+
+		if (pProbe != nullptr)
+		{
+			delete pProbe;
+			Probes.at(i) = nullptr;
+			pProbe = nullptr;
+		}
+	}
+
+	Probes.clear();
+
+	for (int i = 0; i < this->Inputs.size(); i++)
+	{
+		Input *pInput = Inputs.at(i);
+
+		if (pInput != nullptr)
+		{
+			delete pInput;
+			Inputs.at(i) = nullptr;
+			pInput = nullptr;
+		}
+	}
+
+	Inputs.clear();
+
 
 	if (pOutput != nullptr)
 	{
@@ -35,13 +78,13 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 	{
 		for (int i = 0; i < Edges.size(); i++)
 		{
-			/*Edge *pEdge = (Edge *)Factory::RequestComponent(EDGE);
+			Edge *pEdge = (Edge *)Factory::instance()->RequestComponent(_EDGE);
 
 			if (pEdge != nullptr)
 			{
-			this->Edges.push_back(pEdge);
-			return 1;
-			}*/
+				this->Edges.push_back(pEdge);
+				return 1;
+			}
 		}
 	}
 	catch (int e)
@@ -57,23 +100,25 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 	{
 		for (int i = 0; i < Nodes.size(); i++)
 		{
-			/*Node *pNode = nullptr;
+			std::string Line = Nodes.at(i);
+
+			Node *pNode = nullptr;
 			if (Line.find("NAND") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(NAND);
+				pNode = (Node *)Factory::instance()->RequestComponent(_NAND);
 			else if (Line.find("NOT") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(NOT);
+				pNode = (Node *)Factory::instance()->RequestComponent(_NOT);
 			else if (Line.find("XNOR") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(XNOR);
+				pNode = (Node *)Factory::instance()->RequestComponent(_XNOR);
 			else if (Line.find("NOR") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(NOR);
+				pNode = (Node *)Factory::instance()->RequestComponent(_NOR);
 			else if (Line.find("XOR") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(XOR);
+				pNode = (Node *)Factory::instance()->RequestComponent(_XOR);
 			else if (Line.find("OR") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(OR);
+				pNode = (Node *)Factory::instance()->RequestComponent(_OR);
 			else if (Line.find("AND") != std::string::npos)
-				pNode = (Node *)Factory::RequestComponent(AND);
+				pNode = (Node *)Factory::instance()->RequestComponent(_AND);
 			else
-				return 0;*/
+				throw 1;
 		}
 	}
 	catch (int e)
@@ -90,13 +135,14 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 	{
 		for (int i = 0; i < Inputs.size(); i++)
 		{
-			/*Input *pInput = (Input *)Factory::RequestComponent(INPUT);
+			Input *pInput = (Input *)Factory::instance()->RequestComponent(_INPUT);
 
 			if (pInput != nullptr)
 			{
 				this->Inputs.push_back(pInput);
-				return 1;
-			}*/
+			}
+			else
+				throw 1;
 		}
 	}
 	catch (int e)
@@ -113,13 +159,14 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 	{
 		for (int i = 0; i < Probes.size(); i++)
 		{
-			/*Probe *pProbe = (Probe *)Factory::RequestComponent(PROBE);
+			Probe *pProbe = (Probe *)Factory::instance()->RequestComponent(_PROBE);
 
 			if (pProbe != nullptr)
 			{
 				this->Probes.push_back(pProbe);
-				return 1;
-			}*/
+			}
+			else
+				throw 1;
 		}
 	}
 	catch (int e)

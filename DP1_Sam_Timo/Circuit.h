@@ -13,8 +13,10 @@ class Circuit
 {
 protected:
 	Output *pOutput;
-	std::vector<Component *> Components;
-	
+	std::vector<Node *> Nodes;
+	std::vector<Probe *>Probes;
+	std::vector<Input *>Inputs;
+	std::vector<Edge *>Edges;
 	int ErrorFound(std::string error);
 public:
 	Circuit();

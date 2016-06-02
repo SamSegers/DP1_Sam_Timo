@@ -11,7 +11,7 @@ Circuit::~Circuit()
 	for (int i = 0; i < this->Nodes.size(); i++)
 	{
 		Node *pNode = Nodes.at(i);
-
+		
 		if (pNode != nullptr)
 		{
 			delete pNode;
@@ -53,7 +53,7 @@ Circuit::~Circuit()
 	for (int i = 0; i < this->Inputs.size(); i++)
 	{
 		Input *pInput = Inputs.at(i);
-
+		
 		if (pInput != nullptr)
 		{
 			delete pInput;
@@ -79,12 +79,11 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 		for (int i = 0; i < Edges.size(); i++)
 		{
 			Edge *pEdge = (Edge *)Factory::instance()->RequestComponent(_EDGE);
-
+			
 			if (pEdge != nullptr)
-			{
 				this->Edges.push_back(pEdge);
-				return 1;
-			}
+			else
+				throw 1;
 		}
 	}
 	catch (int e)
@@ -119,6 +118,8 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 				pNode = (Node *)Factory::instance()->RequestComponent(_AND);
 			else
 				throw 1;
+
+			pNode->SetId(Nodes.at(i).substr(0, Nodes.at(i).find(":")));
 		}
 	}
 	catch (int e)
@@ -137,8 +138,16 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 		{
 			Input *pInput = (Input *)Factory::instance()->RequestComponent(_INPUT);
 
+			if (Inputs.at(i).find("INPUT_HIGH") != std::string::npos)
+				pInput->SetValues(1);
+			else if (Inputs.at(i).find("INPUT_LOW") != std::string::npos)
+				pInput->SetValues(0);
+			else
+				throw 1;
+
 			if (pInput != nullptr)
 			{
+				pInput->SetId(Inputs.at(i).substr(0, Inputs.at(i).find(":")));
 				this->Inputs.push_back(pInput);
 			}
 			else
@@ -163,10 +172,13 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 
 			if (pProbe != nullptr)
 			{
+				pProbe->SetId(Probes.at(i).substr(0, Probes.at(i).find(":")));
 				this->Probes.push_back(pProbe);
 			}
 			else
 				throw 1;
+
+
 		}
 	}
 	catch (int e)
@@ -181,7 +193,25 @@ int Circuit::LinkAll()
 {
 	try
 	{
+		for (int i = 0; i < Inputs.size(); i++)
+		{
+			
+		}
 
+		for (int i = 0; i < Edges.size(); i++)
+		{
+
+		}
+
+		for (int i = 0;  i < Nodes.size(); i++)
+		{
+
+		}
+
+		for (int i = 0; i < Probes.size(); i++)
+		{
+
+		}
 	}
 	catch (int e)
 	{

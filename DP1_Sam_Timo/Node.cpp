@@ -1,7 +1,14 @@
 #include "Node.h"
 
-Node::Node(){}
-Node::~Node(){}
+Node::Node()
+{
+	Component::Component();
+}
+
+Node::~Node()
+{
+	Component::~Component(); 
+}
 
 void Node::CallNext() {
 	for (int i = 0; i < pComponents.size(); i++)

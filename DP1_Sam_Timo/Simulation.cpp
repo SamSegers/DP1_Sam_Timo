@@ -3,7 +3,7 @@
 Simulation::Simulation()
 {
 	pOutput = new Output();
-	pReader = new Filereader("circuit1.txt");
+	//pReader = new Filereader("circuit1.txt");
 }
 
 Simulation::~Simulation()
@@ -47,8 +47,10 @@ int Simulation::CreateCircuit()
 	return 1;
 }
 
-void Simulation::Start()
+void Simulation::Start(std::string Filename)
 {
+	this->pReader = new Filereader(Filename);
+
 	if (Load())
 	{
 		if (CreateCircuit())

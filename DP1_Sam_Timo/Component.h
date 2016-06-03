@@ -25,8 +25,8 @@ public:
 	~Component();
 
 	virtual void SetNext(std::vector<Component *>);
-
 	virtual void SetValues(int value1 = -1,int value2 = -1);
+
 	virtual void CallNext();
 
 	virtual Component* Clone();

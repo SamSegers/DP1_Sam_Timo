@@ -16,7 +16,7 @@ public:
 	Simulation();
 	~Simulation();
 
-	void Start();
+	void Start(std::string);
 	void Stop();
 };
 

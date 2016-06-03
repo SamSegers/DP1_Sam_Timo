@@ -3,10 +3,18 @@
 
 void Cleanup();
 
-int main()
+int main(int argc, char* argv[])
 {
 	Simulation simulation = Simulation();
-	simulation.Start();
+
+	std::string Filename = "";
+
+	if (argc > 1)
+		Filename = argv[1];
+	else
+		Filename = "circuit1.txt";
+	
+	simulation.Start(Filename);
 	
 	std::cin.get();
 

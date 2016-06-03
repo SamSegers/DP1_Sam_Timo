@@ -29,6 +29,8 @@ public:
 	virtual void SetValues(int value1 = -1,int value2 = -1);
 	virtual void CallNext();
 
+	virtual Component* Clone();
+
 	void SetId(std::string _id);
 	std::string GetId();
 };

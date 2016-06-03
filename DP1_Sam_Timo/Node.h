@@ -17,6 +17,8 @@ public:
 	void CallNext();
 	virtual void ExecuteOperation();
 	void WaitForValues();
+
+	virtual Component* Clone();
 };
 
 #endif _NODE_H

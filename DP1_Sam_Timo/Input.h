@@ -5,7 +5,7 @@
 
 class Input : public Component
 {
-
+	virtual Component* Clone();
 };
 
 #endif

@@ -7,6 +7,7 @@ int main()
 {
 	Simulation simulation = Simulation();
 	simulation.Start();
+	
 	std::cin.get();
 
 	Cleanup();

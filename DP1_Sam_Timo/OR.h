@@ -7,6 +7,7 @@ class OR : public Node
 {
 public:
 	void ExecuteOperation();
+	virtual Component* Clone();
 };
 
 #endif _OR_H

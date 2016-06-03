@@ -7,6 +7,7 @@ class NOT : public Node
 {
 public:
 	void ExecuteOperation();
+	virtual Component* Clone();
 };
 
 #endif _NOT_H

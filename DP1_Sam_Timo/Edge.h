@@ -12,6 +12,7 @@ private:
 	//Node* pNodes[2];
 public:
 	void CallNext();
+	virtual Component* Clone();
 };
 
 #endif

@@ -28,3 +28,8 @@ void Node::ExecuteOperation()
 void Node::WaitForValues() {
 
 }
+
+Component* Node::Clone()
+{
+	return new Node();
+}

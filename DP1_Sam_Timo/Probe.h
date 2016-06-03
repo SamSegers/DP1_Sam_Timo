@@ -5,7 +5,7 @@
 
 class Probe : public Component
 {
-
+	virtual Component* Clone();
 };
 
 #endif

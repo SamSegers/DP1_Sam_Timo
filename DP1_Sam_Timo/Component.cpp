@@ -50,6 +50,11 @@ void Component::CallNext()
 	thread.join();
 }
 
+Component* Component::Clone()
+{
+	return new Component();
+}
+
 void Component::SetId(std::string _id)
 {
 	this->_id = _id;

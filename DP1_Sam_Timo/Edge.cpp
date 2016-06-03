@@ -9,3 +9,8 @@ void Edge::CallNext() {
 		}
 	}
 }
+
+Component* Edge::Clone()
+{
+	return new Edge();
+}

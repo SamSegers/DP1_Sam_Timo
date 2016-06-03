@@ -55,6 +55,7 @@ int Filereader::ReadNodes(std::string Line)
 	else if (Line.find("INPUT") != std::string::npos)
 		return CreateInput(Line);
 	
+
 	// niet kunnen vinden klopt iets niet.
 	return 0;
 }
@@ -68,7 +69,7 @@ int Filereader::CreateEdge(std::string Line)
 {
 	this->Edges.push_back(Line);
 
-	return 0;
+	return 1;
 }
 
 int Filereader::CreateNode(std::string Line)
@@ -82,15 +83,14 @@ int Filereader::CreateNode(std::string Line)
 
 int Filereader::CreateProbe(std::string Line)
 {
-	
 	this->Probes.push_back(Line);
-	return 0;
+	return 1;
 }
 
 int Filereader::CreateInput(std::string Line)
 {
 	this->Inputs.push_back(Line);
-	return 0;
+	return 1;
 }
 
 std::vector<std::string> Filereader::GetNodes()

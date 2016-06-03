@@ -7,6 +7,7 @@ class NAND : public Node
 {
 public:
 	void ExecuteOperation();
+	virtual Component* Clone();
 };
 
 #endif _XAND_H

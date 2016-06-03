@@ -10,3 +10,8 @@ void NAND::ExecuteOperation() {
 	pView->Print(output);
 	CallNext();
 }
+
+Component* NAND::Clone()
+{
+	return new NAND();
+}

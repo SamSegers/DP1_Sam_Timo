@@ -18,9 +18,11 @@
 class Factory
 {
 protected:
-	//std::vector <Component> Types;
+	static std::vector <Component *> Types;
 	static Factory *pFactory;
 public:
+	Factory();
+	~Factory();
 	static Factory *instance();
 	Component *RequestComponent(uint _type);
 	void ReleaseComponent(Component *_component);

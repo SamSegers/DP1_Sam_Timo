@@ -7,6 +7,7 @@ class XOR : public Node
 {
 public:
 	void ExecuteOperation();
+	virtual Component* Clone();
 };
 
 #endif _XOR_H

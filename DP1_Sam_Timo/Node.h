@@ -7,17 +7,12 @@
 class Node : public Component 
 {
 protected:
-	std::string Identifier;
 	// er zit een std::vector in component hoeft geen array te maken
 	//Edge* pEdges[2];
 public:
-	Node();
-	~Node();
 
-	void CallNext();
-	virtual void ExecuteOperation();
-	void WaitForValues();
-
+	virtual int ExecuteOperation();
+	virtual void CallNext();
 	virtual Component* Clone();
 };
 

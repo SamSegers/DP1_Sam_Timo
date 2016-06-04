@@ -1,10 +1,15 @@
 #include "NOT.h"
 
-void NOT::ExecuteOperation() {
-	int output = !_value1;
+int NOT::ExecuteOperation() {
+	int output = !values.at(0);
+	values.clear();
+	values.push_back(output);
+	_mutex.lock();
+	pView->Print("Output of NOT:" + std::to_string(output));
+	_mutex.unlock();
+	//CallNext();
 
-	pView->Print(output);
-	CallNext();
+	return 1;
 }
 
 Component* NOT::Clone()

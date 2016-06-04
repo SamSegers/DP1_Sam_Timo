@@ -6,7 +6,7 @@
 class NAND : public Node
 {
 public:
-	void ExecuteOperation();
+	int ExecuteOperation();
 	virtual Component* Clone();
 };
 

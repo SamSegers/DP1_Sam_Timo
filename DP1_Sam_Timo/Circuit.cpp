@@ -8,20 +8,6 @@ Circuit::Circuit()
 
 Circuit::~Circuit()
 {
-	for (int i = 0; i < this->Nodes.size(); i++)
-	{
-		Node *pNode = Nodes.at(i);
-		
-		if (pNode != nullptr)
-		{
-			delete pNode;
-			Nodes.at(i) = nullptr;
-			pNode = nullptr;
-		}
-	}
-
-	Nodes.clear();
-
 	for (int i = 0; i < this->Edges.size(); i++)
 	{
 		Edge *pEdge = Edges.at(i);
@@ -53,7 +39,7 @@ Circuit::~Circuit()
 	for (int i = 0; i < this->Inputs.size(); i++)
 	{
 		Input *pInput = Inputs.at(i);
-		
+
 		if (pInput != nullptr)
 		{
 			delete pInput;
@@ -64,6 +50,21 @@ Circuit::~Circuit()
 
 	Inputs.clear();
 
+	for (int i = 0; i < this->Nodes.size(); i++)
+	{
+		Node *pNode = Nodes.at(i);
+		
+		if (pNode != nullptr)
+		{
+			delete pNode;
+			Nodes.at(i) = nullptr;
+			pNode = nullptr;
+		}
+	}
+
+	Nodes.clear();
+
+	
 
 	if (pOutput != nullptr)
 	{
@@ -74,6 +75,8 @@ Circuit::~Circuit()
 
 int Circuit::CreateEdges(std::vector<std::string> Edges)
 {
+	pOutput->Print("Create edges and link them!");
+
 	try
 	{
 		for (int i = 0; i < Edges.size(); i++)
@@ -84,17 +87,25 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 				this->Edges.push_back(pEdge);
 			else
 				throw 1;
+
+			if (!Link(Edges.at(i), pEdge))
+				throw 2;
+
 		}
 	}
 	catch (int e)
 	{
-		return ErrorFound("Error in creating edges!");
+		if (e == 1)
+			return ErrorFound("Error in creating edges!");
+		else if (e == 2)
+			return ErrorFound("Error in linking components & edges!");
 	}
 	return 1;
 }
 
 int Circuit::CreateNodes(std::vector<std::string> Nodes)
 {
+	pOutput->Print("Create nodes!");
 	try
 	{
 		for (int i = 0; i < Nodes.size(); i++)
@@ -120,6 +131,8 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 				throw 1;
 
 			pNode->SetId(Nodes.at(i).substr(0, Nodes.at(i).find(":")));
+			
+			this->Nodes.push_back(pNode);
 		}
 	}
 	catch (int e)
@@ -132,6 +145,7 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 
 int Circuit::CreateInputs(std::vector<std::string> Inputs)
 {
+	pOutput->Print("Create inputs!");
 	try
 	{
 		for (int i = 0; i < Inputs.size(); i++)
@@ -139,9 +153,9 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 			Input *pInput = (Input *)Factory::instance()->RequestComponent(_INPUT);
 
 			if (Inputs.at(i).find("INPUT_HIGH") != std::string::npos)
-				pInput->SetValues(1);
+				pInput->InsertValue(1);
 			else if (Inputs.at(i).find("INPUT_LOW") != std::string::npos)
-				pInput->SetValues(0);
+				pInput->InsertValue(0);
 			else
 				throw 1;
 
@@ -164,6 +178,7 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 
 int Circuit::CreateProbes(std::vector<std::string> Probes)
 {
+	pOutput->Print("Create probes!");
 	try
 	{
 		for (int i = 0; i < Probes.size(); i++)
@@ -177,8 +192,6 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 			}
 			else
 				throw 1;
-
-
 		}
 	}
 	catch (int e)
@@ -189,34 +202,95 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 	return 1;
 }
 
-int Circuit::LinkAll()
+int Circuit::Link(std::string Data, Edge *pEdge)
 {
-	try
+	if (Data.find(":") != std::string::npos)
 	{
+		std::string id = Data.substr(0, Data.find(":"));
+
+		int found = 0;
+
 		for (int i = 0; i < Inputs.size(); i++)
+			if (Inputs.at(i)->GetId() == id)
+			{
+			found = 1;
+			Inputs.at(i)->AddNext(pEdge);
+			}
+		for (int i = 0; i < Nodes.size(); i++)
+			if (Nodes.at(i)->GetId() == id)
+			{
+			found = 1;
+			Nodes.at(i)->AddNext(pEdge);
+			}
+
+		if (!found)
 		{
+			pOutput->Print("Linking failed!");
+			return 0;
+		}
+		// reset
+		found = 0;
+		id = "";
+		// haal al de info uit de string voor linking
+		Data = Data.substr(Data.find("\t")+1);
+
+		while (true)
+		{
+			if (Data.find(",") != std::string::npos)
+			{
+				id = Data.substr(0, Data.find(","));
+				Data = Data.substr(Data.find(",") + 1);
 			
-		}
+				for (int i = 0; i < Nodes.size(); i++)
+					if (Nodes.at(i)->GetId() == id)
+					{
+						found = 1;
+						pEdge->AddNext(Nodes.at(i));
+					}
+				for (int i = 0; i < Probes.size(); i++)
+					if (Probes.at(i)->GetId() == id)
+					{
+						found = 1;
+						pEdge->AddNext(Probes.at(i));
+					}
 
-		for (int i = 0; i < Edges.size(); i++)
-		{
+				if (!found)
+				{
+					pOutput->Print("Linking failed!");
+					return 0;
+				}
 
-		}
+			}
+			else if (Data.find(";") != std::string::npos)
+			{
+				id = Data.substr(0, Data.find(";"));
 
-		for (int i = 0;  i < Nodes.size(); i++)
-		{
+				for (int i = 0; i < Nodes.size(); i++)
+					if (Nodes.at(i)->GetId() == id)
+					{
+						found = 1;
+						pEdge->AddNext(Nodes.at(i));
+					}
+				for (int i = 0; i < Probes.size(); i++)
+					if (Probes.at(i)->GetId() == id)
+					{
+						found = 1;
+						pEdge->AddNext(Probes.at(i));
+					}
 
-		}
+				if (!found)
+				{
+					pOutput->Print("Linking failed!");
+					return 0;
+				}
 
-		for (int i = 0; i < Probes.size(); i++)
-		{
-
+				break;
+			}
+			else
+				return 0;
 		}
 	}
-	catch (int e)
-	{
-		return ErrorFound("Error in linking the components!");
-	}
+
 	return 1;
 }
 
@@ -229,5 +303,10 @@ int Circuit::ErrorFound(std::string error = "")
 
 void Circuit::Start()
 {
-
+	for (int i = 0; i < Inputs.size(); i++)
+	{
+		std::thread t(&Input::CallNext, Inputs.at(i));
+		t.detach();
+		//Inputs.at(i)->CallNext();
+	}
 }

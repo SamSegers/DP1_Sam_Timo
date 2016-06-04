@@ -2,9 +2,10 @@
 #include "Simulation.h"
 
 void Cleanup();
-
+std::mutex _mutex;
 int main(int argc, char* argv[])
 {
+	
 	Simulation simulation = Simulation();
 
 	std::string Filename = "";

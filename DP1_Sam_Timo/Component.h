@@ -6,26 +6,22 @@
 #include <thread>
 #include <vector>
 
+extern std::mutex _mutex;
+
+
 class Component
 {
 protected:
-	int _value1;
-	int _value2;
+	std::vector<int> values;
 	std::vector<Component *> pComponents;
 	Output *pView;
-	std::mutex mutex;
-	std::thread thread;
 	std::string _id;
-
-	void WaitForValues();
-
 public:
 	Component();
-	Component(std::string _id);
 	~Component();
 
-	virtual void SetNext(std::vector<Component *>);
-	virtual void SetValues(int value1 = -1,int value2 = -1);
+	virtual void AddNext(Component *Next);
+	virtual void InsertValue(int value);
 
 	virtual void CallNext();
 

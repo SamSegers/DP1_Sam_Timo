@@ -41,7 +41,7 @@ int Simulation::CreateCircuit()
 {
 	this->pCircuit = new Circuit();
 
-	if (!pCircuit->CreateNodes(pReader->GetNodes()) || !pCircuit->CreateEdges(pReader->GetEdges()) || !pCircuit->CreateInputs(pReader->GetInputs()) || !pCircuit->CreateProbes(pReader->GetProbes()) || !pCircuit->LinkAll())
+	if (!pCircuit->CreateNodes(pReader->GetNodes()) || !pCircuit->CreateInputs(pReader->GetInputs()) || !pCircuit->CreateProbes(pReader->GetProbes()) || !pCircuit->CreateEdges(pReader->GetEdges()))
 		return 0;
 
 	return 1;

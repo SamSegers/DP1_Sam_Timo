@@ -2,52 +2,41 @@
 
 Component::Component()
 {
-	this->_value1 = -1;
-	this->_value2 = -1;
 
-	this->thread = std::thread(&Component::WaitForValues,this);
 }
-
-Component::Component(std::string _id)
-{
-	this->_value1 = -1;
-	this->_value2 = -1;
-
-	this->_id = _id;
-
-	this->thread = std::thread(&Component::WaitForValues, this);
-}
-
 Component::~Component()
 {
-	// voor het geval dat
-	if (this->thread.joinable())
-		this->thread.join();
 }
 
-void Component::WaitForValues()
+void Component::AddNext(Component *Next)
 {
-	mutex.lock();
-	
-	mutex.unlock();
+	this->pComponents.push_back(Next);
 }
 
-void Component::SetNext(std::vector<Component *> Next)
+void Component::InsertValue(int value)
 {
-	for (int i = 0; i < Next.size(); i++)
-		this->pComponents.push_back(Next.at(i));
-}
-
-void Component::SetValues(int value1,int value2)
-{
-	this->_value1 = value1;
-	this->_value2 = value2;
+	this->values.push_back(value);
 }
 
 void Component::CallNext()
 {
-	// join de threads
-	thread.join();
+	if (this->pComponents.size() == 0)
+	{
+		this->pView->Print("Error in circuit!");
+		return;
+	}
+
+	for (int i = 0; i < this->pComponents.size(); i++)
+	{
+		_mutex.lock();
+		if (this->_id != "")
+			this->pView->Print("id:" + this->_id);
+		_mutex.unlock();
+		this->pComponents.at(i)->InsertValue(this->values.at(0));
+		std::thread t(&Component::CallNext,this->pComponents.at(i));
+		t.detach();
+		//this->pComponents.at(i)->CallNext();
+	}
 }
 
 Component* Component::Clone()

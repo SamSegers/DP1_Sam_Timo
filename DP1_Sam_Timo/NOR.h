@@ -6,7 +6,7 @@
 class NOR : public Node
 {
 public:
-	void ExecuteOperation();
+	int ExecuteOperation();
 	virtual Component* Clone();
 };
 

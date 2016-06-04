@@ -5,6 +5,11 @@
 
 class Probe : public Component
 {
+protected:
+	
+public:
+	virtual void CallNext();
+
 	virtual Component* Clone();
 };
 

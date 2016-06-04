@@ -1,10 +1,20 @@
 #include "AND.h"
 
-void AND::ExecuteOperation() {
-	int output = _value1==_value2;
+int AND::ExecuteOperation() {
 
-	pView->Print(output);
-	CallNext();
+	if (this->values.size() < 2)
+		return 0;
+
+	int output = values.at(0) == values.at(1);
+
+	values.clear();
+	values.push_back(output);
+	_mutex.lock();
+	pView->Print("Output of AND:" + std::to_string(output));
+	_mutex.unlock();
+	//CallNext();
+
+	return 1;
 }
 
 Component* AND::Clone()

@@ -1,32 +1,15 @@
 #include "Node.h"
 
-Node::Node()
+
+int Node::ExecuteOperation()
 {
-	Component::Component();
+	return 1;
 }
 
-Node::~Node()
+void Node::CallNext()
 {
-	Component::~Component(); 
-}
-
-void Node::CallNext() {
-	for (int i = 0; i < pComponents.size(); i++)
-	{
-		if (pComponents.at(i) != nullptr)
-		{
-			// roep volgende aan
-		}
-	}
-}
-
-void Node::ExecuteOperation()
-{
-
-}
-
-void Node::WaitForValues() {
-
+	if(this->ExecuteOperation())
+		Component::CallNext();
 }
 
 Component* Node::Clone()

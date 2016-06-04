@@ -17,6 +17,8 @@ protected:
 	std::vector<Probe *>Probes;
 	std::vector<Input *>Inputs;
 	std::vector<Edge *>Edges;
+
+	int Link(std::string Data,Edge *);
 	int ErrorFound(std::string error);
 public:
 	Circuit();
@@ -26,7 +28,6 @@ public:
 	int CreateEdges(std::vector<std::string>);
 	int CreateProbes(std::vector<std::string>);
 	int CreateInputs(std::vector<std::string>);
-	int LinkAll();
 
 	void Start();
 

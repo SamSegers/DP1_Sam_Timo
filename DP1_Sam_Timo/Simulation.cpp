@@ -3,7 +3,6 @@
 Simulation::Simulation()
 {
 	pOutput = new Output();
-	//pReader = new Filereader("circuit1.txt");
 }
 
 Simulation::~Simulation()
@@ -53,8 +52,11 @@ void Simulation::Start(std::string Filename)
 
 	if (Load())
 	{
-		if (CreateCircuit())
+		if (CreateCircuit()) {
+			pOutput->CreateDiagram(*pCircuit);
+			pOutput->Print("Started the circuit!");
 			pCircuit->Start();
+		}
 		else
 			pOutput->Print("Could not create the circuit!");
 	}

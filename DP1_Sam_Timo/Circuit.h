@@ -14,9 +14,9 @@ class Circuit
 protected:
 	Output *pOutput;
 	std::vector<Node *> Nodes;
-	std::vector<Probe *>Probes;
-	std::vector<Input *>Inputs;
-	std::vector<Edge *>Edges;
+	std::vector<Probe *> Probes;
+	std::vector<Input *> Inputs;
+	std::vector<Edge *> Edges;
 
 	int Link(std::string Data,Edge *);
 	int ErrorFound(std::string error);
@@ -28,6 +28,11 @@ public:
 	int CreateEdges(std::vector<std::string>);
 	int CreateProbes(std::vector<std::string>);
 	int CreateInputs(std::vector<std::string>);
+
+	std::vector<Node*> GetNodes();
+	std::vector<Edge*> GetEdges();
+	std::vector<Probe*> GetProbes();
+	std::vector<Input*> GetInputs();
 
 	void Start();
 

@@ -8,7 +8,7 @@
 
 extern std::mutex _mutex;
 
-
+class Output;
 class Component
 {
 protected:
@@ -20,6 +20,7 @@ public:
 	Component();
 	~Component();
 
+	std::vector<Component*> GetNext();
 	virtual void AddNext(Component *Next);
 	virtual void InsertValue(int value);
 

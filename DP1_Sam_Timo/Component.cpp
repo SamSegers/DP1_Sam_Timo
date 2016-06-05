@@ -13,6 +13,11 @@ void Component::AddNext(Component *Next)
 	this->pComponents.push_back(Next);
 }
 
+std::vector<Component*> Component::GetNext() 
+{
+	return pComponents;
+}
+
 void Component::InsertValue(int value)
 {
 	this->values.push_back(value);

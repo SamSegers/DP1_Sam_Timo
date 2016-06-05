@@ -64,8 +64,6 @@ Circuit::~Circuit()
 
 	Nodes.clear();
 
-	
-
 	if (pOutput != nullptr)
 	{
 		delete pOutput;
@@ -309,4 +307,20 @@ void Circuit::Start()
 		t.detach();
 		//Inputs.at(i)->CallNext();
 	}
+}
+
+std::vector<Node*> Circuit::GetNodes() {
+	return Nodes;
+}
+
+std::vector<Edge*> Circuit::GetEdges() {
+	return Edges;
+}
+
+std::vector<Probe*> Circuit::GetProbes() {
+	return Probes;
+}
+
+std::vector<Input*> Circuit::GetInputs() {
+	return Inputs;
 }

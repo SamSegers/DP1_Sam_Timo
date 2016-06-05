@@ -17,6 +17,7 @@ class Output
 {
 private:
 	std::map<std::string, std::vector<std::string>> callers;
+	std::map<std::string, std::vector<std::string>> calling;
 public:
 	Output();
 	~Output();

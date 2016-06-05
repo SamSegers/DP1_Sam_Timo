@@ -41,17 +41,37 @@ void Output::CreateDiagram(Circuit& circuit) {
 
 	// 3. print script
 	for (int i = 0; i < components.size(); i++) {
+		Component& component = *components[i];
+
+		std::vector<std::string>& next = calling[components[i]->GetId()];
+		std::vector<std::string>& previous = callers[components[i]->GetId()];
+
+		std::string gate = 
+			dynamic_cast<AND*>(&component) != NULL ? "AND" :
+			dynamic_cast<NAND*>(&component) != NULL ? "NAND" :
+			dynamic_cast<NOR*>(&component) != NULL ? "NOR" :
+			dynamic_cast<NOT*>(&component) != NULL ? "NOT" :
+			dynamic_cast<OR*>(&component) != NULL ? "OR" :
+			dynamic_cast<XNOR*>(&component) != NULL ? "XNOR" :
+			dynamic_cast<XOR*>(&component) != NULL ? "XOR" : "";
+
 		script += "\
 			components[" + std::to_string(i) + "] = {\
-				id: '" + components[i]->GetId() + "',\
-				callers: [\
+				id: '" + component.GetId() + "',\
+				gate: '" + gate + "',\
+				previous: [\
 		";
 
-		std::vector<std::string>& calls = callers[components[i]->GetId()];
+		for (int j = 0; j < previous.size(); j++) script += "'" + previous[j] + "', ";
 
-		for (int j = 0; j < calls.size(); j++) script += "'" + calls[j] + "', ";
+		script += "\
+				],\
+				next: [";
 
-		script += "]\
+		for (int j = 0; j < next.size(); j++) script += "'" + next[j] + "', ";
+
+		script += "\
+				]\
 			};\
 		";
 	}
@@ -68,6 +88,8 @@ void Output::DiagramGetNext(Component& component, std::vector<Component*>* compo
 		components->push_back(&component);
 		std::vector<Component*> next = component.GetNext()[0]->GetNext();
 		for (int i = 0; i < next.size(); i++) {
+			calling[component.GetId()].push_back(next[i]->GetId());
+
 			std::vector<std::string>& calls = callers[next[i]->GetId()];
 			if (std::find(calls.begin(), calls.end(), component.GetId()) == calls.end()) {
 				callers[next[i]->GetId()].push_back(component.GetId());

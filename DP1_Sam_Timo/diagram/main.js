@@ -32,10 +32,10 @@ function loadColumn(nr) {
 
         // test wheter the component has surpassed all its callers
         let calls = 0; 
-        for(let j = 0; j < component.callers.length; j++){
+        for(let j = 0; j < component.previous.length; j++){
             let isPlaced = true;
             for(let k = 0; k < componentsRound.length; k++){
-                if (component.callers[j] == componentsRound[k].id) { // caller component is not placed yet
+                if (component.previous[j] == componentsRound[k].id) { // caller component is not placed yet
                     isPlaced = false;
                     break;
                 }
@@ -43,7 +43,7 @@ function loadColumn(nr) {
             if(isPlaced) calls++;
         }
 
-        if(calls==component.callers.length){
+        if(calls==component.previous.length){
             let componentRemove;
             for(let j=0; j<components.length; j++){
                 if(components[j].id==component.id){

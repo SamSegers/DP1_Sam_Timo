@@ -1,13 +1,15 @@
 function main() {
     loadColumns();
-    assignShapes(); //TODO
-    initLines() //TODO
+    initEdges() //TODO
     loadCanvas();
-    drawComponents(); //TODO
-    drawComponents(); //TODO
+    loadImages();
+    drawEdges(); //TODO
+    drawColumns(); //TODO
 }
 
-// 1. columns
+// 1. calculation
+
+// 1.1 columns
 
 let columns;
 let maxRound; // make sure the script won't run into maximum loop by checking on worst case
@@ -61,18 +63,12 @@ function loadColumn(nr) {
     if(components.length!=0 && nr!=maxRound) loadColumn(nr+1);
 }
 
-// x. shapes TODO
+// 1.2 lines TODO
 
-function assignShapes() {
-    // figure out if I should do this in Output.cpp/Diagram.cpp
-}
+let edges;
 
-// x. lines TODO
-
-let lines;
-
-function initLines() {
-
+function initEdges() {
+    edges = [];
 }
 
 // 2. drawing
@@ -88,14 +84,52 @@ function loadCanvas() {
 
 // 2.2 draw lines TODO
 
-function drawLines() {
+function drawEdges() {
+    for (let i = 0; i < edges.length; i++){
 
+    }
+}
+
+let imgGates;
+
+function loadImages() {
+    imgGates = {};
+    let gates = ["AND", "NAND", "NOR", "NOT", "OR", "XNOR", "XOR"];
+
+    for (let i = 0; i < gates.length; i++){
+        let gate = gates[i];
+        imgGates[gate] = new Image();
+        imgGates[gate].src = "img/"+gate+".png";
+    }
+    console.log(imgGates);
 }
 
 // 2.3 draw components TODO
 
-function drawComponents() {
+function drawColumns() {
+    let x = 5.5;
 
+    for (let i = 0; i < columns.length; i++){
+        let column = columns[i];
+
+        for (let j = 0; j < column.length; j++){
+            let component = column[j];
+            let y = 5+j*100+0.5;
+
+            if(component.gate!=""){ //gates
+                ctx.strokeRect(x, y, 80, 80);
+                ctx.fillText(component.id, x+20, y+15);
+                ctx.drawImage(imgGates[component.gate], x+10, y+25, 60, 30);
+                ctx.fillText(component.gate, x+20, y+70);
+            } else { // inputs and outputs
+                ctx.beginPath();
+                ctx.arc(x+45, y+45, 10, 0, Math.PI*2, true);
+                ctx.stroke();
+            }
+        }
+
+        x += 80 + column.length * 30;
+    }
 }
 
 

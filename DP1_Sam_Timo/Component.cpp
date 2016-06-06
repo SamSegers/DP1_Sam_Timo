@@ -6,6 +6,7 @@ Component::Component()
 }
 Component::~Component()
 {
+	this->pComponents.clear();
 }
 
 void Component::AddNext(Component *Next)
@@ -28,11 +29,17 @@ void Component::CallNext()
 
 	for (int i = 0; i < this->pComponents.size(); i++)
 	{
-		_mutex.lock();
+		
 		if (this->_id != "")
+		{
+			_mutex.lock();
 			this->pView->Print("id:" + this->_id);
-		_mutex.unlock();
+			_mutex.unlock();
+		}
+
+		_mutex.lock();
 		this->pComponents.at(i)->InsertValue(this->values.at(0));
+		_mutex.unlock();
 		std::thread t(&Component::CallNext,this->pComponents.at(i));
 		t.detach();
 		//this->pComponents.at(i)->CallNext();

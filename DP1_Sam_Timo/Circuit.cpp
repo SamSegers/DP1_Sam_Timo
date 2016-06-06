@@ -63,14 +63,6 @@ Circuit::~Circuit()
 	}
 
 	Nodes.clear();
-
-	
-
-	if (pOutput != nullptr)
-	{
-		delete pOutput;
-		pOutput = nullptr;
-	}
 }
 
 int Circuit::CreateEdges(std::vector<std::string> Edges)
@@ -263,6 +255,11 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 			}
 			else if (Data.find(";") != std::string::npos)
 			{
+				if (Data.find("\t") != std::string::npos)
+				{
+					Data = Data.substr(Data.find("\t")+1);
+				}
+
 				id = Data.substr(0, Data.find(";"));
 
 				for (int i = 0; i < Nodes.size(); i++)

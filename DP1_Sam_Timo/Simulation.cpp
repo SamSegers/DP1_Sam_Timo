@@ -15,17 +15,19 @@ Simulation::~Simulation()
 		pReader = nullptr;
 	}
 
+	if (pOutput != nullptr)
+	{
+		delete pOutput;
+		pOutput = nullptr;
+	}
+
 	if (pCircuit != nullptr)
 	{
 		delete pCircuit;
 		pCircuit = nullptr;
 	}
 
-	if (pOutput != nullptr)
-	{
-		delete pOutput;
-		pOutput = nullptr;
-	}
+	
 }
 
 int Simulation::Load()

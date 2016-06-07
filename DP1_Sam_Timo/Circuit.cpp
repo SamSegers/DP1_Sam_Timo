@@ -3,7 +3,7 @@
 
 Circuit::Circuit()
 {
-	pOutput = new Output();
+	
 }
 
 Circuit::~Circuit()
@@ -306,4 +306,9 @@ void Circuit::Start()
 		t.detach();
 		//Inputs.at(i)->CallNext();
 	}
+}
+
+void Circuit::SetOutput(Output *output)
+{
+	this->pOutput = output;
 }

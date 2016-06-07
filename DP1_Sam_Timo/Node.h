@@ -3,7 +3,7 @@
 
 #include "Component.h"
 #include "Edge.h"
-
+#include <chrono>
 class Node : public Component 
 {
 protected:

@@ -29,6 +29,8 @@ public:
 	int CreateProbes(std::vector<std::string>);
 	int CreateInputs(std::vector<std::string>);
 
+	void SetOutput(Output *output);
+
 	void Start();
 
 };

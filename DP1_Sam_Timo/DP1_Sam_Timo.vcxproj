@@ -67,6 +67,7 @@
     <ClCompile Include="AND.cpp" />
     <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Diagram.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Filereader.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="Circuit.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="Diagram.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Filereader.h" />

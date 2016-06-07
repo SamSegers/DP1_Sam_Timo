@@ -3,6 +3,7 @@
 
 #include "Filereader.h"
 #include "Circuit.h"
+#include "Diagram.h"
 
 class Simulation
 {
@@ -10,6 +11,7 @@ protected:
 	Circuit *pCircuit;
 	Filereader *pReader;
 	Output *pOutput;
+	Diagram *pDiagram;
 	int Load();
 	int CreateCircuit();
 public:

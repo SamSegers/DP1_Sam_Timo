@@ -3,6 +3,7 @@
 Simulation::Simulation()
 {
 	pOutput = new Output();
+	pDiagram = new Diagram();
 }
 
 Simulation::~Simulation()
@@ -27,7 +28,11 @@ Simulation::~Simulation()
 		pCircuit = nullptr;
 	}
 
-	
+	if (pDiagram != nullptr)
+	{
+		delete pDiagram;
+		pDiagram = nullptr;
+	}
 }
 
 int Simulation::Load()
@@ -55,7 +60,8 @@ void Simulation::Start(std::string Filename)
 	if (Load())
 	{
 		if (CreateCircuit()) {
-			pOutput->CreateDiagram(*pCircuit);
+			pOutput->Print("Initializing the circuit diagram!");
+			pDiagram->Create(*pCircuit);
 			pOutput->Print("Started the circuit!");
 			pCircuit->Start();
 		}

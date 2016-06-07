@@ -31,12 +31,9 @@ void Output::CreateDiagram(Circuit& circuit) {
 		let components = [];\
 	";
 
-	//components.push_back(std::vector<Component*>());
-
 	// 2. get components
 	// loop through inputs
 	for(int i=0; i<inputs.size(); i++) {
-		std::cout << "INPUT " << inputs[i]->GetId() << std::endl;
 		DiagramGetNext(*inputs[i], &components);
 	}
 
@@ -85,17 +82,23 @@ void Output::CreateDiagram(Circuit& circuit) {
 }
 
 void Output::DiagramGetNext(Component& component, std::vector<Component*>* components) {
-	if (std::find(components->begin(), components->end(), &component) == components->end() && component.GetNext().size() > 0) {
+	if (std::find(components->begin(), components->end(), &component) == components->end()){
+		std::cout << component.GetId() << std::endl;
 		components->push_back(&component);
-		std::vector<Component*> next = component.GetNext()[0]->GetNext();
-		for (int i = 0; i < next.size(); i++) {
-			calling[component.GetId()].push_back(next[i]->GetId());
+		
+		if (component.GetNext().size() > 0) {
+			std::vector<Component*> next = component.GetNext()[0]->GetNext();
 
-			std::vector<std::string>& calls = callers[next[i]->GetId()];
-			if (std::find(calls.begin(), calls.end(), component.GetId()) == calls.end()) {
-				callers[next[i]->GetId()].push_back(component.GetId());
+			for (int i = 0; i < next.size(); i++) {
+				calling[component.GetId()].push_back(next[i]->GetId()); // add to next array of current component
+
+				std::vector<std::string>& calls = callers[next[i]->GetId()];
+				if (std::find(calls.begin(), calls.end(), component.GetId()) == calls.end()) {
+					callers[next[i]->GetId()].push_back(component.GetId()); // add to previous array of next component
+				}
+				std::cout << "NEXT " << next[i]->GetId() << std::endl;
+				DiagramGetNext(*next[i], components);
 			}
-			DiagramGetNext(*next[i], components);
 		}
 	}
 }

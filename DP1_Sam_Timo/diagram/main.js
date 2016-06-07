@@ -106,7 +106,7 @@ let edges;
 function initEdges() {
     edges = [];
 
-    for (let i = 0; i < 3;/*columns.length;*/ i++){
+    for (let i = 0; i < columns.length; i++){
         let column = columns[i];
 
         for (let j = 0; j < column.length; j++){

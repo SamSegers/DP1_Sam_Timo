@@ -75,7 +75,7 @@ function loadColumn(nr) {
 const gateSize = 80;
 const componentCenter = gateSize / 2;
 const space = 20;
-const correction = 0.5;
+const correction = 0.5; // add correction for drawing, to make lines sharp
 
 function positionComponents() {
     let x = space;
@@ -86,7 +86,7 @@ function positionComponents() {
         for (let j = 0; j < column.length; j++) {
             let component = column[j];
             component.x = x;
-            component.y = j * (gateSize + space) + correction;
+            component.y = j * (gateSize + space);
         }
 
         // add space next to column
@@ -112,29 +112,55 @@ function initEdges() {
         for (let j = 0; j < column.length; j++){
             let component = column[j];
 
+            let excludeY = [];
+
             for (let k = 0; k < component.next.length; k++){
                 let next = getComponent(component.next[k]);
-                console.log(next);
                 let index = edges.length;
-                let y = getEdgeTravelY(i, getColumnIndex(next.id));
-                let linkIndex = getComponentIndex(next.id);
+                let destinationIndex = getColumnIndex(next.id);
 
-                // get x position next to specific next component
-                let marginX = space / next.previous.length * next.previous.indexOf(component.id);
-                // get y position of connection on specific next component
-                let connectionY = gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
+                if(i==destinationIndex-1){ // when columns are next to each other
+                    let linkIndex = getComponentIndex(next.id);
 
-                // caller side
-                edges[index] = [];
-                edges[index].push({x: component.x + gateSize/2, y: component.y + gateSize/2});
-                edges[index].push({x: component.x + gateSize + space + j * space, y: component.y + gateSize / 2 });
-                edges[index].push({x: component.x + gateSize + space + j * space, y: y });
+                    // get x position next to specific next component
+                    let marginX = space / next.previous.length * next.previous.indexOf(component.id);
+                    // get y position of connection on specific next component
+                    let connectionY = gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
 
-                // calling side
-                edges[index].push({x: next.x - space - linkIndex * space + marginX, y: y });
-                edges[index].push({x: next.x - space - linkIndex * space + marginX, y: next.y + connectionY });
-                edges[index].push({x: next.x + gateSize/2, y: next.y + connectionY });
+                    // caller side
+                    edges[index] = [];
+                    edges[index].push({x: component.x + gateSize/2, y: component.y + gateSize/2});
+                    edges[index].push({x: component.x + gateSize + space + j * space, y: component.y + gateSize / 2 });
+                    edges[index].push({x: component.x + gateSize + space + j * space, y: next.y + connectionY });
+
+                    // calling side
+                    edges[index].push({x: next.x + gateSize/2, y: next.y + connectionY });
+                } else { // make use of y connection path
+                    let y = getEdgeTravelY(i+1, destinationIndex-1);
+                    excludeY.push({origin: i+1, destination: destinationIndex-1, y: y});
+
+                    let linkIndex = getComponentIndex(next.id);
+
+                    // get x position next to specific next component
+                    let marginX = space / next.previous.length * next.previous.indexOf(component.id);
+                    // get y position of connection on specific next component
+                    let connectionY = gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
+
+                    // caller side
+                    edges[index] = [];
+                    edges[index].push({x: component.x + gateSize/2, y: component.y + gateSize/2});
+                    edges[index].push({x: component.x + gateSize + space + j * space, y: component.y + gateSize / 2 });
+                    edges[index].push({x: component.x + gateSize + space + j * space, y: y });
+
+                    // calling side
+                    edges[index].push({x: next.x - space - linkIndex * space + marginX, y: y });
+                    edges[index].push({x: next.x - space - linkIndex * space + marginX, y: next.y + connectionY });
+                    edges[index].push({x: next.x + gateSize/2, y: next.y + connectionY });
+                }
             }
+
+            // remove y from columns populations
+            for (let k = 0; k < excludeY.length; k++) RangeAlterColumnPopulations(excludeY[k].origin, excludeY[k].destination, excludeY[k].y);
         }
     }
 }
@@ -164,8 +190,6 @@ function getColumnIndex(componentId){
 }
 
 function getEdgeTravelY(originColumnIndex, destinationColumnIndex) {
-    console.log("from "+originColumnIndex+" to "+destinationColumnIndex);
-
     let length = getRangeColumnLength(originColumnIndex, destinationColumnIndex);
     let y = gateSize * length + space * (length-1);
     let match = false;
@@ -179,7 +203,6 @@ function getEdgeTravelY(originColumnIndex, destinationColumnIndex) {
             for(let j=0; j<columns[i].populations.length; j++){ // loop through column populations
                 let population = columns[i].populations[j];
 
-                //console.log("population check", i, y, population[0], population[1]);
                 if (y >= population[0] && y <= population[1]) {
                     match = false;
                     break;
@@ -189,9 +212,6 @@ function getEdgeTravelY(originColumnIndex, destinationColumnIndex) {
             if (!match) break;
         }
     }
-
-    //console.log('range alter ', originColumnIndex, destinationColumnIndex, y);
-    RangeAlterColumnPopulations(originColumnIndex, destinationColumnIndex, y);
 
     return y;
 }
@@ -205,13 +225,9 @@ function getRangeColumnLength(originColumnIndex, destinationColumnIndex) {
 }
 
 function RangeAlterColumnPopulations(originColumnIndex, destinationColumnIndex, y) {
-    //console.log(columns[1].populations);
     for (let i = originColumnIndex; i <= destinationColumnIndex; i++) { // loop through columns range
         //let populations = columns[i].populations;
         console.log("start populations column ", i);
-        //console.log(populations);
-        //console.log(i);
-        //console.log(columns[i].populations);
 
         let absorbed = false;
 
@@ -228,13 +244,9 @@ function RangeAlterColumnPopulations(originColumnIndex, destinationColumnIndex, 
                 absorbed = true;
             }
         }
-        //console.log(columns[i].populations[0]);
-        //console.log(columns[i].populations[0][1]);
 
         if(!absorbed) columns[i].populations.push([y, y]);
         console.log(columns[i].populations);
-
-        //console.log("end populations column ", i);
     }
 }
 
@@ -253,11 +265,17 @@ function loadCanvas() {
 
 function drawEdges() {
     for (let i = 0; i < edges.length; i++){
+        // draw begin line of edge with different color to make it easier to differentiate
         ctx.beginPath();
+        ctx.strokeStyle = "#0000ff";
         ctx.moveTo(edges[i][0].x + correction, edges[i][0].y + correction);
-        for (let j = 1; j < edges[i].length; j++) {
-            ctx.lineTo(edges[i][j].x + correction, edges[i][j].y + correction);
-        }
+        ctx.lineTo(edges[i][1].x + correction, edges[i][1].y + correction);
+        ctx.stroke();
+        // draw rest of edge
+        ctx.beginPath();
+        ctx.strokeStyle = "#000";
+        ctx.moveTo(edges[i][1].x + correction, edges[i][1].y + correction);
+        for (let j = 2; j < edges[i].length; j++) ctx.lineTo(edges[i][j].x + correction, edges[i][j].y + correction);
         ctx.stroke();
     }
 }
@@ -284,7 +302,7 @@ function drawColumns() {
         for (let j = 0; j < column.length; j++){
             let component = column[j];
             let x = component.x + correction;
-            let y = component.y;
+            let y = component.y + correction;
             
             ctx.fillStyle = "#fff";
 

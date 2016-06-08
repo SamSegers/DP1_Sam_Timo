@@ -119,32 +119,26 @@ function initEdges() {
                 let index = edges.length;
                 let destinationIndex = getColumnIndex(next.id);
 
+                // get x position next to specific next component
+                let marginX = space / next.previous.length * next.previous.indexOf(component.id);
+                // get y position of connection on specific next component
+                let connectionY = gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
+
                 if(i==destinationIndex-1){ // when columns are next to each other
-                    let linkIndex = getComponentIndex(next.id);
-
-                    // get x position next to specific next component
-                    let marginX = space / next.previous.length * next.previous.indexOf(component.id);
-                    // get y position of connection on specific next component
-                    let connectionY = gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
-
                     // caller side
                     edges[index] = [];
-                    edges[index].push({x: component.x + gateSize/2, y: component.y + gateSize/2});
-                    edges[index].push({x: component.x + gateSize + space + j * space, y: component.y + gateSize / 2 });
+                    edges[index].push({
+                        x: component.x + gateSize / 2,
+                        y: component.y + (component.y == next.y && i != 0 ? connectionY : gateSize / 2) // set y aligned to next y when the components are directly next to each other
+                    });
+                    if(component.y!=next.y || i==0) // add second point
+                        edges[index].push({x: component.x + gateSize + space + j * space, y: component.y + gateSize / 2 });
                     edges[index].push({x: component.x + gateSize + space + j * space, y: next.y + connectionY });
-
-                    // calling side
-                    edges[index].push({x: next.x + gateSize/2, y: next.y + connectionY });
                 } else { // make use of y connection path
                     let y = getEdgeTravelY(i+1, destinationIndex-1);
                     excludeY.push({origin: i+1, destination: destinationIndex-1, y: y});
 
                     let linkIndex = getComponentIndex(next.id);
-
-                    // get x position next to specific next component
-                    let marginX = space / next.previous.length * next.previous.indexOf(component.id);
-                    // get y position of connection on specific next component
-                    let connectionY = gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
 
                     // caller side
                     edges[index] = [];
@@ -155,8 +149,10 @@ function initEdges() {
                     // calling side
                     edges[index].push({x: next.x - space - linkIndex * space + marginX, y: y });
                     edges[index].push({x: next.x - space - linkIndex * space + marginX, y: next.y + connectionY });
-                    edges[index].push({x: next.x + gateSize/2, y: next.y + connectionY });
                 }
+
+                // calling side
+                edges[index].push({x: next.x + gateSize/2, y: next.y + connectionY });
             }
 
             // remove y from columns populations

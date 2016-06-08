@@ -29,10 +29,9 @@ public:
 	int CreateProbes(std::vector<std::string>);
 	int CreateInputs(std::vector<std::string>);
 
-	std::vector<Node*> GetNodes();
-	std::vector<Edge*> GetEdges();
-	std::vector<Probe*> GetProbes();
 	std::vector<Input*> GetInputs();
+
+	void SetOutput(Output *output);
 
 	void Start();
 

@@ -3,7 +3,7 @@
 
 Circuit::Circuit()
 {
-	pOutput = new Output();
+	
 }
 
 Circuit::~Circuit()
@@ -308,18 +308,11 @@ void Circuit::Start()
 	}
 }
 
-std::vector<Node*> Circuit::GetNodes() {
-	return Nodes;
-}
-
-std::vector<Edge*> Circuit::GetEdges() {
-	return Edges;
-}
-
-std::vector<Probe*> Circuit::GetProbes() {
-	return Probes;
-}
-
 std::vector<Input*> Circuit::GetInputs() {
 	return Inputs;
+}
+
+void Circuit::SetOutput(Output *output)
+{
+	this->pOutput = output;
 }

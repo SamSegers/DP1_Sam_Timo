@@ -11,7 +11,6 @@ Output::~Output()
 }
 
 void Output::Print(int& value) {
-	
 	std::cout << "output = " << value << std::endl;
 }
 

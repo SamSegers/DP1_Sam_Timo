@@ -123,7 +123,7 @@ function getNeighborPreviousAmount(index) {
     for (let i = 0; i < column.length; i++) { // loop throught components in column
         let previous = column[i].previous;
         for(let j=0; j<previous.length; j++){ // loop through previous of component
-            if (index != getColumnIndex(previous[j])/* || i != getComponentIndex(previous[j])*/) {
+            if (index != getColumnIndex(previous[j])) {
                 count++;
                 break;
             }
@@ -158,6 +158,7 @@ function createEdges() {
                     x: column.x + gateSize / 2,
                     y: y
                 }
+                if (i == 0) console.log(column.space.start);
                 edge.crossroad = {
                     x: column.space.start,
                     y: y
@@ -174,10 +175,10 @@ function createEdges() {
                     let line = lines[k] = [];
                     let connectionY = next.y + gateSize / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
 
-                    if(i == destinationIndex-1 && (i == 0 || j!=destinationColumn.indexOf(next))){
+                    if(i == destinationIndex-1 && (i == 0 || j!=destinationColumn.indexOf(next))){ // line connects to column next to it, not straight
                         line.push({x: edge.crossroad.x, y: connectionY});
-                        column.space.start += space;
-                    } else if (i != destinationIndex-1){
+                        //column.space.start += space;
+                    } else if (i != destinationIndex-1){ // line travels around other columns
                         let travelY = getEdgeTravelY(i+1, destinationIndex-1);
                         routes.push({ start: i + 1, end: destinationIndex - 1, y: travelY });
 
@@ -186,15 +187,17 @@ function createEdges() {
                         line.push({x: x, y: travelY});
                         line.push({x: x, y: connectionY});
                         destinationNeighborColumn.space.end -= space;
-                        column.space.start += space;
+                        //column.space.start += space;
                     }
 
                     line.push({x: destinationColumn.x + gateSize/2, y: connectionY});
                 }
 
-                if(edge.lines.length==1 && edge.lines[0].length==1) edge.directLink = true;
+                if(edge.lines.length==1 && edge.lines[0].length==1) edge.directLink = true; // makes edge + line blue
 
                 for (let k = 0; k < routes.length; k++) alterRoutesPopulations(routes);
+
+                column.space.start += space;
             }
         }
     }

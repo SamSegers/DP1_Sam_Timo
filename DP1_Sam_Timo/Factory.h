@@ -26,6 +26,7 @@ public:
 	static Factory *instance();
 	Component *RequestComponent(uint _type);
 	void ReleaseComponent(Component *_component);
+	void AddComponent(Component *_component);
 };
 
 #endif

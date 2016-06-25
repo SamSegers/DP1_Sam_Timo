@@ -10,6 +10,7 @@ public:
 	Output();
 	~Output();
 
+	void AskForValues();
 	void Print(int& value);
 	void Print(std::string value);
 };

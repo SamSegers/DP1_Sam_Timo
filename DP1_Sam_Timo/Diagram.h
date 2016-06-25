@@ -11,8 +11,6 @@
 #include "Component.h"
 #include "Circuit.h"
 
-class Component;
-class Circuit;
 class Diagram
 {
 private:

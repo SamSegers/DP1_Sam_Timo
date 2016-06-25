@@ -10,10 +10,14 @@ Output::~Output()
 
 }
 
-void Output::AskForValues()
+void Output::AskForInputHigh()
 {
-	std::cout << "Give INPUT_HIGH value:" << std::endl;
-	std::cout << "Give INPUT_LOW value:" << std::endl;
+	std::cout << "Give a value for high: ";
+}
+
+void Output::AskForInputLow()
+{
+	std::cout << "Give a value for low: ";
 }
 
 void Output::Print(int& value) {

@@ -10,7 +10,9 @@ public:
 	Output();
 	~Output();
 
-	void AskForValues();
+
+	void AskForInputHigh();
+	void AskForInputLow();
 	void Print(int& value);
 	void Print(std::string value);
 };

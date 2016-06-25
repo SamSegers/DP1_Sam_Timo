@@ -6,11 +6,7 @@
 #include <chrono>
 class Node : public Component 
 {
-protected:
-	// er zit een std::vector in component hoeft geen array te maken
-	//Edge* pEdges[2];
 public:
-
 	virtual int ExecuteOperation();
 	virtual void CallNext();
 	virtual Component* Clone();

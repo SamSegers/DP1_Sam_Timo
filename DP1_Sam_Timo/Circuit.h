@@ -18,7 +18,8 @@ protected:
 	std::vector<Input *> Inputs;
 	std::vector<Edge *> Edges;
 
-	int Link(std::string Data,Edge *);
+	int Link(std::string Data, Edge *);
+	int LinkAdd(std::vector<Component *>, Edge *pEdge, std::string id, bool toEdge);
 	int ErrorFound(std::string error);
 public:
 	Circuit();

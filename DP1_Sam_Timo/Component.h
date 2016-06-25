@@ -8,7 +8,6 @@
 
 extern std::mutex _mutex;
 
-class Output;
 class Component
 {
 protected:

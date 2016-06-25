@@ -5,7 +5,19 @@ void Cleanup();
 std::mutex _mutex;
 int main(int argc, char* argv[])
 {
-	
+
+	Factory::instance()->AddComponent(new Node());
+	Factory::instance()->AddComponent(new Edge());
+	Factory::instance()->AddComponent(new Input());
+	Factory::instance()->AddComponent(new Probe());
+	Factory::instance()->AddComponent(new AND());
+	Factory::instance()->AddComponent(new NAND());
+	Factory::instance()->AddComponent(new NOR());
+	Factory::instance()->AddComponent(new NOT());
+	Factory::instance()->AddComponent(new OR());
+	Factory::instance()->AddComponent(new XNOR());
+	Factory::instance()->AddComponent(new XOR());
+
 	Simulation simulation = Simulation();
 
 	std::string Filename = "";

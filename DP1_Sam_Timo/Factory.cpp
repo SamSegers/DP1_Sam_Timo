@@ -56,21 +56,15 @@ void Factory::ReleaseComponent(Component *_component)
 	}
 }
 
+void Factory::AddComponent(Component *_component)
+{
+	Factory::Types.push_back(_component);
+}
+
 Factory * Factory::instance()
 {
 	if (!pFactory)
 	{
-		Factory::Types.push_back(new Node());
-		Factory::Types.push_back(new Edge());
-		Factory::Types.push_back(new Input());
-		Factory::Types.push_back(new Probe());
-		Factory::Types.push_back(new AND());
-		Factory::Types.push_back(new NAND());
-		Factory::Types.push_back(new NOR());
-		Factory::Types.push_back(new NOT());
-		Factory::Types.push_back(new OR());
-		Factory::Types.push_back(new XNOR());
-		Factory::Types.push_back(new XOR());
 		pFactory = new Factory();
 	}
 	return pFactory;

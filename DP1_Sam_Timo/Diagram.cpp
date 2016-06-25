@@ -41,7 +41,7 @@ void Diagram::Create(Circuit& circuit) {
 			dynamic_cast<XOR*>(&component) != NULL ? "XOR" : "";
 
 		script += "\
-			components['" + component.GetId() + "'] = {\
+			components['" + std::to_string(i) + "'] = {\
 				id: '" + component.GetId() + "',\
 				gate: '" + gate + "',\
 				previous: [\

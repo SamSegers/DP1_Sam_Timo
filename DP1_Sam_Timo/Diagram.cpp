@@ -41,7 +41,7 @@ void Diagram::Create(Circuit& circuit) {
 			dynamic_cast<XOR*>(&component) != NULL ? "XOR" : "";
 
 		script += "\
-			components[" + std::to_string(i) + "] = {\
+			components['" + component.GetId() + "'] = {\
 				id: '" + component.GetId() + "',\
 				gate: '" + gate + "',\
 				previous: [\
@@ -61,7 +61,7 @@ void Diagram::Create(Circuit& circuit) {
 		";
 	}
 
-	std::ofstream file("diagram\\init.js");
+	std::ofstream file("diagram\\js\\init.js");
 	file << script;
 
 	// 4. execute

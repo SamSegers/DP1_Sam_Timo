@@ -5,7 +5,10 @@
 
 class Input : public Component
 {
+public:
 	virtual Component* Clone();
+	virtual void InputHigh();
+	virtual void InputLow();
 };
 
 #endif

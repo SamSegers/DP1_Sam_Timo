@@ -145,9 +145,15 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 			Input *pInput = (Input *)Factory::instance()->RequestComponent(_INPUT);
 
 			if (Inputs.at(i).find("INPUT_HIGH") != std::string::npos)
-				pInput->InsertValue(1);
+			{
+				pOutput->AskForInputHigh();
+				pInput->InputHigh();
+			}
 			else if (Inputs.at(i).find("INPUT_LOW") != std::string::npos)
-				pInput->InsertValue(0);
+			{
+				pOutput->AskForInputLow();
+				pInput->InputLow();
+			}
 			else
 				throw 1;
 

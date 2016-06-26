@@ -1,6 +1,7 @@
 #include "NOT.h"
 
-int NOT::ExecuteOperation() {
+int NOT::ExecuteOperation() 
+{
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
 	int output = !values.at(0);
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();

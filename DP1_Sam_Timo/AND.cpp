@@ -4,10 +4,9 @@ int AND::ExecuteOperation() {
 
 	if (this->values.size() < 2)
 		return 0;
-
 	
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
-	int output = values.at(0) == values.at(1);
+	int output = values[0] == 1 && values[1] == 1;
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
 
 	values.clear();

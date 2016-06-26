@@ -10,7 +10,6 @@ public:
 	Output();
 	~Output();
 
-
 	void AskForInputHigh();
 	void AskForInputLow();
 	void Print(int& value);

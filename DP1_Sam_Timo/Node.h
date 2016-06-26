@@ -4,12 +4,14 @@
 #include "Component.h"
 #include "Edge.h"
 #include <chrono>
+
 class Node : public Component 
 {
 public:
 	virtual int ExecuteOperation();
 	virtual void CallNext();
 	virtual Component* Clone();
+	int GetValue();
 };
 
 #endif _NODE_H

@@ -11,10 +11,10 @@ int NAND::ExecuteOperation() {
 
 	values.clear();
 	values.push_back(output);
-	_mutex.lock();
+	
 	pView->Print("Operation took: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(finish - start).count()) + "ns.");
 	pView->Print("Output of NAND:" + std::to_string(output));
-	_mutex.unlock();
+	
 	//CallNext();
 	return 1;
 }

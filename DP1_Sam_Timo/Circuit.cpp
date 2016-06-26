@@ -280,8 +280,7 @@ void Circuit::Start()
 {
 	for (int i = 0; i < Inputs.size(); i++)
 	{
-		std::thread t(&Input::CallNext, Inputs.at(i));
-		t.detach();
+		Inputs.at(i)->CallNext();
 	}
 }
 

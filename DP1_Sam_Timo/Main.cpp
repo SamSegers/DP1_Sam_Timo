@@ -2,7 +2,6 @@
 #include "Simulation.h"
 
 void Cleanup();
-std::mutex _mutex;
 int main(int argc, char* argv[])
 {
 
@@ -30,7 +29,7 @@ int main(int argc, char* argv[])
 	simulation.Start(Filename);
 	
 	std::cin.get();
-
+	std::cin.get();
 	Cleanup();
 	
 	return 1;

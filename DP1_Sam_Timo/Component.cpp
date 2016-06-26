@@ -37,16 +37,16 @@ void Component::CallNext()
 		
 		if (this->_id != "")
 		{
-			_mutex.lock();
+			
 			this->pView->Print("id:" + this->_id);
-			_mutex.unlock();
+			
 		}
 
-		_mutex.lock();
+		
 		this->pComponents.at(i)->InsertValue(this->values.at(0));
-		_mutex.unlock();
-		std::thread t(&Component::CallNext,this->pComponents.at(i));
-		t.detach();
+		
+		this->pComponents.at(i)->CallNext();
+		
 		//this->pComponents.at(i)->CallNext();
 	}
 }

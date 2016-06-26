@@ -6,8 +6,6 @@
 #include <thread>
 #include <vector>
 
-extern std::mutex _mutex;
-
 class Component
 {
 protected:

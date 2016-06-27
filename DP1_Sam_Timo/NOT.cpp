@@ -1,6 +1,8 @@
 #include "NOT.h"
 
-int NOT::ExecuteOperation() {
+
+int NOT::ExecuteOperation() 
+{
 	int output = !values.at(0);
 	values.clear();
 	values.push_back(output);

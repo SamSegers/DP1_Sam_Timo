@@ -9,10 +9,9 @@ class Output
 public:
 	Output();
 	~Output();
-
-
 	int AskForInputHigh();
 	int AskForInputLow();
+	std::string RunAgain();
 	void Print(int& value);
 	void Print(std::string value);
 };

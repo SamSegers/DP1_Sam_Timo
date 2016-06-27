@@ -22,6 +22,7 @@ protected:
 
 	int Link(std::string Data, Edge *);
 	int LinkAdd(std::vector<Component *>, Edge *pEdge, std::string id, bool toEdge);
+	void CheckIfCircuitWasSuccesful();
 	int ErrorFound(std::string error);
 public:
 	Circuit();
@@ -31,7 +32,7 @@ public:
 	int CreateEdges(std::vector<std::string>);
 	int CreateProbes(std::vector<std::string>);
 	int CreateInputs(std::vector<std::string>);
-
+	int CheckForLinkErrors();
 	std::vector<Input*> GetInputs();
 
 	void SetOutput(Output *output);

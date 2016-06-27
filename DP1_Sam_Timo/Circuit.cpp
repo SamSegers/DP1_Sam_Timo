@@ -1,6 +1,7 @@
 #include "Circuit.h"
 #include <exception>
 #include <map>
+#include <typeinfo>
 
 Circuit::Circuit()
 {
@@ -270,8 +271,6 @@ int Circuit::LinkAdd(std::vector<Component*> components, Edge *pEdge, std::strin
 
 			if (toEdge)
 			{
-
-				//
 				pEdge->AddNext(components[i]);
 				components[i]->SetPreviousComponent(pEdge);
 			}
@@ -287,6 +286,36 @@ int Circuit::LinkAdd(std::vector<Component*> components, Edge *pEdge, std::strin
 		pView->Print("Linking failed: no component '" + id + "' found!");
 
 	return found;
+}
+
+int Circuit::CheckForLinkErrors()
+{
+	try
+	{
+		for (int i = 0; i < this->Nodes.size(); i++)
+		{
+			/*std::string type = typeid(*this->Nodes.at(i)).name();
+			if (type.find("NOT") != std::string::npos)
+			{
+				if (this->Nodes.at(i)->GetNext().size() < 1 )
+					throw 1;
+
+				continue;
+			}*/
+
+			//if (this->Nodes.at(i)->GetNext().size() < 1)
+				//throw 1;
+
+			//std::cout << typeid(*this->Nodes.at(i)).name() << '\n';
+			
+		}
+	}
+	catch (int e)
+	{
+		return ErrorFound("Error in linking!");
+	}
+
+	return 1;
 }
 
 int Circuit::ErrorFound(std::string error = "")
@@ -305,7 +334,21 @@ void Circuit::Start()
 	}
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
 	
+	this->CheckIfCircuitWasSuccesful();
+
 	pView->Print("Circuit took: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(finish - start).count()) + "ns.");
+}
+
+void Circuit::CheckIfCircuitWasSuccesful()
+{
+	for (int i = 0; i < this->Probes.size(); i++)
+	{
+		if (this->Probes.at(i)->GetValues().size() == 0)
+		{
+			pView->Print("The circuit failed!");
+			break;
+		}
+	}
 }
 
 std::vector<Input*> Circuit::GetInputs() {

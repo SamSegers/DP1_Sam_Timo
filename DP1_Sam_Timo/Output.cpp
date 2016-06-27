@@ -27,6 +27,13 @@ int Output::AskForInputLow()
 	return out;
 }
 
+std::string Output::RunAgain()
+{
+	std::string val = "";
+	std::cin >> val;
+	return val;
+}
+
 void Output::Print(int& value) {
 	std::cout << "output = " << value << std::endl;
 }

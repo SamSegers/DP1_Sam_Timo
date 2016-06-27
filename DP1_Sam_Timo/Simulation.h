@@ -13,14 +13,19 @@ protected:
 	Output *pOutput;
 	Diagram *pDiagram;
 	Visitor *pVisitor;
+
 	int Load();
 	int CreateCircuit();
+
+	int RunAgain();
+
+	void Init();
+	void Cleanup();
 public:
 	Simulation();
 	~Simulation();
 
 	void Start(std::string);
-	void Stop();
 };
 
 #endif

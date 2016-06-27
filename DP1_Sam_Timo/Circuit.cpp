@@ -10,7 +10,7 @@ Circuit::Circuit()
 Circuit::~Circuit()
 {
 	
-
+	// ruim alle edges op.
 	for (int i = 0; i < this->Edges.size(); i++)
 	{
 		Edge *pEdge = Edges.at(i);
@@ -24,7 +24,7 @@ Circuit::~Circuit()
 	}
 
 	Edges.clear();
-
+	// ruim alle probes op.
 	for (int i = 0; i < this->Probes.size(); i++)
 	{
 		Probe *pProbe = Probes.at(i);
@@ -38,7 +38,7 @@ Circuit::~Circuit()
 	}
 
 	Probes.clear();
-
+	// ruim inputs op.
 	for (int i = 0; i < this->Inputs.size(); i++)
 	{
 		Input *pInput = Inputs.at(i);
@@ -52,7 +52,7 @@ Circuit::~Circuit()
 	}
 
 	Inputs.clear();
-
+	// ruim nodes op.
 	for (int i = 0; i < this->Nodes.size(); i++)
 	{
 		Node *pNode = Nodes.at(i);
@@ -68,6 +68,7 @@ Circuit::~Circuit()
 	Nodes.clear();
 }
 
+// maak een edge aan de hand van de data uit de filereader.
 int Circuit::CreateEdges(std::vector<std::string> Edges)
 {
 	pView->Print("Create edges and link them!");
@@ -76,22 +77,27 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 	{
 		for (int i = 0; i < Edges.size(); i++)
 		{
+			// maak de edge
 			Edge *pEdge = (Edge *)Factory::instance()->RequestComponent(_EDGE);
 			
+			// zet in lijst.
 			if (pEdge != nullptr)
 				this->Edges.push_back(pEdge);
 			else
 				throw 1;
 
+			// link de edge
 			if (!Link(Edges.at(i), pEdge))
 				throw 2;
 
+			// set visitor
 			pEdge->Accept(this->pVisitor);
 
 		}
 	}
 	catch (int e)
 	{
+		// file heeft fouten?
 		if (e == 1)
 			return ErrorFound("Error in creating edges!");
 		else if (e == 2)
@@ -100,6 +106,7 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 	return 1;
 }
 
+// maakt nodes aan uit de filereader.
 int Circuit::CreateNodes(std::vector<std::string> Nodes)
 {
 	pView->Print("Create nodes!");
@@ -115,14 +122,17 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 				{"AND", _AND}, {"NAND", _NAND}, {"NOR", _NOR}, {"NOT", _NOT}, {"OR", _OR}, {"XNOR", _XNOR}, {"XOR", _XOR}
 			};
 
+			// maak desbetreffende node aan.
 			for (auto const& nodeType : nodeTypes) {
 				if (Line.find(nodeType.first) != std::string::npos)
 					pNode = (Node *)Factory::instance()->RequestComponent(nodeType.second);
 			}
 
+			// node is niet gemaakt geef error
 			if (pNode == nullptr)
 				throw 1;
 
+			// zet id en visitor
 			pNode->SetId(Nodes.at(i).substr(0, Nodes.at(i).find(":")));
 			pNode->Accept(this->pVisitor);
 			this->Nodes.push_back(pNode);
@@ -130,14 +140,17 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 	}
 	catch (int e)
 	{
+		// nodes konden niet gemaakt worden
 		return ErrorFound("Error in creating nodes!");
 	}
 
 	return 1;
 }
 
+// maak inputs
 int Circuit::CreateInputs(std::vector<std::string> Inputs)
 {
+	// vraag voor de input waardes
 	int High = pView->AskForInputHigh();
 	int Low = pView->AskForInputLow();
 	pView->Print("Create inputs!");
@@ -145,8 +158,10 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 	{
 		for (int i = 0; i < Inputs.size(); i++)
 		{
+			// maak input
 			Input *pInput = (Input *)Factory::instance()->RequestComponent(_INPUT);
 
+			// zet de input waardes
 			if (Inputs.at(i).find("INPUT_HIGH") != std::string::npos)
 			{	
 				pInput->InsertValue(High);
@@ -156,10 +171,11 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 				pInput->InsertValue(Low);
 			}
 			else
-				throw 1;
+				throw 1; // error
 
 			if (pInput != nullptr)
 			{
+				// zet id en visitor
 				pInput->SetId(Inputs.at(i).substr(0, Inputs.at(i).find(":")));
 				this->Inputs.push_back(pInput);
 				pInput->Accept(this->pVisitor);
@@ -170,12 +186,13 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 	}
 	catch (int e)
 	{
+		// input kon niet gemaakt worden
 		return ErrorFound("Error in creating inputs!");
 	}
 
 	return 1;
 }
-
+// maak probes
 int Circuit::CreateProbes(std::vector<std::string> Probes)
 {
 	pView->Print("Create probes!");
@@ -183,27 +200,32 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 	{
 		for (int i = 0; i < Probes.size(); i++)
 		{
+			// maak een probe
 			Probe *pProbe = (Probe *)Factory::instance()->RequestComponent(_PROBE);
 
 			if (pProbe != nullptr)
 			{
+				// zet de probe id.
 				pProbe->SetId(Probes.at(i).substr(0, Probes.at(i).find(":")));
 				this->Probes.push_back(pProbe);
 			}
 			else
 				throw 1;
 
+			// zet de visitor
 			pProbe->Accept(this->pVisitor);
 		}
 	}
 	catch (int e)
 	{
+		// probe error
 		return ErrorFound("Error in creating probes!");
 	}
 
 	return 1;
 }
 
+// link alles aan elkaar
 int Circuit::Link(std::string Data, Edge *pEdge)
 {
 	if (Data.find(":") != std::string::npos) 
@@ -224,6 +246,7 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 
 		while (true)
 		{
+			// kijk of we naar het volgende object moeten of naar de volgende lijn.
 			bool comma = Data.find(",") != std::string::npos;
 			if (comma || Data.find(";") != std::string::npos)
 			{
@@ -239,7 +262,7 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 
 					id = Data.substr(0, Data.find(";"));
 				}
-
+				// link aan een edge.
 				if (!LinkAdd(components, pEdge, id, true))
 					return 0;
 
@@ -253,7 +276,7 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 
 	return 1;
 }
-
+// linken aan een edge
 int Circuit::LinkAdd(std::vector<Composite*> components, Edge *pEdge, std::string id, bool toEdge)
 {
 	int found = 0;
@@ -264,11 +287,13 @@ int Circuit::LinkAdd(std::vector<Composite*> components, Edge *pEdge, std::strin
 			found = 1;
 
 			// linken in view weergeven
-			for (int j = 0; j < pEdge->CountPreviousComponents(); j++)
+			for (int j = 0; j < pEdge->GetPrevious().size(); j++)
 			{
+				// print waar alles aan gelinkt is
 				pView->Print("Linking " + pEdge->GetPrevious().at(j)->GetId()  + " to " + components[i]->GetId());
 			}
 
+			// voer de link daadwerkelijk uit.
 			if (toEdge)
 			{
 				pEdge->AddChild(components[i]);
@@ -282,42 +307,14 @@ int Circuit::LinkAdd(std::vector<Composite*> components, Edge *pEdge, std::strin
 		}
 	}
 	
+	// fout in het linken
 	if(!found)
 		pView->Print("Linking failed: no component '" + id + "' found!");
 
 	return found;
 }
 
-int Circuit::CheckForLinkErrors()
-{
-	try
-	{
-		for (int i = 0; i < this->Nodes.size(); i++)
-		{
-			/*std::string type = typeid(*this->Nodes.at(i)).name();
-			if (type.find("NOT") != std::string::npos)
-			{
-				if (this->Nodes.at(i)->GetNext().size() < 1 )
-					throw 1;
-
-				continue;
-			}*/
-
-			//if (this->Nodes.at(i)->GetNext().size() < 1)
-				//throw 1;
-
-			//std::cout << typeid(*this->Nodes.at(i)).name() << '\n';
-			
-		}
-	}
-	catch (int e)
-	{
-		return ErrorFound("Error in linking!");
-	}
-
-	return 1;
-}
-
+// print de error.
 int Circuit::ErrorFound(std::string error = "")
 {
 	this->pView->Print(error);
@@ -327,7 +324,11 @@ int Circuit::ErrorFound(std::string error = "")
 
 void Circuit::Start()
 {
+	// aparte class misschien moeten zijn voor timen.
+	// tel de tijd in ns.
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
+	
+	// start en begin bij inputs.
 	for (int i = 0; i < Inputs.size(); i++)
 	{
 		Inputs.at(i)->DoThis();
@@ -339,6 +340,7 @@ void Circuit::Start()
 	pView->Print("Circuit took: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(finish - start).count()) + "ns.");
 }
 
+// kijk of er iets niet klopte in het circuit tijdens runtime.
 void Circuit::CheckIfCircuitWasSuccesful()
 {
 	for (int i = 0; i < this->Probes.size(); i++)

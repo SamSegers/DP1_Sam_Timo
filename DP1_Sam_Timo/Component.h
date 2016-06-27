@@ -7,6 +7,7 @@
 #include <thread>
 #include <vector>
 
+// Object dat de waardes bevat. probes/nodes/inputs overerven uiteindelijk van dit.
 class Component
 {
 protected:

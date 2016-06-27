@@ -1,6 +1,6 @@
 #ifndef _DEFINES_H
 #define _DEFINES_H
-
+// globale definities
 #define _NODE		0
 #define _EDGE		1
 #define _INPUT		2

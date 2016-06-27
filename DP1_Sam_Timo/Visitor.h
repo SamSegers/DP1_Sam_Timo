@@ -12,6 +12,7 @@ class Edge;
 class Component;
 class Composite;
 
+// visitor voor uitvoering van nodes en dergelijk.
 class Visitor
 {
 protected:

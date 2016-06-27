@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+// print alles naar std::cout
 class Output
 {
 public:

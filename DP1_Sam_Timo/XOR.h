@@ -3,6 +3,7 @@
 
 #include "Node.h"
 
+// voert de XOR functionaliteit uit
 class XOR : public Node
 {
 public:

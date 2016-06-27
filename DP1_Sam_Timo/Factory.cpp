@@ -42,11 +42,13 @@ Component *Factory::RequestComponent(uint _type)
 		return new XOR();
 	return nullptr;*/
 
+	// clone een nieuwe object
 	return Factory::Types.at(_type)->Clone();
 
 	//return &this->Types.at(_type);
 }
 
+// delete een item dat we binnen krijgen.
 void Factory::ReleaseComponent(Component *_component)
 {
 	if (_component != nullptr)
@@ -56,11 +58,13 @@ void Factory::ReleaseComponent(Component *_component)
 	}
 }
 
+// voeg nieuwe items toe zodat we die kunnen clonen
 void Factory::AddComponent(Component *_component)
 {
 	Factory::Types.push_back(_component);
 }
 
+// roept de instantie aan.
 Factory * Factory::instance()
 {
 	if (!pFactory)

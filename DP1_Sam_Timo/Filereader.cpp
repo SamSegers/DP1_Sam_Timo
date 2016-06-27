@@ -48,6 +48,7 @@ int Filereader::Read()
 
 int Filereader::ReadNodes(std::string Line)
 {
+	// kijk om wat het gaat
 	if (Line.find("NODE") != std::string::npos)
 		return CreateNode(Line);
 	else if (Line.find("PROBE") != std::string::npos)
@@ -60,6 +61,7 @@ int Filereader::ReadNodes(std::string Line)
 	return 0;
 }
 
+// voeg alles toe bij wat het hoort zodat we het later kunnen maken en linken
 int Filereader::ReadEdges(std::string Line)
 {
 	return CreateEdge(Line);

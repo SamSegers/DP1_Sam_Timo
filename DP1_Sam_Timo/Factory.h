@@ -15,10 +15,12 @@
 #include "Probe.h"
 #include <stdint.h>
 
+// maakt alle components aan
 class Factory
 {
 protected:
 	static std::vector <Component *> Types;
+	//singleton
 	static Factory *pFactory;
 public:
 	Factory();

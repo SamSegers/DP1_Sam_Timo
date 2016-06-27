@@ -3,6 +3,7 @@
 
 #include "Component.h"
 
+// samenstelling omdat er meestal ook wel iets voor/achter zit.
 class Composite : public Component
 {
 protected:
@@ -17,8 +18,6 @@ public:
 	virtual void AddChild(Composite *Next);
 
 	void SetPreviousComponent(Composite *Previous);
-
-	int CountPreviousComponents();
 };
 
 #endif

@@ -5,6 +5,8 @@
 #include "Circuit.h"
 #include "Diagram.h"
 
+// de simulatie.
+// bevat alle hoofdobjecten
 class Simulation
 {
 protected:

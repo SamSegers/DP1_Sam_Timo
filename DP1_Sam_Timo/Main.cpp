@@ -7,20 +7,23 @@ int main(int argc, char* argv[])
 {
 	// factory init
 	Init();
-
+	// maak simulatie
 	Simulation simulation = Simulation();
 
 	std::string Filename = "";
 
+	// kijk voor meegegeven argumenten
 	if (argc > 1)
 		Filename = argv[1];
 	else
 		Filename = "circuit1.txt";
 	
+	// start simulatie.
 	simulation.Start(Filename);
 	
 	std::cin.get();
 	std::cin.get();
+	// ruim de factory op
 	Cleanup();
 	
 	return 1;

@@ -5,6 +5,7 @@
 #include "Edge.h"
 #include <chrono>
 
+// Overerven de functionaliteiten van.
 class Node : public Composite 
 {
 public:

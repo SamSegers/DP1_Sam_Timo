@@ -12,6 +12,7 @@ Simulation::~Simulation()
 	
 }
 
+// laat file reader de file lezen.
 int Simulation::Load()
 {
 	if (pReader->Read())
@@ -20,27 +21,35 @@ int Simulation::Load()
 	return 0;
 }
 
+// maak een circuit
 int Simulation::CreateCircuit()
 {
 	this->pCircuit = new Circuit();
 	this->pCircuit->SetOutput(this->pOutput);
 	this->pCircuit->SetVisitor(this->pVisitor);
-	if (!pCircuit->CreateNodes(pReader->GetNodes()) || !pCircuit->CreateInputs(pReader->GetInputs()) || !pCircuit->CreateProbes(pReader->GetProbes()) || !pCircuit->CreateEdges(pReader->GetEdges()) || !pCircuit->CheckForLinkErrors())
+	// kijk of alles klopt
+	if (!pCircuit->CreateNodes(pReader->GetNodes()) || !pCircuit->CreateInputs(pReader->GetInputs()) || !pCircuit->CreateProbes(pReader->GetProbes()) || !pCircuit->CreateEdges(pReader->GetEdges()))
 		return 0;
 
 	return 1;
 }
 
+// start de circuit.
 void Simulation::Start(std::string Filename)
 {
+	// loop omdat we mogelijk opnieuw willen
 	while (true)
 	{
+		// init circuit en alles
 		this->Init();
 
+		// zet de file
 		this->pReader = new Filereader(Filename);
 
+		// laad data uit de file
 		if (Load())
 		{
+			// maak circuit
 			if (CreateCircuit()) {
 				pOutput->Print("Initializing the circuit diagram!");
 				pDiagram->Create(*pCircuit);
@@ -59,15 +68,18 @@ void Simulation::Start(std::string Filename)
 			break;
 		}
 
+		// opnieuw?
 		if (!RunAgain())
 			break;
 
+		// ruim alles op
 		this->Cleanup();
 	}
 	
 	
 }
 
+// vraag of we nog een keer willen
 int Simulation::RunAgain()
 {
 	pOutput->Print("Run the circuit again? y/n");
@@ -76,6 +88,7 @@ int Simulation::RunAgain()
 	return 0;
 }
 
+// init alles
 void Simulation::Init()
 {
 	pOutput = new Output();
@@ -84,6 +97,7 @@ void Simulation::Init()
 	pVisitor->SetOutput(this->pOutput);
 }
 
+// ruim alles op.
 void Simulation::Cleanup()
 {
 	if (pReader != nullptr)

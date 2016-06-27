@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 
+// leest de file uit en zet vervolgens waar alles bij hoort.
 class Filereader
 {
 protected:

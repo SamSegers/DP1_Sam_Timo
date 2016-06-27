@@ -4,11 +4,12 @@
 
 Circuit::Circuit()
 {
-	
 }
 
 Circuit::~Circuit()
 {
+	
+
 	for (int i = 0; i < this->Edges.size(); i++)
 	{
 		Edge *pEdge = Edges.at(i);
@@ -68,7 +69,7 @@ Circuit::~Circuit()
 
 int Circuit::CreateEdges(std::vector<std::string> Edges)
 {
-	pOutput->Print("Create edges and link them!");
+	pView->Print("Create edges and link them!");
 
 	try
 	{
@@ -84,6 +85,8 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 			if (!Link(Edges.at(i), pEdge))
 				throw 2;
 
+			pEdge->Accept(this->pVisitor);
+
 		}
 	}
 	catch (int e)
@@ -98,7 +101,7 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 
 int Circuit::CreateNodes(std::vector<std::string> Nodes)
 {
-	pOutput->Print("Create nodes!");
+	pView->Print("Create nodes!");
 	try
 	{
 		for (int i = 0; i < Nodes.size(); i++)
@@ -120,7 +123,7 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 				throw 1;
 
 			pNode->SetId(Nodes.at(i).substr(0, Nodes.at(i).find(":")));
-			
+			pNode->Accept(this->pVisitor);
 			this->Nodes.push_back(pNode);
 		}
 	}
@@ -134,7 +137,9 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 
 int Circuit::CreateInputs(std::vector<std::string> Inputs)
 {
-	pOutput->Print("Create inputs!");
+	int High = pView->AskForInputHigh();
+	int Low = pView->AskForInputLow();
+	pView->Print("Create inputs!");
 	try
 	{
 		for (int i = 0; i < Inputs.size(); i++)
@@ -142,14 +147,12 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 			Input *pInput = (Input *)Factory::instance()->RequestComponent(_INPUT);
 
 			if (Inputs.at(i).find("INPUT_HIGH") != std::string::npos)
-			{
-				pOutput->AskForInputHigh();
-				pInput->InputHigh();
+			{	
+				pInput->InsertValue(High);
 			}
 			else if (Inputs.at(i).find("INPUT_LOW") != std::string::npos)
 			{
-				pOutput->AskForInputLow();
-				pInput->InputLow();
+				pInput->InsertValue(Low);
 			}
 			else
 				throw 1;
@@ -158,6 +161,7 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 			{
 				pInput->SetId(Inputs.at(i).substr(0, Inputs.at(i).find(":")));
 				this->Inputs.push_back(pInput);
+				pInput->Accept(this->pVisitor);
 			}
 			else
 				throw 1;
@@ -173,7 +177,7 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 
 int Circuit::CreateProbes(std::vector<std::string> Probes)
 {
-	pOutput->Print("Create probes!");
+	pView->Print("Create probes!");
 	try
 	{
 		for (int i = 0; i < Probes.size(); i++)
@@ -187,6 +191,8 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 			}
 			else
 				throw 1;
+
+			pProbe->Accept(this->pVisitor);
 		}
 	}
 	catch (int e)
@@ -256,39 +262,63 @@ int Circuit::LinkAdd(std::vector<Component*> components, Edge *pEdge, std::strin
 		{
 			found = 1;
 
-			if(toEdge)
+			// linken in view weergeven
+			for (int j = 0; j < pEdge->CountPreviousComponents(); j++)
+			{
+				pView->Print("Linking " + pEdge->GetPrevious().at(j)->GetId()  + " to " + components[i]->GetId());
+			}
+
+			if (toEdge)
+			{
+
+				//
 				pEdge->AddNext(components[i]);
+				components[i]->SetPreviousComponent(pEdge);
+			}
 			else
+			{
 				components[i]->AddNext(pEdge);
+				pEdge->SetPreviousComponent(components[i]);
+			}
 		}
 	}
 	
 	if(!found)
-		pOutput->Print("Linking failed: no component '" + id + "' found!");
+		pView->Print("Linking failed: no component '" + id + "' found!");
 
 	return found;
 }
 
 int Circuit::ErrorFound(std::string error = "")
 {
-	this->pOutput->Print(error);
+	this->pView->Print(error);
 
 	return 0;
 }
 
 void Circuit::Start()
 {
+	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
 	for (int i = 0; i < Inputs.size(); i++)
 	{
 		Inputs.at(i)->CallNext();
 	}
+	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
+	
+	pView->Print("Circuit took: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(finish - start).count()) + "ns.");
 }
 
 std::vector<Input*> Circuit::GetInputs() {
 	return Inputs;
 }
 
-void Circuit::SetOutput(Output *output)
+void Circuit::SetVisitor(Visitor *pVisitor)
 {
-	this->pOutput = output;
+	this->pVisitor = pVisitor;
 }
+
+void Circuit::SetOutput(Output *pView)
+{
+	this->pView = pView;
+}
+

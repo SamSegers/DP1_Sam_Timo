@@ -7,5 +7,5 @@ Component* Probe::Clone()
 
 void Probe::CallNext()
 {
-	this->pView->Print("Final output of: " + this->_id + " is: " + std::to_string(this->values.at(0)));
+	this->pVisitor->Visit(this);
 }

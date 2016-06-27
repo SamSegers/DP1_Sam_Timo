@@ -8,8 +8,9 @@ int Node::ExecuteOperation()
 
 void Node::CallNext()
 {
-	if(this->ExecuteOperation())
-		Component::CallNext();
+	pVisitor->Visit(this);
+	//if(this->ExecuteOperation())
+		//Component::CallNext();
 }
 
 Component* Node::Clone()

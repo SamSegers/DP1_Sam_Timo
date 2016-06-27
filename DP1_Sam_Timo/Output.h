@@ -11,8 +11,8 @@ public:
 	~Output();
 
 
-	void AskForInputHigh();
-	void AskForInputLow();
+	int AskForInputHigh();
+	int AskForInputLow();
 	void Print(int& value);
 	void Print(std::string value);
 };

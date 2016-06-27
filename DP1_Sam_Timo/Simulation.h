@@ -12,6 +12,7 @@ protected:
 	Filereader *pReader;
 	Output *pOutput;
 	Diagram *pDiagram;
+	Visitor *pVisitor;
 	int Load();
 	int CreateCircuit();
 public:

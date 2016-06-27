@@ -7,6 +7,7 @@ Component::Component()
 Component::~Component()
 {
 	this->pComponents.clear();
+	this->PreviousComponents.clear();
 }
 
 void Component::AddNext(Component *Next)
@@ -19,6 +20,11 @@ std::vector<Component*> Component::GetNext()
 	return pComponents;
 }
 
+std::vector<Component*> Component::GetPrevious()
+{
+	return PreviousComponents;
+}
+
 void Component::InsertValue(int value)
 {
 	this->values.push_back(value);
@@ -28,32 +34,35 @@ void Component::CallNext()
 {
 	if (this->pComponents.size() == 0)
 	{
-		this->pView->Print("Error in circuit!");
 		return;
 	}
 
-	for (int i = 0; i < this->pComponents.size(); i++)
-	{
-		
-		if (this->_id != "")
-		{
-			
-			this->pView->Print("id:" + this->_id);
-			
-		}
-
-		
-		this->pComponents.at(i)->InsertValue(this->values.at(0));
-		
-		this->pComponents.at(i)->CallNext();
-		
-		//this->pComponents.at(i)->CallNext();
-	}
+	this->pVisitor->Visit(this);
 }
 
 Component* Component::Clone()
 {
 	return new Component();
+}
+
+std::vector<int> Component::GetValues()
+{
+	return this->values;
+}
+
+void Component::SetPreviousComponent(Component* Previous)
+{
+	this->PreviousComponents.push_back(Previous);
+}
+
+int Component::CountPreviousComponents()
+{
+	return this->PreviousComponents.size();
+}
+
+void Component::Accept(Visitor *pVisitor)
+{
+	this->pVisitor = pVisitor;
 }
 
 void Component::SetId(std::string _id)

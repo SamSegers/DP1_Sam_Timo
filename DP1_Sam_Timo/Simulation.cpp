@@ -4,6 +4,8 @@ Simulation::Simulation()
 {
 	pOutput = new Output();
 	pDiagram = new Diagram();
+	pVisitor = new Visitor();
+	pVisitor->SetOutput(this->pOutput);
 }
 
 Simulation::~Simulation()
@@ -14,6 +16,12 @@ Simulation::~Simulation()
 	{
 		delete pReader;
 		pReader = nullptr;
+	}
+
+	if (pVisitor != nullptr)
+	{
+		delete pVisitor;
+		pVisitor = nullptr;
 	}
 
 	if (pOutput != nullptr)
@@ -47,6 +55,7 @@ int Simulation::CreateCircuit()
 {
 	this->pCircuit = new Circuit();
 	this->pCircuit->SetOutput(this->pOutput);
+	this->pCircuit->SetVisitor(this->pVisitor);
 	if (!pCircuit->CreateNodes(pReader->GetNodes()) || !pCircuit->CreateInputs(pReader->GetInputs()) || !pCircuit->CreateProbes(pReader->GetProbes()) || !pCircuit->CreateEdges(pReader->GetEdges()))
 		return 0;
 

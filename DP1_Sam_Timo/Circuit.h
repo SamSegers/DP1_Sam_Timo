@@ -12,11 +12,13 @@
 class Circuit
 {
 protected:
-	Output *pOutput;
+	Output *pView;
 	std::vector<Node *> Nodes;
 	std::vector<Probe *> Probes;
 	std::vector<Input *> Inputs;
 	std::vector<Edge *> Edges;
+
+	Visitor *pVisitor;
 
 	int Link(std::string Data, Edge *);
 	int LinkAdd(std::vector<Component *>, Edge *pEdge, std::string id, bool toEdge);
@@ -33,6 +35,7 @@ public:
 	std::vector<Input*> GetInputs();
 
 	void SetOutput(Output *output);
+	void SetVisitor(Visitor *pVisitor);
 
 	void Start();
 

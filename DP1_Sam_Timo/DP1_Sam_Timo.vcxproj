@@ -71,6 +71,7 @@
     <ClCompile Include="AND.cpp" />
     <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Composite.cpp" />
     <ClCompile Include="Diagram.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Factory.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="AND.h" />
     <ClInclude Include="Circuit.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Composite.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Diagram.h" />
     <ClInclude Include="Edge.h" />

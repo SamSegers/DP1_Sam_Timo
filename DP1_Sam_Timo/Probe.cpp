@@ -5,7 +5,7 @@ Component* Probe::Clone()
 	return new Probe();
 }
 
-void Probe::CallNext()
+void Probe::DoThis()
 {
 	this->pVisitor->Visit(this);
 }

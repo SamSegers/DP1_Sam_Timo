@@ -1,14 +1,14 @@
 #ifndef _PROBE_H
 #define _PROBE_H
 
-#include "Component.h"
+#include "Composite.h"
 
-class Probe : public Component
+class Probe : public Composite
 {
 protected:
 	
 public:
-	virtual void CallNext();
+	virtual void DoThis();
 
 	virtual Component* Clone();
 };

@@ -25,7 +25,7 @@ void Visitor::Visit(Node *pNode)
 		for (int i = 0; i < pNode->GetNext().size(); i++)
 		{
 			pNode->GetNext().at(i)->InsertValue(pNode->GetValues().at(0));
-			pNode->GetNext().at(i)->CallNext();
+			pNode->GetNext().at(i)->DoThis();
 		}
 
 	}
@@ -36,15 +36,15 @@ void Visitor::Visit(Probe *pProbe)
 	pView->Print("The final output of probe: " + pProbe->GetId() + " is: " + std::to_string(pProbe->GetValues().at(0)));
 }
 
-void Visitor::Visit(Component *pComponent)
+void Visitor::Visit(Composite *pComposite)
 {
 	// kijk of het om een edge gaat
-	if (pComponent->GetId() != "")
-		pView->Print("At Component: " + pComponent->GetId());
+	if (pComposite->GetId() != "")
+		pView->Print("At Component: " + pComposite->GetId());
 
-	for (int i = 0; i < pComponent->GetNext().size(); i++)
+	for (int i = 0; i < pComposite->GetNext().size(); i++)
 	{
-		pComponent->GetNext().at(i)->InsertValue(pComponent->GetValues().at(0));
-		pComponent->GetNext().at(i)->CallNext();
+		pComposite->GetNext().at(i)->InsertValue(pComposite->GetValues().at(0));
+		pComposite->GetNext().at(i)->DoThis();
 	}
 }

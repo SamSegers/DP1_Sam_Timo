@@ -210,7 +210,7 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 	{
 		std::string id = Data.substr(0, Data.find(":"));
 
-		std::vector<Component*> components;
+		std::vector<Composite*> components;
 		components.reserve(Inputs.size() + Nodes.size() + Probes.size()); // preallocate memory
 		components.insert(components.end(), Inputs.begin(), Inputs.end());
 		components.insert(components.end(), Nodes.begin(), Nodes.end());
@@ -254,7 +254,7 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 	return 1;
 }
 
-int Circuit::LinkAdd(std::vector<Component*> components, Edge *pEdge, std::string id, bool toEdge)
+int Circuit::LinkAdd(std::vector<Composite*> components, Edge *pEdge, std::string id, bool toEdge)
 {
 	int found = 0;
 	for (int i = 0; i < components.size(); i++)
@@ -271,12 +271,12 @@ int Circuit::LinkAdd(std::vector<Component*> components, Edge *pEdge, std::strin
 
 			if (toEdge)
 			{
-				pEdge->AddNext(components[i]);
+				pEdge->AddChild(components[i]);
 				components[i]->SetPreviousComponent(pEdge);
 			}
 			else
 			{
-				components[i]->AddNext(pEdge);
+				components[i]->AddChild(pEdge);
 				pEdge->SetPreviousComponent(components[i]);
 			}
 		}
@@ -330,7 +330,7 @@ void Circuit::Start()
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
 	for (int i = 0; i < Inputs.size(); i++)
 	{
-		Inputs.at(i)->CallNext();
+		Inputs.at(i)->DoThis();
 	}
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
 	

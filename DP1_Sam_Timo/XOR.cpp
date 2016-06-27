@@ -7,7 +7,7 @@ int XOR::ExecuteOperation() {
 	int output = values.at(0)!=values.at(1);
 	values.clear();
 	values.push_back(output);
-	//CallNext();
+	//DoThis();
 	return 1;
 }
 

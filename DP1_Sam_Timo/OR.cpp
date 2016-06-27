@@ -9,7 +9,7 @@ int OR::ExecuteOperation() {
 	values.push_back(output);
 	
 	
-	//CallNext();
+	//DoThis();
 
 	return 1;
 }

@@ -1,9 +1,9 @@
 #ifndef _INPUT_H
 #define _INPUT_H
 
-#include "Component.h"
+#include "Composite.h"
 
-class Input : public Component
+class Input : public Composite
 {
 public:
 	virtual Component* Clone();

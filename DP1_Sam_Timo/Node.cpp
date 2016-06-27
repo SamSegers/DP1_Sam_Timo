@@ -5,11 +5,11 @@ int Node::ExecuteOperation()
 	return 1;
 }
 
-void Node::CallNext()
+void Node::DoThis()
 {
 	pVisitor->Visit(this);
 	//if(this->ExecuteOperation())
-		//Component::CallNext();
+		//Component::DoThis();
 }
 
 Component* Node::Clone()

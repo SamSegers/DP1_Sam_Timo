@@ -8,7 +8,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "Component.h"
+#include "Composite.h"
 #include "Circuit.h"
 
 class Diagram
@@ -21,7 +21,7 @@ public:
 	~Diagram();
 
 	void Create(Circuit& circuit);
-	void GetNext(Component& component, std::vector<Component*>* components);
+	void GetNext(Composite& component, std::vector<Composite*>* components);
 };
 
 #endif

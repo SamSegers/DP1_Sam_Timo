@@ -1,15 +1,15 @@
 #ifndef _NODE_H
 #define _NODE_H
 
-#include "Component.h"
+#include "Composite.h"
 #include "Edge.h"
 #include <chrono>
 
-class Node : public Component 
+class Node : public Composite 
 {
 public:
 	virtual int ExecuteOperation();
-	virtual void CallNext();
+	virtual void DoThis();
 	virtual Component* Clone();
 	int GetValue();
 };

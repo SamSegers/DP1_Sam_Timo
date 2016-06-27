@@ -10,6 +10,7 @@ class Probe;
 class Input;
 class Edge;
 class Component;
+class Composite;
 
 class Visitor
 {
@@ -18,7 +19,7 @@ protected:
 public:
 	virtual void Visit(Node *pNode);
 	virtual void Visit(Probe *pProbe);
-	virtual void Visit(Component *pComponent);
+	virtual void Visit(Composite *pComposite);
 	virtual void SetOutput(Output *pView);
 };
 

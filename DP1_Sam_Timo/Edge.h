@@ -1,11 +1,11 @@
 #ifndef _EDGE_H
 #define _EDGE_H
 
-#include "Component.h"
+#include "Composite.h"
 #include "Node.h"
 
 
-class Edge : public Component
+class Edge : public Composite
 {
 private:
 	// in de super classe component zit een std::vector components hoeft dus geen array te maken

@@ -8,7 +8,7 @@ int NOR::ExecuteOperation() {
 	values.clear();
 	values.push_back(output);
 	
-	//CallNext();
+	//DoThis();
 
 	return 1;
 }

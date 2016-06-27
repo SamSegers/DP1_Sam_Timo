@@ -12,7 +12,7 @@ Diagram::~Diagram()
 
 void Diagram::Create(Circuit& circuit) {
 	// 1. initialisation
-	std::vector<Component*> components;
+	std::vector<Composite*> components;
 	std::vector<Input*> inputs = circuit.GetInputs();
 
 	std::string script = "\
@@ -68,12 +68,12 @@ void Diagram::Create(Circuit& circuit) {
 	ShellExecute(NULL, "open", "diagram\\index.html", NULL, NULL, SW_SHOWNORMAL);
 }
 
-void Diagram::GetNext(Component& component, std::vector<Component*>* components) {
+void Diagram::GetNext(Composite& component, std::vector<Composite*>* components) {
 	if (std::find(components->begin(), components->end(), &component) == components->end()){
 		components->push_back(&component);
 		
 		if (component.GetNext().size() > 0) {
-			std::vector<Component*> next = component.GetNext()[0]->GetNext();
+			std::vector<Composite*> next = component.GetNext()[0]->GetNext();
 
 			for (int i = 0; i < next.size(); i++) {
 				calling[component.GetId()].push_back(next[i]->GetId()); // add to next array of current component

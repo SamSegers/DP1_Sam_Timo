@@ -3,6 +3,7 @@
 
 #include "Node.h"
 
+// voert de XNOR functionaliteit uit
 class XNOR : public Node
 {
 public:

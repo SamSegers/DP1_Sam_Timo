@@ -3,6 +3,7 @@
 
 #include "Node.h"
 
+// voert de AND functionaliteit uit
 class AND : public Node
 {
 public:

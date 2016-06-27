@@ -9,6 +9,7 @@
 #include "Component.h"
 #include "Output.h"
 
+// Stelt de data uit een file voor.
 class Circuit
 {
 protected:
@@ -32,7 +33,6 @@ public:
 	int CreateEdges(std::vector<std::string>);
 	int CreateProbes(std::vector<std::string>);
 	int CreateInputs(std::vector<std::string>);
-	int CheckForLinkErrors();
 	std::vector<Input*> GetInputs();
 
 	void SetOutput(Output *output);

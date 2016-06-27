@@ -11,6 +11,7 @@
 #include "Composite.h"
 #include "Circuit.h"
 
+// roept naar js en maakt dan het diagram.
 class Diagram
 {
 private:

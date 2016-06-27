@@ -3,6 +3,7 @@
 
 #include "Node.h"
 
+// voert de NOT functionaliteit uit
 class NOT : public Node
 {
 public:

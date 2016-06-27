@@ -3,6 +3,7 @@
 
 #include "Node.h"
 
+// voert de OR functionaliteit uit
 class OR : public Node
 {
 public:

@@ -8,27 +8,22 @@ Component::~Component()
 {
 	
 }
-
-
+// voeg waarde toe aan de vector
 void Component::InsertValue(int value)
 {
 	this->values.push_back(value);
 }
-
-
-
+// clone een nieuwe component
 Component* Component::Clone()
 {
 	return new Component();
 }
-
+// haal waardes op.
 std::vector<int> Component::GetValues()
 {
 	return this->values;
 }
-
-
-
+// zet de visitor
 void Component::Accept(Visitor *pVisitor)
 {
 	this->pVisitor = pVisitor;

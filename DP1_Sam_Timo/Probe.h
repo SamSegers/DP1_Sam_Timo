@@ -3,6 +3,7 @@
 
 #include "Composite.h"
 
+// hier komen de uiteindelijke waardes
 class Probe : public Composite
 {
 protected:

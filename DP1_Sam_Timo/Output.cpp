@@ -9,7 +9,7 @@ Output::~Output()
 {
 
 }
-
+// vraag voor een high value.
 int Output::AskForInputHigh()
 {
 	std::cout << "Give a value for high: ";
@@ -18,7 +18,7 @@ int Output::AskForInputHigh()
 	std::cin >> out;
 	return out;
 }
-
+// vraag voor een low value.
 int Output::AskForInputLow()
 {
 	std::cout << "Give a value for low: ";
@@ -26,7 +26,7 @@ int Output::AskForInputLow()
 	std::cin >> out;
 	return out;
 }
-
+// vraag of er opnieuw gerunt moet worden.
 std::string Output::RunAgain()
 {
 	std::string val = "";
@@ -34,6 +34,7 @@ std::string Output::RunAgain()
 	return val;
 }
 
+// print waardes
 void Output::Print(int& value) {
 	std::cout << "output = " << value << std::endl;
 }

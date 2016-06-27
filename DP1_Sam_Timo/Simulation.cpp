@@ -33,6 +33,7 @@ int Simulation::CreateCircuit()
 
 void Simulation::Start(std::string Filename)
 {
+	bool rerun = false;
 	while (true)
 	{
 		this->Init();
@@ -43,7 +44,7 @@ void Simulation::Start(std::string Filename)
 		{
 			if (CreateCircuit()) {
 				pOutput->Print("Initializing the circuit diagram!");
-				pDiagram->Create(*pCircuit);
+				if(!rerun) pDiagram->Create(*pCircuit);
 				pOutput->Print("Started the circuit!");
 				pCircuit->Start();
 			}
@@ -59,13 +60,12 @@ void Simulation::Start(std::string Filename)
 			break;
 		}
 
-		if (!RunAgain())
+		rerun = RunAgain();
+		if (!rerun)
 			break;
 
 		this->Cleanup();
 	}
-	
-	
 }
 
 int Simulation::RunAgain()

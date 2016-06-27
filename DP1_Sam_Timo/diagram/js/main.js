@@ -193,28 +193,31 @@ Main.prototype.createEdges = function() {
 
                 for (let k = 0; k < nextLength; k++){ // loop through component next
                     let next = this.getComponent(component.next[k]);
-                    let destinationIndex = this.getColumnIndex(next.id);
-                    let destinationNeighborColumn = this.columns[destinationIndex-1];
-                    let destinationColumn = this.columns[destinationIndex];
-                    let line = lines[k] = [];
-                    let connectionY = next.y + Component.size / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
 
-                    if(i == destinationIndex-1 && (i == 0 || j!=destinationColumn.indexOf(next))){ // line connects to column next to it, not straight
-                        line.push({x: edge.crossroad.x, y: connectionY});
-                        addSpace = true;
-                    } else if (i != destinationIndex-1){ // line travels around other columns
-                        let travelY = this.getEdgeTravelY(i+1, destinationIndex-1);
-                        routes.push({ start: i + 1, end: destinationIndex - 1, y: travelY });
+                    if(next){
+                        let destinationIndex = this.getColumnIndex(next.id);
+                        let destinationNeighborColumn = this.columns[destinationIndex-1];
+                        let destinationColumn = this.columns[destinationIndex];
+                        let line = lines[k] = [];
+                        let connectionY = next.y + Component.size / (next.previous.length + 1) * (next.previous.indexOf(component.id) + 1);
 
-                        let x = destinationNeighborColumn.space.end;
-                        line.push({x: edge.crossroad.x, y: travelY});
-                        line.push({x: x, y: travelY});
-                        line.push({x: x, y: connectionY});
-                        destinationNeighborColumn.space.end -= Main.space;
-                        addSpace = true;
+                        if(i == destinationIndex-1 && (i == 0 || j!=destinationColumn.indexOf(next))){ // line connects to column next to it, not straight
+                            line.push({x: edge.crossroad.x, y: connectionY});
+                            addSpace = true;
+                        } else if (i != destinationIndex-1){ // line travels around other columns
+                            let travelY = this.getEdgeTravelY(i+1, destinationIndex-1);
+                            routes.push({ start: i + 1, end: destinationIndex - 1, y: travelY });
+
+                            let x = destinationNeighborColumn.space.end;
+                            line.push({x: edge.crossroad.x, y: travelY});
+                            line.push({x: x, y: travelY});
+                            line.push({x: x, y: connectionY});
+                            destinationNeighborColumn.space.end -= Main.space;
+                            addSpace = true;
+                        }
+
+                        line.push({x: destinationColumn.x + Component.size/2, y: connectionY});
                     }
-
-                    line.push({x: destinationColumn.x + Component.size/2, y: connectionY});
                 }
 
                 if(edge.lines.length==1 && edge.lines[0].length==1) edge.directLink = true; // makes edge + line blue

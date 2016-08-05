@@ -98,7 +98,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories);..\DP1_Sam_Timo\Debug;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Composite.obj;AND.obj;NAND.obj;NOR.obj;NOT.obj;OR.obj;XNOR.obj;XOR.obj;Node.obj;Component.obj;Output.obj;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Edge.obj;Input.obj;Probe.obj;Factory.obj;Filereader.obj;Diagram.obj;Circuit.obj;Visitor.obj;Simulation.obj;Composite.obj;AND.obj;NAND.obj;NOR.obj;NOT.obj;OR.obj;XNOR.obj;XOR.obj;Node.obj;Component.obj;Output.obj;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference />
   </ItemDefinitionGroup>
@@ -161,20 +161,21 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AND.cpp" />
-    <ClCompile Include="NAND.cpp" />
-    <ClCompile Include="NOR.cpp" />
-    <ClCompile Include="NOT.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="OR.cpp" />
+    <ClCompile Include="TestAND.cpp" />
+    <ClCompile Include="TestSimulation.cpp" />
+    <ClCompile Include="TestNAND.cpp" />
+    <ClCompile Include="TestNOR.cpp" />
+    <ClCompile Include="TestNOT.cpp" />
+    <ClCompile Include="TestNode.cpp" />
+    <ClCompile Include="TestOR.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="XNOR.cpp" />
-    <ClCompile Include="XOR.cpp" />
+    <ClCompile Include="TestXNOR.cpp" />
+    <ClCompile Include="TestXOR.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DP1_Sam_Timo\DP1_Sam_Timo.vcxproj">

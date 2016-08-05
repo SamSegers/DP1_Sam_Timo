@@ -12,6 +12,11 @@
 // Stelt de data uit een file voor.
 class Circuit
 {
+private:
+	bool _inputsSet;
+
+	int _high;
+	int _low;
 protected:
 	Output *pView;
 	std::vector<Node *> Nodes;
@@ -23,7 +28,7 @@ protected:
 
 	int Link(std::string Data, Edge *);
 	int LinkAdd(std::vector<Composite *>, Edge *pEdge, std::string id, bool toEdge);
-	void CheckIfCircuitWasSuccesful();
+	void CheckIfCircuitWasSuccessful();
 	int ErrorFound(std::string error);
 public:
 	Circuit();
@@ -35,11 +40,11 @@ public:
 	int CreateInputs(std::vector<std::string>);
 	std::vector<Input*> GetInputs();
 
+	void SetInputs(int high, int low);
 	void SetOutput(Output *output);
 	void SetVisitor(Visitor *pVisitor);
 
-	void Start();
-
+	std::vector<Probe *> Start();
 };
 
 #endif _CIRCUIT_H

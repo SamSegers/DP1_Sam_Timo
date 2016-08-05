@@ -31,7 +31,9 @@ protected:
 public:
 	Filereader(std::string Path);
 	~Filereader();
+
 	int Read();
+	int Transform(std::string circuit);
 
 	std::vector<std::string> GetNodes();
 	std::vector<std::string> GetProbes();

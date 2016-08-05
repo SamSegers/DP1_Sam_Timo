@@ -18,10 +18,8 @@ int Filereader::Read()
 
 	bool PassedNodes = false;
 
-	while (!this->_file.eof())
+	while (std::getline(this->_file, Line))
 	{
-		std::getline(this->_file,Line);
-
 		// comments skip naar de volgende lijn.
 		if (Line[0] == '#')
 			continue;
@@ -34,17 +32,48 @@ int Filereader::Read()
 			continue;
 		}
 
-		if (!PassedNodes)
-			if (!ReadNodes(Line))
-				return 0; // er is een error ga uit de reader.
-		if (PassedNodes)
-			if (!ReadEdges(Line))
-				return 0; // er is een error ga uit de reader.
+		if (
+			!PassedNodes && !ReadNodes(Line) || 
+			PassedNodes && !ReadEdges(Line)
+		)
+			return 0; // er is een error ga uit de reader.
 	}
 
 	return 1;
 }
 
+//TODO remove and unify with Read()
+int Filereader::Transform(std::string circuit)
+{
+	std::string line;
+
+	std::istringstream iss(circuit);
+
+	bool PassedNodes = false;
+
+	while(std::getline(iss, line))
+	{
+		// comments skip naar de volgende lijn.
+		if (line[0] == '#')
+			continue;
+		
+		// lege regel vanaf nu komen de edges.
+		if (line == "")
+		{
+			// vind het lelijk om zo te doen maar het is niet anders.
+			PassedNodes = true;
+			continue;
+		}
+
+		if (
+			!PassedNodes && !ReadNodes(line) || 
+			PassedNodes && !ReadEdges(line)
+		)
+			return 0; // er is een error ga uit de reader.
+	}
+
+	return 1;
+}
 
 int Filereader::ReadNodes(std::string Line)
 {

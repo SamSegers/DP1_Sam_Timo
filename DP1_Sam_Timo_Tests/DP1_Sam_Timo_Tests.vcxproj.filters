@@ -29,28 +29,31 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AND.cpp">
+    <ClCompile Include="TestAND.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NAND.cpp">
+    <ClCompile Include="TestNAND.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NOR.cpp">
+    <ClCompile Include="TestNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NOT.cpp">
+    <ClCompile Include="TestNOR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OR.cpp">
+    <ClCompile Include="TestNOT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XNOR.cpp">
+    <ClCompile Include="TestOR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XOR.cpp">
+    <ClCompile Include="TestXNOR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
+    <ClCompile Include="TestXOR.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSimulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

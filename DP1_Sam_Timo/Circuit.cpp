@@ -5,6 +5,7 @@
 
 Circuit::Circuit()
 {
+	this->_inputsSet = false;
 }
 
 Circuit::~Circuit()
@@ -150,9 +151,13 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 // maak inputs
 int Circuit::CreateInputs(std::vector<std::string> Inputs)
 {
-	// vraag voor de input waardes
-	int High = pView->AskForInputHigh();
-	int Low = pView->AskForInputLow();
+	if (!this->_inputsSet) {
+		// vraag voor de input waardes
+		this->_high = pView->AskForInputHigh();
+		this->_low = pView->AskForInputLow();
+		this->_inputsSet = true;
+	}
+
 	pView->Print("Create inputs!");
 	try
 	{
@@ -164,11 +169,11 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 			// zet de input waardes
 			if (Inputs.at(i).find("INPUT_HIGH") != std::string::npos)
 			{	
-				pInput->InsertValue(High);
+				pInput->InsertValue(this->_high);
 			}
 			else if (Inputs.at(i).find("INPUT_LOW") != std::string::npos)
 			{
-				pInput->InsertValue(Low);
+				pInput->InsertValue(this->_low);
 			}
 			else
 				throw 1; // error
@@ -192,6 +197,7 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 
 	return 1;
 }
+
 // maak probes
 int Circuit::CreateProbes(std::vector<std::string> Probes)
 {
@@ -276,6 +282,7 @@ int Circuit::Link(std::string Data, Edge *pEdge)
 
 	return 1;
 }
+
 // linken aan een edge
 int Circuit::LinkAdd(std::vector<Composite*> components, Edge *pEdge, std::string id, bool toEdge)
 {
@@ -322,7 +329,7 @@ int Circuit::ErrorFound(std::string error = "")
 	return 0;
 }
 
-void Circuit::Start()
+std::vector<Probe *> Circuit::Start()
 {
 	// aparte class misschien moeten zijn voor timen.
 	// tel de tijd in ns.
@@ -333,15 +340,18 @@ void Circuit::Start()
 	{
 		Inputs.at(i)->DoThis();
 	}
+
 	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
 	
-	this->CheckIfCircuitWasSuccesful();
+	this->CheckIfCircuitWasSuccessful();
 
 	pView->Print("Circuit took: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(finish - start).count()) + "ns.");
+
+	return this->Probes;
 }
 
 // kijk of er iets niet klopte in het circuit tijdens runtime.
-void Circuit::CheckIfCircuitWasSuccesful()
+void Circuit::CheckIfCircuitWasSuccessful()
 {
 	for (int i = 0; i < this->Probes.size(); i++)
 	{
@@ -355,6 +365,13 @@ void Circuit::CheckIfCircuitWasSuccesful()
 
 std::vector<Input*> Circuit::GetInputs() {
 	return Inputs;
+}
+
+// wordt gebruikt voor unittests waar niet om waarden gevraagd wordt
+void Circuit::SetInputs(int high, int low) {
+	this->_high = high;
+	this->_low = low;
+	this->_inputsSet = true;
 }
 
 void Circuit::SetVisitor(Visitor *pVisitor)

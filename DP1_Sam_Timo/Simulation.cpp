@@ -8,8 +8,6 @@ Simulation::Simulation()
 Simulation::~Simulation()
 {
 	this->Cleanup();
-
-	
 }
 
 // laat file reader de file lezen.
@@ -77,6 +75,26 @@ void Simulation::Start(std::string Filename)
 		// ruim alles op
 		this->Cleanup();
 	}
+}
+
+// wordt gebruikt voor unit tests
+// alles zonder checks uitvoeren om de errors te krijgen
+std::vector<Probe *> Simulation::StartTest(std::string circuit)
+{
+	this->pReader = new Filereader("circuit1.txt");
+	this->Init();
+	pReader->Transform(circuit);
+	// het liefst zou ik hier CreateCircuit() aanroepen, maar dat gaat even niet omdat de inputs automatisch gezet moeten worden
+	this->pCircuit = new Circuit();
+	this->pCircuit->SetInputs(1, 0);
+	this->pCircuit->SetOutput(this->pOutput);
+	this->pCircuit->SetVisitor(this->pVisitor);
+	this->pCircuit->CreateNodes(pReader->GetNodes());
+	this->pCircuit->CreateInputs(pReader->GetInputs());
+	this->pCircuit->CreateProbes(pReader->GetProbes());
+	this->pCircuit->CreateEdges(pReader->GetEdges());
+	std::vector<Probe *> probes = pCircuit->Start();
+	return probes;
 }
 
 // vraag of we nog een keer willen

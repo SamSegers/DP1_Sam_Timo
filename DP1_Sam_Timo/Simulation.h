@@ -28,6 +28,7 @@ public:
 	~Simulation();
 
 	void Start(std::string);
+	std::vector<Probe *> StartTest(std::string);
 };
 
 #endif

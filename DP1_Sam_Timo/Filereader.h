@@ -7,13 +7,17 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 // leest de file uit en zet vervolgens waar alles bij hoort.
 class Filereader
 {
+private:
+	Filereader();
 protected:
 	std::ifstream _file;
 	std::string _path;
+	std::string _circuit;
 
 	int ReadNodes(std::string);
 	int ReadEdges(std::string);
@@ -29,11 +33,12 @@ protected:
 	std::vector<std::string>Edges;
 
 public:
-	Filereader(std::string Path);
+	static Filereader* CreateFilereader(std::string Path);
+	static Filereader* CreateStringreader(std::string Circuit);
+
 	~Filereader();
 
 	int Read();
-	int Transform(std::string circuit);
 
 	std::vector<std::string> GetNodes();
 	std::vector<std::string> GetProbes();

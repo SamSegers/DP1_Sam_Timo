@@ -43,7 +43,7 @@ void Simulation::Start(std::string Filename)
 		this->Init();
 
 		// zet de file
-		this->pReader = new Filereader(Filename);
+		this->pReader = Filereader::CreateFilereader(Filename);
 
 		// laad data uit de file
 		if (Load())
@@ -81,9 +81,9 @@ void Simulation::Start(std::string Filename)
 // alles zonder checks uitvoeren om de errors te krijgen
 std::vector<Probe *> Simulation::StartTest(std::string circuit)
 {
-	this->pReader = new Filereader("circuit1.txt");
+	this->pReader = Filereader::CreateStringreader(circuit);
 	this->Init();
-	pReader->Transform(circuit);
+	pReader->Read();
 	// het liefst zou ik hier CreateCircuit() aanroepen, maar dat gaat even niet omdat de inputs automatisch gezet moeten worden
 	this->pCircuit = new Circuit();
 	this->pCircuit->SetInputs(1, 0);

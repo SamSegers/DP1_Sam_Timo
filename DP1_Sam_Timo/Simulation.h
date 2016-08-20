@@ -20,6 +20,7 @@ protected:
 	int CreateCircuit();
 
 	int RunAgain();
+	bool ShowDiagram();
 
 	void Init();
 	void Cleanup();

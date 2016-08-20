@@ -44,6 +44,7 @@ void Diagram::Create(Circuit& circuit) {
 			components['" + std::to_string(i) + "'] = {\
 				id: '" + component.GetId() + "',\
 				gate: '" + gate + "',\
+				value: '" + std::to_string(component.GetValues()[0]) + "',\
 				previous: [\
 		";
 

@@ -124,7 +124,7 @@ Main.prototype.getNeighborPreviousAmount = function(index, componentIndex) {
         let previous = column[i].previous;
         for(let j=0; j<previous.length; j++){ // loop through previous of component
             let columnIndex = this.getColumnIndex(previous[j]);
-            if (index != columnIndex/* && i != getComponentIndex(previous[j])*/) {
+            if (index != columnIndex) {
                 count++;
                 break;
             }

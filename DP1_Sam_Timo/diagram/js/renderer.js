@@ -47,32 +47,36 @@ Renderer.prototype.drawEdges = function(edges) {
 }
 
 Renderer.prototype.drawColumns = function(columns) {
-    for (let i = 0; i < columns.length; i++){
-        let column = columns[i];
-        let x = column.x + this.correction;
+    for (let i = 0; i < columns.length; i++) this.drawColumn(columns[i]);
+}
 
-        for (let j = 0; j < column.length; j++){
-            let component = column[j];
-            let y = component.y + this.correction;
-            
-            this.ctx.fillStyle = "#fff";
+Renderer.prototype.drawColumn = function (column) {
+    let x = column.x + this.correction;
 
-            if(component.gate!=""){ // gates
-                this.ctx.fillRect(x, y, Component.size, Component.size);
-                this.ctx.fillStyle = "#000";
-                this.ctx.strokeRect(x, y, Component.size, Component.size);
-                this.ctx.fillText(component.id, x+20, y+15);
-                this.ctx.drawImage(this.imgGates[component.gate], x+10, y+25, 60, 30);
-                this.ctx.fillText(component.gate, x+20, y+70);
-            } else { // inputs and outputs
-                this.ctx.beginPath();
-                this.ctx.arc(x+Component.componentCenter, y+Component.componentCenter, 10, 0, Math.PI*2, true);
-                this.ctx.fill();
-                this.ctx.fillStyle = "#000";
-                this.ctx.arc(x+Component.componentCenter, y+Component.componentCenter, 10, 0, Math.PI*2, true);
-                this.ctx.stroke();
-                this.ctx.fillText(component.id, x+Component.componentCenter-10, y+Component.componentCenter+25);
-            }
-        }
+    for (let j = 0; j < column.length; j++) this.drawComponent(column[j], x);
+}
+
+Renderer.prototype.drawComponent = function (component, x) {
+    let y = component.y + this.correction;
+    
+    this.ctx.fillStyle = "#fff";
+
+    if(component.gate!=""){ // gates
+        this.ctx.fillRect(x, y, Component.size, Component.size);
+        this.ctx.fillStyle = "#000";
+        this.ctx.strokeRect(x, y, Component.size, Component.size);
+        this.ctx.fillText(component.id, x+15, y+15);
+        //this.ctx.fillText(component.gate, x+25, y+45);
+        this.ctx.drawImage(this.imgGates[component.gate], x+10, y+25, 60, 30);
+        this.ctx.fillText(component.value, x+35, y+70);
+    } else { // inputs and outputs
+        this.ctx.beginPath();
+        this.ctx.arc(x+Component.componentCenter, y+Component.componentCenter, 10, 0, Math.PI*2, true);
+        this.ctx.fill();
+        this.ctx.fillStyle = "#000";
+        this.ctx.arc(x+Component.componentCenter, y+Component.componentCenter, 10, 0, Math.PI*2, true);
+        this.ctx.stroke();
+        this.ctx.fillText(component.id, x+Component.componentCenter-10, y+Component.componentCenter-20);
+        this.ctx.fillText(component.value, x+Component.componentCenter-5, y+Component.componentCenter+25);
     }
 }

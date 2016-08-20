@@ -51,9 +51,9 @@ void Simulation::Start(std::string Filename)
 			// maak circuit
 			if (CreateCircuit()) {
 				pOutput->Print("Initializing the circuit diagram!");
-				if(!rerun) pDiagram->Create(*pCircuit);
 				pOutput->Print("Started the circuit!");
 				pCircuit->Start();
+				if(ShowDiagram()) pDiagram->Create(*pCircuit);
 			}
 			else
 			{
@@ -95,6 +95,12 @@ std::vector<Probe *> Simulation::StartTest(std::string circuit)
 	this->pCircuit->CreateEdges(pReader->GetEdges());
 	std::vector<Probe *> probes = pCircuit->Start();
 	return probes;
+}
+
+bool Simulation::ShowDiagram()
+{
+	pOutput->Print("Generate diagram? y/n");
+	return pOutput->RunAgain() == "y";
 }
 
 // vraag of we nog een keer willen

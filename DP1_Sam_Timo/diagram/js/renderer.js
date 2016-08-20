@@ -4,8 +4,10 @@ Renderer.prototype.correction = 0.5; // add correction for drawing, to make line
 Renderer.prototype.ctx; // context
 Renderer.prototype.imgGates; // gate images which are loaded once before drawing
 
-Renderer.prototype.loadCanvas = function() {
+Renderer.prototype.loadCanvas = function(canvasDimensions) {
     let canvas = document.getElementById('canvas');
+    canvas.width = canvasDimensions.width;
+    canvas.height = canvasDimensions.height;
     if(canvas.getContext) this.ctx = canvas.getContext('2d');
 }
 

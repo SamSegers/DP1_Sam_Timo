@@ -1,0 +1,21 @@
+section.nodes{
+    margin-bottom: 40px;
+}
+
+section.nodes > div{
+    display: inline-block; 
+}
+
+section.nodes > div > *{
+    display: block;
+}
+
+section.nodes > div > img {
+    margin-bottom: 5px;
+    width: 60px;
+}
+
+section.nodes > div > span.name{
+    font-size: 12px;
+    text-align: center;
+}

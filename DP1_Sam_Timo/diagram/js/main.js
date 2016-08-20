@@ -1,18 +1,30 @@
 Main.space = 20;
 
+Main.prototype.canvasDimensions;
 Main.prototype.columns;
 Main.prototype.edges;
 
 function Main() {
+    this.canvasDimensions = { height: 0 };
     this.createColumns();
     this.createEdges()
+    this.canvasDimensions.height += Main.space;
     this.renderer = new Renderer();
 
     this.run();
 }
 
+Main.initCanvasHeight = function () {
+    this.columns.forEach(column => {
+        column.populations.forEach(population => {
+            let border = population[1];
+            if (border > this.canvasDimensions.height) this.canvasDimensions.height = border;
+        })
+    });
+}
+
 Main.prototype.run = function () {
-    this.renderer.loadCanvas();
+    this.renderer.loadCanvas(this.canvasDimensions);
     this.renderer.loadImages();
     this.renderer.drawEdges(this.edges);
     this.renderer.drawColumns(this.columns);
@@ -68,12 +80,15 @@ Main.prototype.positionComponents = function() {
 
     for (let i = 0; i < this.columns.length; i++) {
         let column = this.columns[i];
+        let y = 0;
+
         column.x = x;
 
         for (let j = 0; j < column.length; j++) {
             let component = column[j];
             component.x = x;
-            component.y = j * (Component.size + Main.space);
+            component.y = y;
+            y += Component.size + Main.space;
         }
 
         let top = column.length * (Component.size + Main.space) - Main.space;
@@ -87,6 +102,8 @@ Main.prototype.positionComponents = function() {
             end: (x += (next + neighborPrevious) * Main.space) - Main.space
         }
     }
+
+    this.canvasDimensions.width = x;
 }
 
 // param index is column index
@@ -206,7 +223,11 @@ Main.prototype.createEdges = function() {
                             addSpace = true;
                         } else if (i != destinationIndex-1){ // line travels around other columns
                             let travelY = this.getEdgeTravelY(i+1, destinationIndex-1);
-                            routes.push({ start: i + 1, end: destinationIndex - 1, y: travelY });
+                            routes.push({
+                                start: i + 1,
+                                end: destinationIndex - 1,
+                                y: travelY
+                            });
 
                             let x = destinationNeighborColumn.space.end;
                             line.push({x: edge.crossroad.x, y: travelY});
@@ -280,7 +301,7 @@ Main.prototype.getEdgeTravelY = function(originColumnIndex, destinationColumnInd
     let match = false;
     let limit = 100 * Main.space;
 
-    while (!match && y<=limit) { // loop through y until match or y reached 100
+    while (!match && y<=limit) { // loop through y until match or y reached limit
         for (let i = originColumnIndex; i <= destinationColumnIndex; i++){ // loop through specific columns
             match = true;
 

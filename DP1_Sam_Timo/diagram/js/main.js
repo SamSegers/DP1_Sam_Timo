@@ -8,22 +8,23 @@ function Main() {
     this.canvasDimensions = { height: 0 };
     this.createColumns();
     this.createEdges()
-    this.canvasDimensions.height += Main.space;
+    this.initCanvasHeight();
     this.renderer = new Renderer();
 
     this.run();
 }
 
-Main.initCanvasHeight = function () {
+Main.prototype.initCanvasHeight = function() {
     this.columns.forEach(column => {
         column.populations.forEach(population => {
             let border = population[1];
             if (border > this.canvasDimensions.height) this.canvasDimensions.height = border;
         })
     });
+    this.canvasDimensions.height += Main.space;
 }
 
-Main.prototype.run = function () {
+Main.prototype.run = function() {
     this.renderer.loadCanvas(this.canvasDimensions);
     this.renderer.loadImages();
     this.renderer.drawEdges(this.edges);

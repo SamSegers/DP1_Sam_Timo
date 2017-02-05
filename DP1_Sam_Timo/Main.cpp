@@ -13,10 +13,7 @@ int main(int argc, char* argv[])
 	std::string Filename = "";
 
 	// kijk voor meegegeven argumenten
-	if (argc > 1)
-		Filename = argv[1];
-	else
-		Filename = "circuit1.txt";
+	Filename = argc > 1 ? argv[1] : "circuit4.txt";
 	
 	// start simulatie.
 	simulation.Start(Filename);

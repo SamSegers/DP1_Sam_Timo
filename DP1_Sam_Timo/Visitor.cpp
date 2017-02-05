@@ -12,11 +12,11 @@ void Visitor::SetOutput(Output *pView)
 void Visitor::Visit(Node *pNode)
 {
 	// time hoe lang een operatie duurt.
-	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
+	auto start = std::chrono::high_resolution_clock::now();
 
 	if (pNode->ExecuteOperation())
 	{
-		std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
+		auto finish = std::chrono::high_resolution_clock::now();
 		// print alles
 		pView->Print("At Component: " + pNode->GetId());
 		

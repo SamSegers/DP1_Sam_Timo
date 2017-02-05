@@ -333,7 +333,7 @@ std::vector<Probe *> Circuit::Start()
 {
 	// aparte class misschien moeten zijn voor timen.
 	// tel de tijd in ns.
-	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::high_resolution_clock::now();
+	auto start = std::chrono::high_resolution_clock::now();
 	
 	// start en begin bij inputs.
 	for (int i = 0; i < Inputs.size(); i++)
@@ -341,7 +341,7 @@ std::vector<Probe *> Circuit::Start()
 		Inputs.at(i)->DoThis();
 	}
 
-	std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> finish = std::chrono::high_resolution_clock::now();
+	auto finish = std::chrono::high_resolution_clock::now();
 	
 	this->CheckIfCircuitWasSuccessful();
 

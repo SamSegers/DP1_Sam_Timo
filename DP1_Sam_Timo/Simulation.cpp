@@ -53,7 +53,8 @@ void Simulation::Start(std::string Filename)
 				pOutput->Print("Initializing the circuit diagram!");
 				pOutput->Print("Started the circuit!");
 				pCircuit->Start();
-				if(ShowDiagram()) pDiagram->Create(*pCircuit);
+				if(ShowDiagram()) 
+					pDiagram->Create(*pCircuit);
 			}
 			else
 			{

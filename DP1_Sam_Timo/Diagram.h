@@ -18,9 +18,6 @@ private:
 	std::map<std::string, std::vector<std::string>> callers;
 	std::map<std::string, std::vector<std::string>> calling;
 public:
-	Diagram();
-	~Diagram();
-
 	void Create(Circuit& circuit);
 	void GetNext(Composite& component, std::vector<Composite*>* components);
 };

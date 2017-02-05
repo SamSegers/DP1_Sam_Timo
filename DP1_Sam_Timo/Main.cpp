@@ -3,6 +3,7 @@
 
 void Init();
 void Cleanup();
+
 int main(int argc, char* argv[])
 {
 	// factory init
@@ -13,12 +14,11 @@ int main(int argc, char* argv[])
 	std::string Filename = "";
 
 	// kijk voor meegegeven argumenten
-	Filename = argc > 1 ? argv[1] : "circuit4.txt";
+	Filename = argc > 1 ? argv[1] : "circuit1.txt";
 	
 	// start simulatie.
 	simulation.Start(Filename);
 	
-	std::cin.get();
 	std::cin.get();
 	// ruim de factory op
 	Cleanup();

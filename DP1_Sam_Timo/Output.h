@@ -8,8 +8,6 @@
 class Output
 {
 public:
-	Output();
-	~Output();
 	int AskForInputHigh();
 	int AskForInputLow();
 	std::string RunAgain();

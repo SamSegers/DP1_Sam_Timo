@@ -1,14 +1,5 @@
 #include "Output.h"
 
-Output::Output()
-{
-
-}
-
-Output::~Output()
-{
-
-}
 // vraag voor een high value.
 int Output::AskForInputHigh()
 {

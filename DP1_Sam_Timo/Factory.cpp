@@ -41,7 +41,6 @@ Component *Factory::RequestComponent(uint _type)
 	else if (_type == _XOR)
 		return new XOR();
 	return nullptr;*/
-
 	// clone een nieuwe object
 	return Factory::Types.at(_type)->Clone();
 

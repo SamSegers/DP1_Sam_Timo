@@ -8,8 +8,6 @@ int Node::ExecuteOperation()
 void Node::DoThis()
 {
 	pVisitor->Visit(this);
-	//if(this->ExecuteOperation())
-		//Component::DoThis();
 }
 // clone dit
 Component* Node::Clone()

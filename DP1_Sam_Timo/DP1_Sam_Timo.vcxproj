@@ -78,6 +78,7 @@
     <ClCompile Include="Filereader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NOR.cpp" />
     <ClCompile Include="NOT.cpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Filereader.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Mediator.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NOR.h" />
     <ClInclude Include="NOT.h" />

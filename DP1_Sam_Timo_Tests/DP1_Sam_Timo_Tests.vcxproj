@@ -97,10 +97,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories);..\DP1_Sam_Timo\Debug;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Edge.obj;Input.obj;Probe.obj;Factory.obj;Filereader.obj;Diagram.obj;Circuit.obj;Visitor.obj;Simulation.obj;Composite.obj;AND.obj;NAND.obj;NOR.obj;NOT.obj;OR.obj;XNOR.obj;XOR.obj;Node.obj;Component.obj;Output.obj;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories);..\DP1_Sam_Timo\Debug;$(SolutionDir)Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DP1_Sam_Timo.exe.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference />
+    <PostBuildEvent>
+      <Command>lib /NOLOGO /OUT:"$(TargetPath).lib" "$(ProjectDir)\$(Configuration)\*.obj"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

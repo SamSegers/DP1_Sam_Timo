@@ -52,6 +52,9 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>lib /NOLOGO /OUT:"$(TargetPath).lib" "$(ProjectDir)\$(Configuration)\*.obj"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -72,6 +75,7 @@
     <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="CppDiagramGenerator.cpp" />
     <ClCompile Include="JsDiagramGenerator.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Factory.cpp" />

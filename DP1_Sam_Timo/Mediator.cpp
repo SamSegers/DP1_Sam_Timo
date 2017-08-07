@@ -11,7 +11,7 @@ Mediator::~Mediator()
 	
 }
 
-Mediator * Mediator::instance()
+Mediator *Mediator::instance()
 {
 	if (!pMediator)
 	{

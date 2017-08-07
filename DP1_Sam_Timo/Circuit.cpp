@@ -374,12 +374,12 @@ void Circuit::SetInputs(int high, int low) {
 	this->_inputsSet = true;
 }
 
-void Circuit::SetVisitor(Visitor *pVisitor)
+void Circuit::SetVisitor(std::shared_ptr<Visitor> pVisitor)
 {
 	this->pVisitor = pVisitor;
 }
 
-void Circuit::SetOutput(Output *pView)
+void Circuit::SetOutput(std::shared_ptr<Output> pView)
 {
 	this->pView = pView;
 }

@@ -4,12 +4,12 @@
 #include "Input.h"
 #include "Mediator.h"
 
-void Visitor::SetOutput(Output *pView)
+void Visitor::SetOutput(std::shared_ptr<Output> pView)
 {
 	this->pView = pView;
 }
 
-void Visitor::Visit(Node *pNode)
+void Visitor::Visit(Node* pNode)
 {
 	// time hoe lang een operatie duurt.
 	auto start = std::chrono::high_resolution_clock::now();
@@ -34,13 +34,13 @@ void Visitor::Visit(Node *pNode)
 }
 
 // weergeef output van probe
-void Visitor::Visit(Probe *pProbe)
+void Visitor::Visit(Probe* pProbe)
 {
 	pView->Print("The final output of probe: " + pProbe->GetId() + " is: " + std::to_string(pProbe->GetValues().at(0)));
 }
 
 // zorg dat de volgende in de lijst word aangeroepen
-void Visitor::Visit(Composite *pComposite)
+void Visitor::Visit(Composite* pComposite)
 {
 	// kijk of het om een edge gaat
 	if (pComposite->GetId() != "")

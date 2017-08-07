@@ -42,6 +42,7 @@ namespace DP1_Sam_Timo_Tests
 			Factory::instance()->AddComponent(new XNOR());
 			Factory::instance()->AddComponent(new XOR());
 
+			// TODO use FileReader
 			std::ifstream file;
 			std::string filePath = getDirectoryName(__FILE__) + "dp1_sam_timo\\circuits\\circuit1.txt";
 			file.open(filePath);

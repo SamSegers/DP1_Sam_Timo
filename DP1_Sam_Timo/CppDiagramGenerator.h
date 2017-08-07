@@ -4,6 +4,8 @@
 
 #include "DiagramGenerator.h"
 
+// TODO implementation
+
 // maakt het diagram en roept dan js aan op het te visualiseren.
 class JsDiagramGenerator : public DiagramGenerator
 {

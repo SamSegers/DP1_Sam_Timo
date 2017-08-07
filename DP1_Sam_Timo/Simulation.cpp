@@ -13,16 +13,13 @@ Simulation::~Simulation()
 // laat file reader de file lezen.
 int Simulation::Load()
 {
-	if (pReader->Read())
-		return 1;
-
-	return 0;
+	return pReader->Read();
 }
 
 // maak een circuit
 int Simulation::CreateCircuit()
 {
-	this->pCircuit = new Circuit();
+	this->pCircuit = std::make_shared<Circuit>();
 	this->pCircuit->SetOutput(this->pOutput);
 	this->pCircuit->SetVisitor(this->pVisitor);
 	// kijk of alles klopt
@@ -54,7 +51,7 @@ void Simulation::Start(std::string Filename)
 				pOutput->Print("Started the circuit!");
 				pCircuit->Start();
 				if(ShowDiagram()) 
-					pDiagram->Generate(*pCircuit);
+					pDiagramGenerator->Generate(*pCircuit);
 			}
 			else
 			{
@@ -86,7 +83,7 @@ std::vector<Probe *> Simulation::StartTest(std::string circuit)
 	this->Init();
 	pReader->Read();
 	// het liefst zou ik hier CreateCircuit() aanroepen, maar dat gaat even niet omdat de inputs automatisch gezet moeten worden
-	this->pCircuit = new Circuit();
+	this->pCircuit = std::make_shared<Circuit>();
 	this->pCircuit->SetInputs(1, 0);
 	this->pCircuit->SetOutput(this->pOutput);
 	this->pCircuit->SetVisitor(this->pVisitor);
@@ -108,50 +105,23 @@ bool Simulation::ShowDiagram()
 int Simulation::RunAgain()
 {
 	pOutput->Print("Run the circuit again? y/n");
-	if (pOutput->RunAgain() == "y")
-		return 1;
-	return 0;
+	return pOutput->RunAgain() == "y";
 }
 
 // init alles
 void Simulation::Init()
 {
-	pOutput = new Output();
-	pDiagram = new JsDiagramGenerator();
-	pVisitor = new Visitor();
+	pOutput = std::make_shared<Output>();
+	pDiagramGenerator = std::make_shared<JsDiagramGenerator>();
+	pVisitor = std::make_shared<Visitor>();
 	pVisitor->SetOutput(this->pOutput);
 }
 
-// ruim alles op.
 void Simulation::Cleanup()
 {
 	if (pReader != nullptr)
 	{
 		delete pReader;
 		pReader = nullptr;
-	}
-
-	if (pVisitor != nullptr)
-	{
-		delete pVisitor;
-		pVisitor = nullptr;
-	}
-
-	if (pOutput != nullptr)
-	{
-		delete pOutput;
-		pOutput = nullptr;
-	}
-
-	if (pCircuit != nullptr)
-	{
-		delete pCircuit;
-		pCircuit = nullptr;
-	}
-
-	if (pDiagram != nullptr)
-	{
-		delete pDiagram;
-		pDiagram = nullptr;
 	}
 }

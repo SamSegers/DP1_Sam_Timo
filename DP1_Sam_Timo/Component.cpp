@@ -24,7 +24,7 @@ std::vector<int> Component::GetValues()
 	return this->values;
 }
 // zet de visitor
-void Component::Accept(Visitor *pVisitor)
+void Component::Accept(std::shared_ptr<Visitor> pVisitor)
 {
 	this->pVisitor = pVisitor;
 }

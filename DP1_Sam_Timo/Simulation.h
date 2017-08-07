@@ -10,11 +10,11 @@
 class Simulation
 {
 protected:
-	Circuit *pCircuit;
-	Filereader *pReader;
-	Output *pOutput;
-	DiagramGenerator *pDiagram;
-	Visitor *pVisitor;
+	std::shared_ptr<Circuit> pCircuit;
+	Filereader* pReader;
+	std::shared_ptr<Output> pOutput;
+	std::shared_ptr<DiagramGenerator> pDiagramGenerator;
+	std::shared_ptr<Visitor> pVisitor;
 
 	int Load();
 	int CreateCircuit();

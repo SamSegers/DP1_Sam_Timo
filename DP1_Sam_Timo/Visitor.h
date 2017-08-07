@@ -1,6 +1,7 @@
 #ifndef _VISITOR_H
 #define _VISITOR_H
 
+#include <memory>
 #include <chrono>
 #include "Output.h"
 
@@ -17,12 +18,12 @@ class Composite;
 class Visitor
 {
 protected:
-	Output *pView;
+	std::shared_ptr<Output> pView;
 public:
-	virtual void Visit(Node *pNode);
-	virtual void Visit(Probe *pProbe);
-	virtual void Visit(Composite *pComposite);
-	virtual void SetOutput(Output *pView);
+	virtual void Visit(Node* pNode);
+	virtual void Visit(Probe* pProbe);
+	virtual void Visit(Composite* pComposite);
+	virtual void SetOutput(std::shared_ptr<Output> pView);
 };
 
 #endif

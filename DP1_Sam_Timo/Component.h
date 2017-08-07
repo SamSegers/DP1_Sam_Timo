@@ -3,6 +3,7 @@
 
 
 #include "Visitor.h"
+#include <memory>
 #include <mutex>
 #include <thread>
 #include <vector>
@@ -15,7 +16,7 @@ protected:
 	
 	std::string _id;
 
-	Visitor *pVisitor;
+	std::shared_ptr<Visitor> pVisitor;
 public:
 	Component();
 	~Component();
@@ -30,7 +31,7 @@ public:
 
 	
 
-	void Accept(Visitor *pVisitor);
+	void Accept(std::shared_ptr<Visitor> pVisitor);
 
 	void SetId(std::string _id);
 	std::string GetId();

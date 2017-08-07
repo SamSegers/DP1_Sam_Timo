@@ -1,7 +1,9 @@
 #ifndef _CIRCUIT_H
 #define _CIRCUIT_H
 
+#include <memory>
 #include <vector>
+
 #include "Factory.h"
 #include "Probe.h"
 #include "Input.h"
@@ -18,13 +20,13 @@ private:
 	int _high;
 	int _low;
 protected:
-	Output *pView;
+	std::shared_ptr<Output> pView;
 	std::vector<Node *> Nodes;
 	std::vector<Probe *> Probes;
 	std::vector<Input *> Inputs;
 	std::vector<Edge *> Edges;
 
-	Visitor *pVisitor;
+	std::shared_ptr<Visitor> pVisitor;
 
 	int Link(std::string Data, Edge *);
 	int LinkAdd(std::vector<Composite *>, Edge *pEdge, std::string id, bool toEdge);
@@ -41,8 +43,8 @@ public:
 	std::vector<Input*> GetInputs();
 
 	void SetInputs(int high, int low);
-	void SetOutput(Output *output);
-	void SetVisitor(Visitor *pVisitor);
+	void SetOutput(std::shared_ptr<Output> pOutput);
+	void SetVisitor(std::shared_ptr<Visitor> pVisitor);
 
 	std::vector<Probe *> Start();
 };

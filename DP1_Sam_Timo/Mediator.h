@@ -1,15 +1,16 @@
-#pragma once
+#ifndef _MEDIATOR_H
+#define _MEDIATOR_H
 #include "Node.h"
 
 class Mediator
 {
 protected:
-	std::vector<Node*> _nodes;
 	static Mediator *pMediator;
-
 public:
 	Mediator();
 	~Mediator();
 	static Mediator *instance();
-	void PassValue(Node *pSource, Node* pTarget);
+	void PassValue(Composite *pSource, Composite* pTarget);
 };
+
+#endif

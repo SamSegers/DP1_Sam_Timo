@@ -1,8 +1,8 @@
 #include "Visitor.h"
 #include "Probe.h"
-#include "Node.h"
 #include "Edge.h"
 #include "Input.h"
+#include "Mediator.h"
 
 void Visitor::SetOutput(Output *pView)
 {
@@ -27,8 +27,7 @@ void Visitor::Visit(Node *pNode)
 		// gaan naar de volgende.
 		for (int i = 0; i < pNode->GetNext().size(); i++)
 		{
-			pNode->GetNext().at(i)->InsertValue(pNode->GetValues().at(0));
-			pNode->GetNext().at(i)->DoThis();
+			Mediator::instance()->PassValue(pNode, (Node *)pNode->GetNext().at(i));
 		}
 
 	}
@@ -49,7 +48,6 @@ void Visitor::Visit(Composite *pComposite)
 
 	for (int i = 0; i < pComposite->GetNext().size(); i++)
 	{
-		pComposite->GetNext().at(i)->InsertValue(pComposite->GetValues().at(0));
-		pComposite->GetNext().at(i)->DoThis();
+		Mediator::instance()->PassValue(pComposite, pComposite->GetNext().at(i));
 	}
 }

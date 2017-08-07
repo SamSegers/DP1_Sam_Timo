@@ -1,5 +1,6 @@
 #include "Filereader.h"
 #include "Simulation.h"
+#include "Mediator.h"
 
 void Init();
 void Cleanup();
@@ -48,5 +49,10 @@ void Cleanup()
 	if (Factory::instance())
 	{
 		delete Factory::instance();
+	}
+
+	if (Mediator::instance())
+	{
+		delete Mediator::instance();
 	}
 }

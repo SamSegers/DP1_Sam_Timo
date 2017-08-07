@@ -8,16 +8,7 @@ Mediator::Mediator()
 
 Mediator::~Mediator()
 {
-	for (int i = 0; i < _nodes.size(); i++)
-	{
-		if (_nodes.at(i) != nullptr)
-		{
-			Node *pNode = _nodes.at(i);
-			delete pNode;
-		}
-	}
-
-	_nodes.clear();
+	
 }
 
 Mediator * Mediator::instance()
@@ -29,7 +20,7 @@ Mediator * Mediator::instance()
 	return pMediator;
 }
 
-void Mediator::PassValue(Node * pSource, Node * pTarget)
+void Mediator::PassValue(Composite * pSource, Composite * pTarget)
 {
 	pTarget->InsertValue(pSource->GetValues().at(0));
 	pTarget->DoThis();

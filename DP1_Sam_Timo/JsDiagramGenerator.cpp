@@ -1,6 +1,6 @@
-#include "Diagram.h"
+#include "JsDiagramGenerator.h"
 
-void Diagram::Create(Circuit& circuit) {
+void JsDiagramGenerator::Generate(Circuit& circuit) {
 	try{
 		// 1. initialisation
 		std::vector<Composite*> components;
@@ -69,7 +69,7 @@ void Diagram::Create(Circuit& circuit) {
 	}
 }
 
-void Diagram::GetNext(Composite& component, std::vector<Composite*>* components) {
+void JsDiagramGenerator::GetNext(Composite& component, std::vector<Composite*>* components) {
 	if (std::find(components->begin(), components->end(), &component) == components->end()){
 		components->push_back(&component);
 		

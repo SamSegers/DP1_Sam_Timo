@@ -3,7 +3,7 @@
 
 #include "Filereader.h"
 #include "Circuit.h"
-#include "Diagram.h"
+#include "JsDiagramGenerator.h"
 
 // de simulatie.
 // bevat alle hoofdobjecten
@@ -13,7 +13,7 @@ protected:
 	Circuit *pCircuit;
 	Filereader *pReader;
 	Output *pOutput;
-	Diagram *pDiagram;
+	DiagramGenerator *pDiagram;
 	Visitor *pVisitor;
 
 	int Load();

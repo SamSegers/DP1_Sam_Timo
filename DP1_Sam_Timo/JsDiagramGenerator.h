@@ -1,5 +1,6 @@
-#ifndef _DIAGRAM_H
-#define _DIAGRAM_H
+#pragma once
+#ifndef _JS_DIAGRAM_GENERATOR_H
+#define _JS_DIAGRAM_GENERATOR_H
 
 #include <fstream>
 #include <string>
@@ -10,16 +11,18 @@
 
 #include "Composite.h"
 #include "Circuit.h"
+#include "DiagramGenerator.h"
 
 // roept naar js en maakt dan het diagram.
-class Diagram
+class JsDiagramGenerator : public DiagramGenerator
 {
 private:
 	std::map<std::string, std::vector<std::string>> callers;
 	std::map<std::string, std::vector<std::string>> calling;
-public:
-	void Create(Circuit& circuit);
+
 	void GetNext(Composite& component, std::vector<Composite*>* components);
+public:
+	void Generate(Circuit& circuit) override;
 };
 
 #endif

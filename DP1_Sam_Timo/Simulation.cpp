@@ -54,7 +54,7 @@ void Simulation::Start(std::string Filename)
 				pOutput->Print("Started the circuit!");
 				pCircuit->Start();
 				if(ShowDiagram()) 
-					pDiagram->Create(*pCircuit);
+					pDiagram->Generate(*pCircuit);
 			}
 			else
 			{
@@ -117,7 +117,7 @@ int Simulation::RunAgain()
 void Simulation::Init()
 {
 	pOutput = new Output();
-	pDiagram = new Diagram();
+	pDiagram = new JsDiagramGenerator();
 	pVisitor = new Visitor();
 	pVisitor->SetOutput(this->pOutput);
 }

@@ -2,12 +2,21 @@
 #include "CppUnitTest.h"
 #include "../DP1_Sam_Timo/Simulation.h"
 
+#include <fstream>
+#include <regex>
+#include <iostream>
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace DP1_Sam_Timo_Tests
 {
 	TEST_CLASS(TestSimulation)
 	{
+		std::string getDirectoryName(std::string path){
+			const size_t last_slash_idx = path.rfind("\\dp1_sam_timo_tests");
+			return std::string::npos != last_slash_idx ? path.substr(0, last_slash_idx + 1) : "";
+		}
+
 	public:
 		TEST_METHOD(TestCircuit1)
 		{
@@ -33,49 +42,13 @@ namespace DP1_Sam_Timo_Tests
 			Factory::instance()->AddComponent(new XNOR());
 			Factory::instance()->AddComponent(new XOR());
 
-			std::vector<Probe *> probes = simulation.StartTest("# Circuit1.txt\n\
-# \n\
-# Full-adder. Deze file bevat een correct circuit\n\
-# \n\
-#\n\
-#\n\
-# Description of all the nodes\n\
-#\n\
-A:	INPUT_HIGH;\n\
-B:	INPUT_HIGH;\n\
-Cin: 	INPUT_LOW;\n\
-Cout:	PROBE;\n\
-S:	PROBE;\n\
-NODE1:	OR;\n\
-NODE2:	AND;\n\
-NODE3:	AND;\n\
-NODE4:	NOT;\n\
-NODE5:	AND;\n\
-NODE6:	OR;\n\
-NODE7:	NOT;\n\
-NODE8:	NOT;\n\
-NODE9:	AND;\n\
-NODE10:	AND;\n\
-NODE11:	OR;\n\
-\n\
-#\n\
-#\n\
-# Description of all the edges\n\
-#\n\
-Cin:	NODE3,NODE7,NODE10;\n\
-A:	NODE1,NODE2;\n\
-B:	NODE1,NODE2;\n\
-NODE1:	NODE3,NODE5;\n\
-NODE2:	NODE4,NODE6;\n\
-NODE3:	NODE6;\n\
-NODE4:	NODE5;\n\
-NODE5:	NODE8,NODE9;\n\
-NODE6:	Cout;\n\
-NODE7:	NODE9;\n\
-NODE8:	NODE10;\n\
-NODE9:	NODE11;\n\
-NODE10:	NODE11;\n\
-NODE11:	S;\n");
+			std::ifstream file;
+			std::string filePath = getDirectoryName(__FILE__) + "dp1_sam_timo\\circuits\\circuit1.txt";
+			file.open(filePath);
+			std::stringstream stream;
+			stream << file.rdbuf();
+			std::string arg = stream.str();
+			std::vector<Probe*> probes = simulation.StartTest(arg);
 
 			// act
 			std::string actualProbe1Id = probes[0]->GetId();

@@ -1,49 +1,43 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 
-<html lang='en'>
+<html>
     <head>
-        <meta charset='utf-8'/>
+        <meta name="generator" content="Microsoft Visual Studio">
         <title>Diagram</title>
         <link href='style.css' rel='stylesheet'>
+        <script src="main.js" async></script>
     </head>
     <body>
         <section class="nodes">
             <div>
-                <img src="img/AND.png"/>
+                <img src="../img/AND.png"/>
                 <span class="name">AND</span>
             </div>
             <div>
-                <img src="img/NAND.png"/>
+                <img src="../img/NAND.png"/>
                 <span class="name">NAND</span>
             </div>
             <div>
-                <img src="img/NOR.png"/>
+                <img src="../img/NOR.png"/>
                 <span class="name">NOR</span>
             </div>
             <div>
-                <img src="img/NOT.png"/>
+                <img src="../img/NOT.png"/>
                 <span class="name">NOT</span>
             </div>
             <div>
-                <img src="img/OR.png"/>
+                <img src="../img/OR.png"/>
                 <span class="name">OR</span>
             </div>
             <div>
-                <img src="img/XNOR.png"/>
+                <img src="../img/XNOR.png"/>
                 <span class="name">XNOR</span>
             </div>
             <div>
-                <img src="img/XOR.png"/>
+                <img src="../img/XOR.png"/>
                 <span class="name">XOR</span>
             </div>
         </section>
-        <canvas id="canvas" width="10000" height="1000"></canvas>
-        <script src="js/program.js"></script>
-        <script src="js/init.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/component.js"></script>
-        <script src="js/column.js"></script>
-        <script src="js/edge.js"></script>
-        <script src="js/renderer.js"></script>
+        <svg id="svg"></svg>
     </body>
 </html>

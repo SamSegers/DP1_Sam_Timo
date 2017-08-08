@@ -3,6 +3,7 @@
 
 #include "Filereader.h"
 #include "Circuit.h"
+#include "CppDiagramGenerator.h"
 #include "JsDiagramGenerator.h"
 
 // de simulatie.

@@ -1,12 +1,12 @@
 #include "JsDiagramGenerator.h"
 
-void JsDiagramGenerator::Generate(Circuit& circuit) {
+void JsDiagramGenerator::GenerateData(Circuit& circuit) {
 	try{
 		// 1. initialisation
 		std::vector<Composite*> components;
 		std::vector<Input*> inputs = circuit.GetInputs();
 
-		std::string script = "\
+		script = "\
 			'use strict';\
 			let components = [];\
 		";
@@ -57,16 +57,22 @@ void JsDiagramGenerator::Generate(Circuit& circuit) {
 				};\
 			";
 		}
-
-		std::ofstream file("diagram\\js\\init.js");
-		file << script;
-
-		// 4. execute
-		ShellExecute(NULL, "open", "diagram\\index.html", NULL, NULL, SW_SHOWNORMAL);
 	}
 	catch(std::exception ex){
 		std::cerr << ex.what() << std::endl;	
 	}
+}
+
+void JsDiagramGenerator::WriteInputs()
+{
+	std::ofstream file(INPUT_FILE);
+	file << script;
+}
+
+// opens the browser
+void JsDiagramGenerator::Show()
+{
+	ShellExecute(NULL, "open", HTML_FILE, NULL, NULL, SW_SHOWNORMAL);
 }
 
 void JsDiagramGenerator::GetNext(Composite& component, std::vector<Composite*>* components) {

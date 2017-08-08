@@ -18,7 +18,7 @@ Renderer.prototype.loadImages = function() {
     for (let i = 0; i < gates.length; i++){
         let gate = gates[i];
         this.imgGates[gate] = new Image();
-        this.imgGates[gate].src = "img/"+gate+".png";
+        this.imgGates[gate].src = "../../img/"+gate+".png";
     }
 }
 

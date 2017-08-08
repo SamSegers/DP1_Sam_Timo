@@ -14,6 +14,7 @@ function Main() {
     this.run();
 }
 
+// deduce canvas hight by the farthest border + space
 Main.prototype.initCanvasHeight = function() {
     this.columns.forEach(column => {
         column.populations.forEach(population => {
@@ -24,6 +25,7 @@ Main.prototype.initCanvasHeight = function() {
     this.canvasDimensions.height += Main.space;
 }
 
+// basically tell the render do it's job
 Main.prototype.run = function() {
     this.renderer.loadCanvas(this.canvasDimensions);
     this.renderer.loadImages();

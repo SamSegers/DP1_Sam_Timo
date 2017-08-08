@@ -7,11 +7,12 @@
 // TODO implementation
 
 // maakt het diagram en roept dan js aan op het te visualiseren.
-class JsDiagramGenerator : public DiagramGenerator
+class CppDiagramGenerator : public DiagramGenerator
 {
 public:
-	void Generate(Circuit& circuit) override
-	{}
+	void GenerateData(Circuit& circuit) override;
+	void WriteInputs() override;
+	void Show() override;
 };
 
 #endif

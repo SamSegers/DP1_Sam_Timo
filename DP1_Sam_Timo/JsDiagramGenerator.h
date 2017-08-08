@@ -17,12 +17,19 @@
 class JsDiagramGenerator : public DiagramGenerator
 {
 private:
+	const std::string INPUT_FILE = "diagram_visualisation\\projects\\js_based\\input\\init.js";
+	const char* HTML_FILE = "diagram_visualisation\\projects\\js_based\\index.html";
+
+	std::string script;
+
 	std::map<std::string, std::vector<std::string>> callers;
 	std::map<std::string, std::vector<std::string>> calling;
 
 	void GetNext(Composite& component, std::vector<Composite*>* components);
 public:
-	void Generate(Circuit& circuit) override;
+	void GenerateData(Circuit& circuit) override;
+	void WriteInputs() override;
+	void Show() override;
 };
 
 #endif

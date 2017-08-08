@@ -76,6 +76,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="CppDiagramGenerator.cpp" />
+    <ClCompile Include="DiagramGenerator.cpp" />
     <ClCompile Include="JsDiagramGenerator.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Factory.cpp" />
@@ -120,6 +121,11 @@
     <ClInclude Include="Visitor.h" />
     <ClInclude Include="XNOR.h" />
     <ClInclude Include="XOR.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="diagram_visualisation\projects\json_based\index.html" />
+    <None Include="diagram_visualisation\projects\json_based\input\data.json" />
+    <None Include="diagram_visualisation\projects\json_based\main.js" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

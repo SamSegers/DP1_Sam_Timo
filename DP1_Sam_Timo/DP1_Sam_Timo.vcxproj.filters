@@ -90,6 +90,9 @@
     <ClCompile Include="CppDiagramGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DiagramGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filereader.h">
@@ -164,5 +167,10 @@
     <ClInclude Include="CppDiagramGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="diagram_visualisation\projects\json_based\input\data.json" />
+    <None Include="diagram_visualisation\projects\json_based\index.html" />
+    <None Include="diagram_visualisation\projects\json_based\main.js" />
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@ Renderer.prototype.loadImages = function() {
     for (let i = 0; i < gates.length; i++){
         let gate = gates[i];
         this.imgGates[gate] = new Image();
-        this.imgGates[gate].src = "../../img/"+gate+".png";
+        this.imgGates[gate].src = "../../img/" + gate + ".png";
     }
 }
 
@@ -30,6 +30,7 @@ Renderer.prototype.drawEdges = function(edges) {
         this.ctx.strokeStyle = "#0000ff";
         this.ctx.beginPath();
         this.ctx.moveTo(edge.start.x + this.correction, edge.start.y + this.correction);
+        console.log(edge);
         this.ctx.lineTo(edge.crossroad.x + this.correction, edge.crossroad.y + this.correction);
         this.ctx.stroke();
 
@@ -40,7 +41,8 @@ Renderer.prototype.drawEdges = function(edges) {
 
             this.ctx.beginPath();
             this.ctx.moveTo(edge.crossroad.x + this.correction, edge.crossroad.y + this.correction);
-            for (let k = 0; k < line.length; k++) this.ctx.lineTo(line[k].x + this.correction, line[k].y + this.correction);
+            for (let k = 0; k < line.length; k++)
+                this.ctx.lineTo(line[k].x + this.correction, line[k].y + this.correction);
             this.ctx.stroke();
         }
 
@@ -49,13 +51,15 @@ Renderer.prototype.drawEdges = function(edges) {
 }
 
 Renderer.prototype.drawColumns = function(columns) {
-    for (let i = 0; i < columns.length; i++) this.drawColumn(columns[i]);
+    for (let i = 0; i < columns.length; i++)
+        this.drawColumn(columns[i]);
 }
 
 Renderer.prototype.drawColumn = function (column) {
     let x = column.x + this.correction;
 
-    for (let j = 0; j < column.length; j++) this.drawComponent(column[j], x);
+    for (let j = 0; j < column.length; j++)
+        this.drawComponent(column[j], x);
 }
 
 Renderer.prototype.drawComponent = function (component, x) {
@@ -63,22 +67,26 @@ Renderer.prototype.drawComponent = function (component, x) {
     
     this.ctx.fillStyle = "#fff";
 
-    if(component.gate!=""){ // gates
+    let image = this.imgGates[component.gate];
+
+    if(image){ // gates
         this.ctx.fillRect(x, y, Component.size, Component.size);
         this.ctx.fillStyle = "#000";
         this.ctx.strokeRect(x, y, Component.size, Component.size);
-        this.ctx.fillText(component.id, x+15, y+15);
-        //this.ctx.fillText(component.gate, x+25, y+45);
-        this.ctx.drawImage(this.imgGates[component.gate], x+10, y+25, 60, 30);
-        this.ctx.fillText(component.value, x+35, y+70);
+        this.ctx.fillText(component.id, x + 15, y + 15);
+        this.ctx.drawImage(image, x + 10, y + 25, 60, 30);
+        this.ctx.fillText(component.value, x + 35, y + 70);
     } else { // inputs and outputs
+        x += Component.componentCenter;
+        y += Component.componentCenter;
+
         this.ctx.beginPath();
-        this.ctx.arc(x+Component.componentCenter, y+Component.componentCenter, 10, 0, Math.PI*2, true);
+        this.ctx.arc(x, y, 10, 0, Math.PI * 2, true);
         this.ctx.fill();
         this.ctx.fillStyle = "#000";
-        this.ctx.arc(x+Component.componentCenter, y+Component.componentCenter, 10, 0, Math.PI*2, true);
+        this.ctx.arc(x, y, 10, 0, Math.PI * 2, true);
         this.ctx.stroke();
-        this.ctx.fillText(component.id, x+Component.componentCenter-10, y+Component.componentCenter-20);
-        this.ctx.fillText(component.value, x+Component.componentCenter-5, y+Component.componentCenter+25);
+        this.ctx.fillText(component.id, x - 10, y - 20);
+        this.ctx.fillText(component.value, x - 5, y + 25);
     }
 }

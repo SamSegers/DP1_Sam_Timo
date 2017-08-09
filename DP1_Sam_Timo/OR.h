@@ -9,6 +9,7 @@ class OR : public Node
 public:
 	int ExecuteOperation();
 	virtual Component* Clone();
+	operator const char*() const override { return "OR"; };
 };
 
 #endif _OR_H

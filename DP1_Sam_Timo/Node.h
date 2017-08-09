@@ -13,6 +13,7 @@ public:
 	virtual void DoThis();
 	virtual Component* Clone();
 	int GetValue();
+	operator const char*() const override { return "Node"; };
 };
 
 #endif _NODE_H

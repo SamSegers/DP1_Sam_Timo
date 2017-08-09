@@ -12,6 +12,7 @@ public:
 	virtual void DoThis();
 
 	virtual Component* Clone();
+	operator const char*() const override { return "Probe"; };
 };
 
 #endif

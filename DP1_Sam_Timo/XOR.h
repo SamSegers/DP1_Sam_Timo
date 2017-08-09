@@ -9,6 +9,7 @@ class XOR : public Node
 public:
 	int ExecuteOperation();
 	virtual Component* Clone();
+	operator const char*() const override { return "XOR"; };
 };
 
 #endif _XOR_H

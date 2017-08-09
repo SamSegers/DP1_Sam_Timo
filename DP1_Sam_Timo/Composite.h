@@ -18,6 +18,7 @@ public:
 	virtual void AddChild(Composite *Next);
 
 	void SetPreviousComponent(Composite *Previous);
+	virtual operator const char*() const = 0;
 };
 
 #endif

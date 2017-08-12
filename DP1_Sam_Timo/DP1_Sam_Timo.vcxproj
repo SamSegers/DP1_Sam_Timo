@@ -123,7 +123,6 @@
     <ClInclude Include="XOR.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="diagram_visualisation\projects\svg_based\index.html" />
     <None Include="diagram_visualisation\projects\svg_based\style.css" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

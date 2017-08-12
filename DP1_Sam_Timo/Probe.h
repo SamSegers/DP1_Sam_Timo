@@ -9,6 +9,8 @@ class Probe : public Composite
 protected:
 	
 public:
+	const static char* NAME;
+
 	virtual void DoThis();
 
 	virtual Component* Clone();

@@ -30,7 +30,6 @@ Renderer.prototype.drawEdges = function(edges) {
         this.ctx.strokeStyle = "#0000ff";
         this.ctx.beginPath();
         this.ctx.moveTo(edge.start.x + this.correction, edge.start.y + this.correction);
-        console.log(edge);
         this.ctx.lineTo(edge.crossroad.x + this.correction, edge.crossroad.y + this.correction);
         this.ctx.stroke();
 
@@ -73,8 +72,8 @@ Renderer.prototype.drawComponent = function (component, x) {
         this.ctx.fillRect(x, y, Component.size, Component.size);
         this.ctx.fillStyle = "#000";
         this.ctx.strokeRect(x, y, Component.size, Component.size);
-        this.ctx.fillText(component.id, x + 15, y + 15);
         this.ctx.drawImage(image, x + 10, y + 25, 60, 30);
+        this.ctx.fillText(component.id, x + 15, y + 15);
         this.ctx.fillText(component.value, x + 35, y + 70);
     } else { // inputs and outputs
         x += Component.componentCenter;

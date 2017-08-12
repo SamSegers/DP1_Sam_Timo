@@ -1,5 +1,16 @@
+text
+{
+    font-size: 11px;
+}
+
+circle
+{
+    fill: #fff;
+    stroke: #000;
+}
+
 rect.gate
 {
-    color: #fff;
-    border-color: #000;
+    fill: #fff;
+    stroke: #000;
 }

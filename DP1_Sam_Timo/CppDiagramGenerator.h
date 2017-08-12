@@ -17,36 +17,6 @@ struct Vector
 
 struct LineSegment
 {
-	LineSegment(){}
-
-	LineSegment(Vector begin, Vector end)
-	{
-		this->begin	= begin;
-		this->end = end;
-	}
-
-	LineSegment(int x1, int y1, Vector end)
-	{
-		this->begin.x = x1;
-		this->begin.y = y1;
-		this->end = end;
-	}
-
-	LineSegment(Vector begin, int x2, int y2)
-	{
-		this->begin	= begin;
-		this->end.x = x2;
-		this->end.y = y2;
-	}
-
-	LineSegment(int x1, int y1, int x2, int y2)
-	{
-		this->begin.x = x1;
-		this->begin.y = y1;
-		this->end.x = x2;
-		this->end.y = y2;
-	}
-
 	Vector begin;
 	Vector end;
 	std::string color = "#000";

@@ -9,6 +9,7 @@ class Edge : public Composite
 {
 public:
 	virtual Component* Clone();
+	operator const char*() const override { return "Edge"; };
 };
 
 #endif

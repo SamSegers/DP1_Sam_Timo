@@ -28,9 +28,9 @@ protected:
 	int CreateInput(std::string);
 
 	std::vector<std::string> Nodes;
-	std::vector<std::string>Probes;
-	std::vector<std::string>Inputs;
-	std::vector<std::string>Edges;
+	std::vector<std::string> Probes;
+	std::vector<std::string> Inputs;
+	std::vector<std::string> Edges;
 
 public:
 	static Filereader* CreateFilereader(std::string Path);

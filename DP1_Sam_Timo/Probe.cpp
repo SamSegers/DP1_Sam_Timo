@@ -1,5 +1,7 @@
 #include "Probe.h"
 
+const char* Probe::NAME = "Probe";
+
 Component* Probe::Clone()
 {
 	return new Probe();

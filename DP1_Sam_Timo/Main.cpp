@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	std::string Filename = "";
 
 	// kijk voor meegegeven argumenten
-	Filename = argc > 1 ? argv[1] : "circuits/circuit1.txt";
+	Filename = argc > 1 ? argv[1] : "circuits/Circuit1_FullAdder.txt";
 	
 	// start simulatie.
 	simulation.Start(Filename);

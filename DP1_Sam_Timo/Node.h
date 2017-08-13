@@ -13,6 +13,7 @@ public:
 	virtual void Accept(std::shared_ptr<Visitor> pVisitor);
 	virtual Component* Clone();
 	int GetValue();
+	operator const char*() const override { return "Node"; };
 };
 
 #endif _NODE_H

@@ -112,7 +112,7 @@ int Simulation::RunAgain()
 void Simulation::Init()
 {
 	pOutput = std::make_shared<Output>();
-	pDiagramGenerator = std::make_shared<JsDiagramGenerator>();
+	pDiagramGenerator = std::make_shared<CppDiagramGenerator>();
 	pVisitor = std::make_shared<Visitor>();
 	pVisitor->SetOutput(this->pOutput);
 }

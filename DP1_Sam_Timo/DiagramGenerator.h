@@ -7,7 +7,12 @@
 class DiagramGenerator 
 {
 public:
-	virtual void Generate(Circuit& circuit) = 0;
+	void Generate(Circuit& circuit);
+
+protected:
+	virtual void GenerateData(Circuit& circuit) = 0;
+	virtual void WriteInputs() = 0;
+	virtual void Show() = 0;
 };
 
 #endif

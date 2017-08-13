@@ -9,6 +9,7 @@ class XNOR : public Node
 public:
 	int ExecuteOperation();
 	virtual Component* Clone();
+	operator const char*() const override { return "XNOR"; };
 };
 
 #endif _XNOR_H

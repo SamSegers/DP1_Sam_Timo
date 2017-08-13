@@ -9,6 +9,7 @@ class AND : public Node
 public:
 	int ExecuteOperation();
 	virtual Component* Clone();
+	operator const char*() const override { return "AND"; };
 };
 
 #endif _AND_H

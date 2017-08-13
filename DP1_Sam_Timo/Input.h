@@ -8,7 +8,10 @@
 class Input : public Composite
 {
 public:
+	const static char* NAME;
+
 	virtual Component* Clone();
+	operator const char*() const override { return NAME; };
 };
 
 #endif

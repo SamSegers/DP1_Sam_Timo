@@ -14,6 +14,7 @@ function Main() {
     this.run();
 }
 
+// deduce canvas hight by the farthest border + space
 Main.prototype.initCanvasHeight = function() {
     this.columns.forEach(column => {
         column.populations.forEach(population => {
@@ -24,6 +25,7 @@ Main.prototype.initCanvasHeight = function() {
     this.canvasDimensions.height += Main.space;
 }
 
+// basically tell the render do it's job
 Main.prototype.run = function() {
     this.renderer.loadCanvas(this.canvasDimensions);
     this.renderer.loadImages();
@@ -37,6 +39,7 @@ Main.prototype.createColumns = function() {
     this.positionComponents();
 }
 
+// puts components in columns
 Main.prototype.createColumn = function(nr) {
     this.columns[nr] = [];
 
@@ -76,6 +79,7 @@ Main.prototype.createColumn = function(nr) {
     if(components.length!=0 && nr!=components.length) this.createColumn(nr+1);
 }
 
+// defines coordinates of components
 Main.prototype.positionComponents = function() {
     let x = Main.space;
 
@@ -252,6 +256,7 @@ Main.prototype.createEdges = function() {
     }
 }
 
+// returns the y from which the edge will start on the component
 Main.prototype.getEdgeStartY = function(column, component) {
     let columnIndex = this.columns.indexOf(column);
 
@@ -297,6 +302,7 @@ Main.prototype.getColumn = function(componentId){
     }
 }
 
+// returns the y from which th y will travel to another column
 Main.prototype.getEdgeTravelY = function(originColumnIndex, destinationColumnIndex) {
     let y = 0;
     let match = false;

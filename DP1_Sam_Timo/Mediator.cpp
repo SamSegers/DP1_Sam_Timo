@@ -23,5 +23,5 @@ Mediator *Mediator::instance()
 void Mediator::PassValue(Composite * pSource, Composite * pTarget)
 {
 	pTarget->InsertValue(pSource->GetValues().at(0));
-	pTarget->DoThis();
+	pTarget->Accept(std::make_shared<Visitor>());
 }

@@ -338,7 +338,7 @@ std::vector<Probe *> Circuit::Start()
 	// start en begin bij inputs.
 	for (int i = 0; i < Inputs.size(); i++)
 	{
-		Inputs.at(i)->DoThis();
+		Inputs.at(i)->Accept(std::make_shared<Visitor>());
 	}
 
 	auto finish = std::chrono::high_resolution_clock::now();

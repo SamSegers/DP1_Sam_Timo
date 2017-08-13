@@ -15,8 +15,6 @@ protected:
 	std::vector<int> values;
 	
 	std::string _id;
-
-	std::shared_ptr<Visitor> pVisitor;
 public:
 	Component();
 	~Component();
@@ -25,11 +23,7 @@ public:
 	
 	virtual void InsertValue(int value);
 
-	
-
 	virtual Component* Clone();
-
-	
 
 	void Accept(std::shared_ptr<Visitor> pVisitor);
 

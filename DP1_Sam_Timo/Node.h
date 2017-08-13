@@ -10,7 +10,7 @@ class Node : public Composite
 {
 public:
 	virtual int ExecuteOperation();
-	virtual void DoThis();
+	virtual void Accept(std::shared_ptr<Visitor> pVisitor);
 	virtual Component* Clone();
 	int GetValue();
 };

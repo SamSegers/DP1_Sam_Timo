@@ -25,14 +25,14 @@ std::vector<Composite*> Composite::GetPrevious()
 }
 
 // ga naar de volgende en als het een node is zal de visitor zijn operatie uitvoeren.
-void Composite::DoThis()
+void Composite::Accept(std::shared_ptr<Visitor> pVisitor)
 {
 	if (this->pComponents.size() == 0)
 	{
 		return;
 	}
 
-	this->pVisitor->Visit(this);
+	pVisitor->Visit(this);
 }
 
 // voeg de vorige toe.

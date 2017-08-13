@@ -5,7 +5,7 @@ int Node::ExecuteOperation()
 	return 1;
 }
 // gaat door naar de visitor die de execute aanroept
-void Node::DoThis()
+void Node::Accept(std::shared_ptr<Visitor> pVisitor)
 {
 	pVisitor->Visit(this);
 }

@@ -11,7 +11,7 @@ protected:
 	std::vector<Composite *> PreviousComponents;
 public:
 	~Composite();
-	virtual void DoThis();
+	virtual void Accept(std::shared_ptr<Visitor> pVisitor);
 
 	std::vector<Composite*> GetNext();
 	std::vector<Composite*> GetPrevious();

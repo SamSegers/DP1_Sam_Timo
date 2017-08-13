@@ -9,7 +9,7 @@ class Probe : public Composite
 protected:
 	
 public:
-	virtual void DoThis();
+	virtual void Accept(std::shared_ptr<Visitor> pVisitor);
 
 	virtual Component* Clone();
 };

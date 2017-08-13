@@ -91,6 +91,7 @@
     <ClCompile Include="Probe.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="NAND.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="Visitor.cpp" />
     <ClCompile Include="XNOR.cpp" />
     <ClCompile Include="XOR.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Probe.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="NAND.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="Visitor.h" />
     <ClInclude Include="XNOR.h" />
     <ClInclude Include="XOR.h" />

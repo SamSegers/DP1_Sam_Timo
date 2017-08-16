@@ -1,8 +1,7 @@
 #ifndef _NODE_H
 #define _NODE_H
-
-#include "Composite.h"
-#include "Edge.h"
+#include "..\Composite\Composite.h"
+#include "..\Composite\Edge.h"
 #include <chrono>
 
 // Overerven de functionaliteiten van.

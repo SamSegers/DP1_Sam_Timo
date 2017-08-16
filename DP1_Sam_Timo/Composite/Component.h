@@ -2,7 +2,7 @@
 #define _COMPONENT_H
 
 
-#include "Visitor.h"
+#include "..\Visitor.h"
 #include <memory>
 #include <mutex>
 #include <thread>

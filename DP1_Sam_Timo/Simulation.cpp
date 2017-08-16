@@ -125,3 +125,8 @@ void Simulation::Cleanup()
 		pReader = nullptr;
 	}
 }
+
+void Simulation::SetState(std::shared_ptr<State> pState)
+{
+	this->pState = pState;
+}

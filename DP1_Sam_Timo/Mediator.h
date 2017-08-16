@@ -1,6 +1,6 @@
 #ifndef _MEDIATOR_H
 #define _MEDIATOR_H
-#include "Node.h"
+#include "Nodes\Node.h"
 
 class Mediator
 {

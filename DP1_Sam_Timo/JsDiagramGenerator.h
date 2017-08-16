@@ -9,7 +9,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "Composite.h"
+#include "Composite\Composite.h"
 #include "Circuit.h"
 #include "DiagramGenerator.h"
 

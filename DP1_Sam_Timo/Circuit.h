@@ -7,8 +7,8 @@
 #include "Factory.h"
 #include "Probe.h"
 #include "Input.h"
-#include "Edge.h"
-#include "Component.h"
+#include "Composite\Edge.h"
+#include "Composite\Component.h"
 #include "Output.h"
 
 // Stelt de data uit een file voor.

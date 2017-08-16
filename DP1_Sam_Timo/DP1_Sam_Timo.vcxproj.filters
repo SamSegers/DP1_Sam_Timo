@@ -1,180 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Nodes">
-      <UniqueIdentifier>{939e1ddb-88d3-4442-b21b-2f6935bd8157}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Nodes">
-      <UniqueIdentifier>{853ee555-7d2a-4963-b016-981cef5f4213}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\States">
-      <UniqueIdentifier>{a92e8655-316f-4133-b8d7-daee479ec248}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\States">
-      <UniqueIdentifier>{71e33351-30bd-4805-b01a-434c602aef8e}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Circuit.cpp" />
+    <ClCompile Include="CppDiagramGenerator.cpp" />
+    <ClCompile Include="DiagramGenerator.cpp" />
+    <ClCompile Include="JsDiagramGenerator.cpp" />
+    <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="Filereader.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mediator.cpp" />
+    <ClCompile Include="Output.cpp" />
+    <ClCompile Include="Probe.cpp" />
+    <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="Visitor.cpp" />
+    <ClCompile Include="Nodes\AND.cpp" />
+    <ClCompile Include="Nodes\NAND.cpp" />
+    <ClCompile Include="Nodes\Node.cpp" />
+    <ClCompile Include="Nodes\NOR.cpp" />
+    <ClCompile Include="Nodes\NOT.cpp" />
+    <ClCompile Include="Nodes\OR.cpp" />
+    <ClCompile Include="Nodes\XOR.cpp" />
+    <ClCompile Include="Nodes\XNOR.cpp" />
+    <ClCompile Include="Composite\Component.cpp" />
+    <ClCompile Include="Composite\Composite.cpp" />
+    <ClCompile Include="Composite\Edge.cpp" />
+    <ClCompile Include="States\State.cpp" />
+    <ClCompile Include="States\InitState.cpp" />
+    <ClCompile Include="States\RunningState.cpp" />
+    <ClCompile Include="States\FinishState.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Filereader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Simulation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Circuit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Output.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Edge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Probe.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="AND.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="NOR.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="NOT.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="XOR.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="OR.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="NAND.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="XNOR.cpp">
-      <Filter>Source Files\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Factory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Visitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Composite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mediator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JsDiagramGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CppDiagramGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
+    <ClInclude Include="Circuit.h" />
+    <ClInclude Include="CppDiagramGenerator.h" />
+    <ClInclude Include="Defines.h" />
+    <ClInclude Include="DiagramGenerator.h" />
+    <ClInclude Include="JsDiagramGenerator.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="Filereader.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Mediator.h" />
+    <ClInclude Include="Output.h" />
+    <ClInclude Include="Probe.h" />
+    <ClInclude Include="Simulation.h" />
+    <ClInclude Include="Visitor.h" />
+    <ClInclude Include="Nodes\AND.h" />
+    <ClInclude Include="Nodes\NAND.h" />
+    <ClInclude Include="Nodes\Node.h" />
+    <ClInclude Include="Nodes\NOR.h" />
+    <ClInclude Include="Nodes\NOT.h" />
+    <ClInclude Include="Nodes\OR.h" />
+    <ClInclude Include="Nodes\XOR.h" />
+    <ClInclude Include="Nodes\XNOR.h" />
+    <ClInclude Include="Composite\Component.h" />
+    <ClInclude Include="Composite\Composite.h" />
+    <ClInclude Include="Composite\Edge.h" />
+    <ClInclude Include="States\State.h" />
+    <ClInclude Include="States\InitState.h" />
+    <ClInclude Include="States\RunningState.h" />
+    <ClInclude Include="States\FinishState.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Filereader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Circuit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Output.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Edge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Probe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NOR.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="AND.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="NOT.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="OR.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="XOR.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="NAND.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="XNOR.h">
-      <Filter>Header Files\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Defines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Composite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mediator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JsDiagramGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DiagramGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CppDiagramGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
+    <None Include="diagram_visualisation\projects\svg_based\style.css" />
   </ItemGroup>
 </Project>

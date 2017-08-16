@@ -1,16 +1,16 @@
 #ifndef _FACTORY_H
 #define _FACTORY_H
 
-#include "Component.h"
+#include "Composite\Component.h"
 #include "Defines.h"
-#include "Node.h"
-#include "AND.h"
-#include "NAND.h"
-#include "NOR.h"
-#include "NOT.h"
-#include "OR.h"
-#include "XNOR.h"
-#include "XOR.h"
+#include "Nodes\Node.h"
+#include "Nodes\AND.h"
+#include "Nodes\NAND.h"
+#include "Nodes\NOR.h"
+#include "Nodes\NOT.h"
+#include "Nodes\OR.h"
+#include "Nodes\XNOR.h"
+#include "Nodes\XOR.h"
 #include "Input.h"
 #include "Probe.h"
 #include <stdint.h>

@@ -1,6 +1,6 @@
 #include "Visitor.h"
 #include "Probe.h"
-#include "Edge.h"
+#include "Composite\Edge.h"
 #include "Input.h"
 #include "Mediator.h"
 

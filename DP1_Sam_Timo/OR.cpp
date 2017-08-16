@@ -8,9 +8,6 @@ int OR::ExecuteOperation() {
 	// zet alles klaar om door te geven.
 	values.clear();
 	values.push_back(output);
-	
-	
-	//DoThis();
 
 	return 1;
 }

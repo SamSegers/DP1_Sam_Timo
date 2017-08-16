@@ -7,5 +7,8 @@ Component* Probe::Clone()
 // visit de visitor omdat probe net iets anders doet als de rest.
 void Probe::Accept(std::shared_ptr<Visitor> pVisitor)
 {
+	if (this->pComponents.size() == 0)
+		return;
+
 	pVisitor->Visit(this);
 }

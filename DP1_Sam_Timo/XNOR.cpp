@@ -8,8 +8,6 @@ int XNOR::ExecuteOperation() {
 	// zet alles klaar voor om door te geven.
 	values.clear();
 	values.push_back(output);
-	
-	//DoThis();
 
 	return 1;
 }

@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Circuit.cpp" />
-    <ClCompile Include="CppDiagramGenerator.cpp" />
-    <ClCompile Include="DiagramGenerator.cpp" />
-    <ClCompile Include="JsDiagramGenerator.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Filereader.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -29,13 +26,14 @@
     <ClCompile Include="States\InitState.cpp" />
     <ClCompile Include="States\RunningState.cpp" />
     <ClCompile Include="States\FinishState.cpp" />
+    <ClCompile Include="DiagramGeneration\CppGenerator.cpp" />
+    <ClCompile Include="DiagramGeneration\Generator.cpp" />
+    <ClCompile Include="DiagramGeneration\JsGenerator.cpp" />
+    <ClCompile Include="DiagramGeneration\LineSegmentBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circuit.h" />
-    <ClInclude Include="CppDiagramGenerator.h" />
     <ClInclude Include="Defines.h" />
-    <ClInclude Include="DiagramGenerator.h" />
-    <ClInclude Include="JsDiagramGenerator.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Filereader.h" />
     <ClInclude Include="Input.h" />
@@ -59,8 +57,18 @@
     <ClInclude Include="States\InitState.h" />
     <ClInclude Include="States\RunningState.h" />
     <ClInclude Include="States\FinishState.h" />
+    <ClInclude Include="DiagramGeneration\CppGenerator.h" />
+    <ClInclude Include="DiagramGeneration\Generator.h" />
+    <ClInclude Include="DiagramGeneration\JsGenerator.h" />
+    <ClInclude Include="DiagramGeneration\Vector.h" />
+    <ClInclude Include="DiagramGeneration\LineSegment.h" />
+    <ClInclude Include="DiagramGeneration\VisualNode.h" />
+    <ClInclude Include="DiagramGeneration\EdgePopulation.h" />
+    <ClInclude Include="DiagramGeneration\Column.h" />
+    <ClInclude Include="DiagramGeneration\SvgElement.h" />
+    <ClInclude Include="DiagramGeneration\LineSegmentBuilder.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="diagram_visualisation\projects\svg_based\style.css" />
+    <None Include="DiagramVisualisation\projects\svg_based\style.css" />
   </ItemGroup>
 </Project>

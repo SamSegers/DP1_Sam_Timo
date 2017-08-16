@@ -71,13 +71,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DiagramGeneration\LineSegmentBuilder.cpp" />
     <ClCompile Include="Nodes\AND.cpp" />
     <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Composite\Component.cpp" />
     <ClCompile Include="Composite\Composite.cpp" />
-    <ClCompile Include="CppDiagramGenerator.cpp" />
-    <ClCompile Include="DiagramGenerator.cpp" />
-    <ClCompile Include="JsDiagramGenerator.cpp" />
+    <ClCompile Include="DiagramGeneration\CppGenerator.cpp" />
+    <ClCompile Include="DiagramGeneration\Generator.cpp" />
+    <ClCompile Include="DiagramGeneration\JsGenerator.cpp" />
     <ClCompile Include="Composite\Edge.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Filereader.cpp" />
@@ -101,14 +102,21 @@
     <ClCompile Include="Nodes\XOR.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DiagramGeneration\Column.h" />
+    <ClInclude Include="DiagramGeneration\EdgePopulation.h" />
+    <ClInclude Include="DiagramGeneration\LineSegment.h" />
+    <ClInclude Include="DiagramGeneration\LineSegmentBuilder.h" />
+    <ClInclude Include="DiagramGeneration\SvgElement.h" />
+    <ClInclude Include="DiagramGeneration\VisualNode.h" />
+    <ClInclude Include="DiagramGeneration\Vector.h" />
     <ClInclude Include="Nodes\AND.h" />
     <ClInclude Include="Circuit.h" />
     <ClInclude Include="Composite\Component.h" />
     <ClInclude Include="Composite\Composite.h" />
-    <ClInclude Include="CppDiagramGenerator.h" />
+    <ClInclude Include="DiagramGeneration\CppGenerator.h" />
     <ClInclude Include="Defines.h" />
-    <ClInclude Include="DiagramGenerator.h" />
-    <ClInclude Include="JsDiagramGenerator.h" />
+    <ClInclude Include="DiagramGeneration\Generator.h" />
+    <ClInclude Include="DiagramGeneration\JsGenerator.h" />
     <ClInclude Include="Composite\Edge.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Filereader.h" />
@@ -131,7 +139,7 @@
     <ClInclude Include="Nodes\XOR.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="diagram_visualisation\projects\svg_based\style.css" />
+    <None Include="DiagramVisualisation\projects\svg_based\style.css" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

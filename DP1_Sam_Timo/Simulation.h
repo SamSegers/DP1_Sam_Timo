@@ -3,8 +3,7 @@
 
 #include "Filereader.h"
 #include "Circuit.h"
-#include "CppDiagramGenerator.h"
-#include "JsDiagramGenerator.h"
+#include "DiagramGeneration\CppGenerator.h"
 #include "States\State.h"
 
 // de simulatie.
@@ -16,7 +15,7 @@ protected:
 	std::shared_ptr<Circuit> pCircuit;
 	Filereader* pReader;
 	std::shared_ptr<Output> pOutput;
-	std::shared_ptr<DiagramGenerator> pDiagramGenerator;
+	std::shared_ptr<DiagramGeneration::Generator> pDiagramGenerator;
 	std::shared_ptr<Visitor> pVisitor;
 
 	int Load();

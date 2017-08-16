@@ -91,9 +91,6 @@ int Circuit::CreateEdges(std::vector<std::string> Edges)
 			if (!Link(Edges.at(i), pEdge))
 				throw 2;
 
-			// set visitor
-			pEdge->Accept(this->pVisitor);
-
 		}
 	}
 	catch (int e)
@@ -133,9 +130,8 @@ int Circuit::CreateNodes(std::vector<std::string> Nodes)
 			if (pNode == nullptr)
 				throw 1;
 
-			// zet id en visitor
+			// zet id 
 			pNode->SetId(Nodes.at(i).substr(0, Nodes.at(i).find(":")));
-			pNode->Accept(this->pVisitor);
 			this->Nodes.push_back(pNode);
 		}
 	}
@@ -180,10 +176,9 @@ int Circuit::CreateInputs(std::vector<std::string> Inputs)
 
 			if (pInput != nullptr)
 			{
-				// zet id en visitor
+				// zet id
 				pInput->SetId(Inputs.at(i).substr(0, Inputs.at(i).find(":")));
 				this->Inputs.push_back(pInput);
-				pInput->Accept(this->pVisitor);
 			}
 			else
 				throw 1;
@@ -217,9 +212,6 @@ int Circuit::CreateProbes(std::vector<std::string> Probes)
 			}
 			else
 				throw 1;
-
-			// zet de visitor
-			pProbe->Accept(this->pVisitor);
 		}
 	}
 	catch (int e)

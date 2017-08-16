@@ -24,10 +24,10 @@ std::vector<int> Component::GetValues()
 	return this->values;
 }
 // zet de visitor
-void Component::Accept(std::shared_ptr<Visitor> pVisitor)
+/*void Component::Accept(std::shared_ptr<Visitor> pVisitor)
 {
 	
-}
+}*/
 
 void Component::SetId(std::string _id)
 {

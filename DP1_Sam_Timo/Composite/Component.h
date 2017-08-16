@@ -25,7 +25,7 @@ public:
 
 	virtual Component* Clone();
 
-	void Accept(std::shared_ptr<Visitor> pVisitor);
+	//void Accept(std::shared_ptr<Visitor> pVisitor);
 
 	void SetId(std::string _id);
 	std::string GetId();

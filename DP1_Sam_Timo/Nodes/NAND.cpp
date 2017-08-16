@@ -11,7 +11,6 @@ int NAND::ExecuteOperation() {
 	values.clear();
 	values.push_back(output);
 
-	//DoThis();
 	return 1;
 }
 

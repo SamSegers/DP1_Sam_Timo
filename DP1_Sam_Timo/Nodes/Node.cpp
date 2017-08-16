@@ -7,6 +7,9 @@ int Node::ExecuteOperation()
 // gaat door naar de visitor die de execute aanroept
 void Node::Accept(std::shared_ptr<Visitor> pVisitor)
 {
+	if (this->pComponents.size() == 0)
+		return;
+
 	pVisitor->Visit(this);
 }
 // clone dit

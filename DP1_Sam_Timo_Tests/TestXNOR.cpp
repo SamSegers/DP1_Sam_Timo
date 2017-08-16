@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/XNOR.h"
+#include "../DP1_Sam_Timo/Nodes/XNOR.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestXNOR::TestXNOR() 
 		{
-			TestNode::node = new XNOR();
+			TestNode::node = std::make_shared<XNOR>();
 		}
 
 		TEST_METHOD(TestXNOR1)

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/NOR.h"
+#include "../DP1_Sam_Timo/Nodes/NOR.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestNOR::TestNOR() 
 		{
-			TestNode::node = new NOR();
+			TestNode::node = std::make_shared<NOR>();
 		}
 
 		TEST_METHOD(TestNOR1)

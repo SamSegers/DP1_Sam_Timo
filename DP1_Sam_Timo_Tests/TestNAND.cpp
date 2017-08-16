@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/NAND.h"
+#include "../DP1_Sam_Timo/Nodes/NAND.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestNAND::TestNAND()
 		{
-			TestNode::node = new NAND();
+			TestNode::node = std::make_shared<NAND>();
 		}
 
 		TEST_METHOD(TestNAND1)

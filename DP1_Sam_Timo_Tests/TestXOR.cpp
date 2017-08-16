@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/XOR.h"
+#include "../DP1_Sam_Timo/Nodes/XOR.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestXOR::TestXOR()
 		{
-			TestNode::node = new XOR();
+			TestNode::node = std::make_shared<XOR>();
 		}
 
 		TEST_METHOD(TestXOR1)

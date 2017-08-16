@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/OR.h"
+#include "../DP1_Sam_Timo/Nodes/OR.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestOR::TestOR()
 		{
-			TestNode::node = new OR();
+			TestNode::node = std::make_shared<OR>();
 		}
 
 		TEST_METHOD(TestOR1)

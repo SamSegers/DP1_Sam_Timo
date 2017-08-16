@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/AND.h"
+#include "../DP1_Sam_Timo/Nodes/AND.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestAND::TestAND()
 		{
-			TestNode::node = new AND();
+			TestNode::node = std::make_shared<AND>();
 		}
 
 		TEST_METHOD(TestAND1)

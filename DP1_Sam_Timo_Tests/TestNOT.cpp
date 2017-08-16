@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../DP1_Sam_Timo/NOT.h"
+#include "../DP1_Sam_Timo/Nodes/NOT.h"
 #include "Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -12,7 +12,7 @@ namespace DP1_Sam_Timo_Tests
 	public:
 		TestNOT::TestNOT() 
 		{
-			TestNode::node = new NOT();
+			TestNode::node = std::make_shared<NOT>();
 		}
 
 		TEST_METHOD(TestNOT1)

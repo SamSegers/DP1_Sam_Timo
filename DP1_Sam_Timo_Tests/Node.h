@@ -3,7 +3,7 @@
 class TestNode
 {
 public:
-	Node* node;
+	std::shared_ptr<Node> node;
 
 	TestNode();
 	virtual ~TestNode();

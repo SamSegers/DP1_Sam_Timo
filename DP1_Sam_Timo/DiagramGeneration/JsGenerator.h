@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _JS_GENERATOR_H
-#define _JS_GENERATOR_H
+#ifndef _JS_DIAGRAM_GENERATOR_H
+#define _JS_DIAGRAM_GENERATOR_H
 
 #include <fstream>
 #include <string>

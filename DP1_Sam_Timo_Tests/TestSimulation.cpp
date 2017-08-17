@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 #include "Comparison.h"
 #include "../DP1_Sam_Timo/Simulation.h"
 
@@ -70,9 +69,9 @@ namespace DP1_Sam_Timo_Tests
 
 			// assert
 			for(auto& comparison : idComparisons)
-				Assert::AreEqual(comparison.expected, comparison.actual, L"message", LINE_INFO());
+				comparison.assert();
 			for(auto& comparison : valueComparisons)
-				Assert::AreEqual(comparison.expected, comparison.actual, L"message", LINE_INFO());
+				comparison.assert();
 		}
 
 		BEGIN_TEST_METHOD_ATTRIBUTE(TestCircuit1)

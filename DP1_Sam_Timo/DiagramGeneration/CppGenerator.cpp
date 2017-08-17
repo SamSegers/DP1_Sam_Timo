@@ -377,9 +377,17 @@ namespace DiagramGeneration
 
 	unsigned int CppGenerator::GetTravelY(unsigned int firstColumnIndex, unsigned int lastColumnIndex)
 	{
+		auto y = FindTravelY(firstColumnIndex, lastColumnIndex);
+		AdjustEgdePopulations(firstColumnIndex, lastColumnIndex, y);
+		MergeEdgePopulations(firstColumnIndex, lastColumnIndex);
+
+		return y;
+	}
+
+	unsigned int CppGenerator::FindTravelY(unsigned int firstColumnIndex, unsigned int lastColumnIndex)
+	{
 		unsigned int y = 0;
 
-		// find y
 		while(true)
 		{
 			bool travelYFound = false;
@@ -408,7 +416,11 @@ namespace DiagramGeneration
 			y += SPACE;
 		}
 
-		// add to population or add new population
+		return y;
+	}
+
+	void CppGenerator::AdjustEgdePopulations(unsigned int firstColumnIndex, unsigned int lastColumnIndex, unsigned int y)
+	{
 		for(unsigned int i = firstColumnIndex; i <= lastColumnIndex; i++)
 		{
 			auto& populations = columns[i].edgeYPopulations;
@@ -438,8 +450,10 @@ namespace DiagramGeneration
 				populations.push_back(newPopulation);
 			}
 		}
+	}
 
-		// merging populations
+	void CppGenerator::MergeEdgePopulations(unsigned int firstColumnIndex, unsigned int lastColumnIndex)
+	{
 		for(unsigned int i = firstColumnIndex; i < lastColumnIndex; i++)
 		{
 			auto& populations = columns[i].edgeYPopulations;
@@ -463,12 +477,10 @@ namespace DiagramGeneration
 			{
 				auto index = newPopulation.first;
 				auto population = newPopulation.second;
-				populations.erase(populations.begin() + index, populations.begin() + index + 1);	
+				populations.erase(populations.begin() + index, populations.begin() + index + 2);	
 				populations.insert(populations.begin() + index, population);
 			}
 		}
-
-		return y;
 	}
 
 	void CppGenerator::GenerateSvgContent()

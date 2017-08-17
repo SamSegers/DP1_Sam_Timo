@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 #include "../DP1_Sam_Timo/Nodes/XNOR.h"
 #include "Node.h"
 

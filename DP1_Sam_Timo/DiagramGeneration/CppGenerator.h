@@ -19,6 +19,7 @@ namespace DiagramGeneration
 	// maakt het diagram en roept dan js aan op het te visualiseren.
 	class CppGenerator : public Generator
 	{
+	private:
 		const std::string styleFile = "DiagramVisualisation\\projects\\svg_based\\style.css";
 		const std::string htmlFile = "DiagramVisualisation\\projects\\svg_based\\index.html";
 		const unsigned int SPACE = 20; // spacing between edges and between nodes
@@ -40,17 +41,20 @@ namespace DiagramGeneration
 		void DeduceColumnPosition(Column& column);
 
 		void CreateEdges();
-		unsigned int GetTravelY(unsigned int firstColumnIndex, unsigned int lastColumnIndex);
 
 		void GenerateSvgContent();
 		void DeduceSvgSize();
 
+		unsigned int FindTravelY(unsigned int firstColumnIndex, unsigned int lastColumnIndex);
+		void AdjustEgdePopulations(unsigned int firstColumnIndex, unsigned int lastColumnIndex, unsigned int y);
+		void MergeEdgePopulations(unsigned int firstColumnIndex, unsigned int lastColumnIndex);
 	public:
 		CppGenerator();
 
 		void GenerateData(Circuit& circuit) override;
 		void WriteInputs() override;
 		void Show() override;
+		unsigned int GetTravelY(unsigned int firstColumnIndex, unsigned int lastColumnIndex);
 	};
 }
 

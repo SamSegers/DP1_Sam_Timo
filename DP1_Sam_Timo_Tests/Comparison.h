@@ -1,10 +1,17 @@
 #pragma once
 
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
 namespace DP1_Sam_Timo_Tests
 {
 	template<typename T>
-	struct Comparison
+	class Comparison
 	{
+	private:
+		T expected;	
+		T actual;
+
+	public:
 		Comparison(T expected)
 		{
 			this->expected = expected;
@@ -16,7 +23,9 @@ namespace DP1_Sam_Timo_Tests
 			return this->actual;
 		}
 
-		T expected;	
-		T actual;
+		void assert()
+		{
+			Assert::AreEqual(expected, actual, L"message", LINE_INFO());
+		}
 	};
 }

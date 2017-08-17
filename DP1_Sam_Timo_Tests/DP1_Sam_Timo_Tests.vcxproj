@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestAND.cpp" />
+    <ClCompile Include="TestDiagramGeneration.cpp" />
     <ClCompile Include="TestSimulation.cpp" />
     <ClCompile Include="TestNAND.cpp" />
     <ClCompile Include="TestNOR.cpp" />

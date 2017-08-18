@@ -50,7 +50,7 @@ void Simulation::Start(std::string Filename)
 				pOutput->Print("Initializing the circuit diagram!");
 				pOutput->Print("Started the circuit!");
 				pCircuit->Start();
-				if(ShowDiagram()) 
+				if(pCircuit->IsSuccesful() && ShowDiagram()) 
 					pDiagramGenerator->Generate(*pCircuit);
 			}
 			else

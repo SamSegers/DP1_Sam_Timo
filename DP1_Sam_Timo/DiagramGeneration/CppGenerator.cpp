@@ -532,7 +532,8 @@ namespace DiagramGeneration
 
 	void CppGenerator::DeduceSvgSize()
 	{
-		svg.width = columns.end()[-1].x + NODE_SIZE + SPACE;
+		if(!columns.empty())
+			svg.width = columns.end()[-1].x + NODE_SIZE + SPACE;
 
 		for(auto& column : columns)
 		{

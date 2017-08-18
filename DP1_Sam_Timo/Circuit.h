@@ -16,6 +16,7 @@ class Circuit
 {
 private:
 	bool _inputsSet;
+	bool _isSuccesful;
 
 	int _high;
 	int _low;
@@ -47,6 +48,8 @@ public:
 	void SetVisitor(std::shared_ptr<Visitor> pVisitor);
 
 	std::vector<Probe *> Start();
+
+	bool IsSuccesful();
 };
 
 #endif _CIRCUIT_H

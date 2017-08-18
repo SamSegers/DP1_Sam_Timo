@@ -345,10 +345,13 @@ std::vector<Probe *> Circuit::Start()
 // kijk of er iets niet klopte in het circuit tijdens runtime.
 void Circuit::CheckIfCircuitWasSuccessful()
 {
+	_isSuccesful = true;
+
 	for (int i = 0; i < this->Probes.size(); i++)
 	{
 		if (this->Probes.at(i)->GetValues().size() == 0)
 		{
+			_isSuccesful = false;
 			pView->Print("The circuit failed!");
 			break;
 		}
@@ -376,3 +379,7 @@ void Circuit::SetOutput(std::shared_ptr<Output> pView)
 	this->pView = pView;
 }
 
+bool Circuit::IsSuccesful()
+{
+	return _isSuccesful;
+}

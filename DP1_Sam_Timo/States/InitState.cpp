@@ -12,7 +12,7 @@ void InitState::Update()
 {
 	pSimulation->Init();
 	auto loadFailed = pSimulation->Load();
-	auto circuitFailed = pSimulation;
+	auto circuitFailed = pSimulation->CreateCircuit();
 	if (circuitFailed && loadFailed)
 	{
 		this->pSimulation->SetState(std::make_shared<RunningState>(this->pSimulation));

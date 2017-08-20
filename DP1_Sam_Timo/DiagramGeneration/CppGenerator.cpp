@@ -558,4 +558,12 @@ namespace DiagramGeneration
 	{
 		ShellExecute(NULL, "open", htmlFile.c_str(), NULL, NULL, SW_SHOWNORMAL);
 	}
+
+	void CppGenerator::Clear()
+	{
+		svg = SvgElement();
+		columns.clear();
+		lineSegments.clear();
+		visualNodes.clear();
+	}
 }

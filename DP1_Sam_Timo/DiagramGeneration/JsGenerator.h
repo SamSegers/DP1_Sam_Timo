@@ -32,6 +32,7 @@ namespace DiagramGeneration
 		void GenerateData(Circuit& circuit) override;
 		void WriteInputs() override;
 		void Show() override;
+		void Clear() override {};
 	};
 }
 

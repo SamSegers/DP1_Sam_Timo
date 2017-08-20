@@ -54,6 +54,7 @@ namespace DiagramGeneration
 		void GenerateData(Circuit& circuit) override;
 		void WriteInputs() override;
 		void Show() override;
+		void Clear() override;
 		unsigned int GetTravelY(unsigned int firstColumnIndex, unsigned int lastColumnIndex);
 	};
 }

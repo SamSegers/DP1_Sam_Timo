@@ -15,6 +15,7 @@ namespace DiagramGeneration
 		virtual void GenerateData(Circuit& circuit) = 0;
 		virtual void WriteInputs() = 0;
 		virtual void Show() = 0;
+		virtual void Clear() = 0;
 	};
 }
 

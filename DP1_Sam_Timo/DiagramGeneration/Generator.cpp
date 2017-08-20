@@ -8,5 +8,6 @@ namespace DiagramGeneration
 		GenerateData(circuit);
 		WriteInputs();
 		Show();
+		Clear();
 	}
 }

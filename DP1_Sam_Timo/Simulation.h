@@ -11,6 +11,8 @@
 class Simulation
 {
 protected:
+	bool _running = true;
+	std::string _fileName;
 	std::shared_ptr<State> pState;
 	std::shared_ptr<Circuit> pCircuit;
 	Filereader* pReader;
@@ -18,14 +20,8 @@ protected:
 	std::shared_ptr<DiagramGeneration::Generator> pDiagramGenerator;
 	std::shared_ptr<Visitor> pVisitor;
 
-	int Load();
-	int CreateCircuit();
-
-	int RunAgain();
 	bool ShowDiagram();
-
-	void Init();
-	void Cleanup();
+	
 public:
 	Simulation();
 	~Simulation();
@@ -33,6 +29,15 @@ public:
 	void Start(std::string);
 	std::vector<Probe *> StartTest(std::string);
 	void SetState(std::shared_ptr<State> pState);
+	void Cleanup();
+	void SetRunning(bool running);
+	void Init();
+	int Load();
+	void FailedLoad();
+	void FailedCircuit();
+	int CreateCircuit();
+	int RunAgain();
+	void Run();
 };
 
 #endif

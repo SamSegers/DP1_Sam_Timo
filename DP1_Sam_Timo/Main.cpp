@@ -1,7 +1,6 @@
 #include "Filereader.h"
 #include "Simulation.h"
 #include "Mediator.h"
-
 void Init();
 void Cleanup();
 
@@ -11,7 +10,6 @@ int main(int argc, char* argv[])
 	Init();
 	// maak simulatie
 	Simulation simulation = Simulation();
-
 	std::string Filename = "";
 
 	// kijk voor meegegeven argumenten

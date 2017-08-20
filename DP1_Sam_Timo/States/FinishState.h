@@ -3,12 +3,13 @@
 
 #include "State.h"
 
-class FinishState : State
+class FinishState : public State
 {
 protected:
 
 public:
-	FinishState(std::shared_ptr<Simulation> pSimulation);
+	FinishState(Simulation *pSimulation);
+	~FinishState() {}
 	virtual void Update();
 
 };

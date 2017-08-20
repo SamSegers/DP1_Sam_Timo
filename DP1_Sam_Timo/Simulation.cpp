@@ -1,8 +1,9 @@
 #include "Simulation.h"
+#include "States\InitState.h"
 
 Simulation::Simulation()
 {
-	
+	this->pState = std::make_shared<InitState>(this);
 }
 
 Simulation::~Simulation()
@@ -14,6 +15,16 @@ Simulation::~Simulation()
 int Simulation::Load()
 {
 	return pReader->Read();
+}
+
+void Simulation::FailedLoad()
+{
+	this->pOutput->Print("Failed to load file.");
+}
+
+void Simulation::FailedCircuit()
+{
+	this->pOutput->Print("Failed to create circuit.");
 }
 
 // maak een circuit
@@ -32,15 +43,20 @@ int Simulation::CreateCircuit()
 // start de circuit.
 void Simulation::Start(std::string Filename)
 {
-	bool rerun = false;
-	// loop omdat we mogelijk opnieuw willen
-	while (true)
+
+	this->_fileName = Filename;
+	// loop omdat we mogelijk opnieuw willen	
+	while (this->_running)
+	{
+		this->pState->Update();
+	}
+
+	/*while (true)
 	{
 		// init circuit en alles
 		this->Init();
 
-		// zet de file
-		this->pReader = Filereader::CreateFilereader(Filename);
+		
 
 		// laad data uit de file
 		if (Load())
@@ -72,7 +88,7 @@ void Simulation::Start(std::string Filename)
 
 		// ruim alles op
 		this->Cleanup();
-	}
+	}*/
 }
 
 // wordt gebruikt voor unit tests
@@ -108,6 +124,15 @@ int Simulation::RunAgain()
 	return pOutput->RunAgain() == "y";
 }
 
+void Simulation::Run()
+{
+	
+	pOutput->Print("Started the circuit!");
+	pCircuit->Start();
+	if (pCircuit->IsSuccesful() && ShowDiagram())
+		pDiagramGenerator->Generate(*pCircuit);
+}
+
 // init alles
 void Simulation::Init()
 {
@@ -115,6 +140,9 @@ void Simulation::Init()
 	pDiagramGenerator = std::make_shared<DiagramGeneration::CppGenerator>();
 	pVisitor = std::make_shared<Visitor>();
 	pVisitor->SetOutput(this->pOutput);
+	pOutput->Print("Initializing the circuit diagram!");
+	// zet de file
+	this->pReader = Filereader::CreateFilereader(_fileName);
 }
 
 void Simulation::Cleanup()
@@ -124,6 +152,11 @@ void Simulation::Cleanup()
 		delete pReader;
 		pReader = nullptr;
 	}
+}
+
+void Simulation::SetRunning(bool running)
+{
+	this->_running = running;
 }
 
 void Simulation::SetState(std::shared_ptr<State> pState)

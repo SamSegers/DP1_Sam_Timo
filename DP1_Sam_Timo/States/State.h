@@ -7,9 +7,10 @@ class Simulation;
 class State
 {
 protected:
-	std::shared_ptr<Simulation> pSimulation;
+	Simulation *pSimulation;
 public:
-	State(std::shared_ptr<Simulation> pSimulation);
+	State(Simulation *pSimulation);
+	virtual ~State() {};
 	virtual void Update();
 };
 

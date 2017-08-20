@@ -1,7 +1,7 @@
 #include "State.h"
 #include "..\Simulation.h"
 
-State::State(std::shared_ptr<Simulation> pSimulation)
+State::State(Simulation *pSimulation)
 {
 	this->pSimulation = pSimulation;
 }

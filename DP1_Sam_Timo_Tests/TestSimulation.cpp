@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "Comparison.h"
-#include "../DP1_Sam_Timo/Simulation.h"
 
 #include <fstream>
 #include <regex>
 #include <iostream>
+
+#include "../DP1_Sam_Timo/Simulation.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

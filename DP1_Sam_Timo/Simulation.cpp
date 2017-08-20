@@ -95,19 +95,23 @@ void Simulation::Start(std::string Filename)
 // alles zonder checks uitvoeren om de errors te krijgen
 std::vector<Probe *> Simulation::StartTest(std::string circuit)
 {
-	this->pReader = Filereader::CreateStringreader(circuit);
+	std::vector<Probe *> probes;
 	this->Init();
-	pReader->Read();
-	// het liefst zou ik hier CreateCircuit() aanroepen, maar dat gaat even niet omdat de inputs automatisch gezet moeten worden
+	this->pReader = Filereader::CreateStringreader(circuit);
+
+	auto isLoaded = this->Load();
+	if(!isLoaded)
+		return probes;
+	
 	this->pCircuit = std::make_shared<Circuit>();
 	this->pCircuit->SetInputs(1, 0);
 	this->pCircuit->SetOutput(this->pOutput);
 	this->pCircuit->SetVisitor(this->pVisitor);
-	this->pCircuit->CreateNodes(pReader->GetNodes());
-	this->pCircuit->CreateInputs(pReader->GetInputs());
-	this->pCircuit->CreateProbes(pReader->GetProbes());
-	this->pCircuit->CreateEdges(pReader->GetEdges());
-	std::vector<Probe *> probes = pCircuit->Start();
+	if (!pCircuit->CreateNodes(pReader->GetNodes()) || !pCircuit->CreateInputs(pReader->GetInputs()) || !pCircuit->CreateProbes(pReader->GetProbes()) || !pCircuit->CreateEdges(pReader->GetEdges()))
+		return probes;
+
+	probes = pCircuit->Start();
+
 	return probes;
 }
 
@@ -126,7 +130,6 @@ int Simulation::RunAgain()
 
 void Simulation::Run()
 {
-	
 	pOutput->Print("Started the circuit!");
 	pCircuit->Start();
 	if (pCircuit->IsSuccesful() && ShowDiagram())

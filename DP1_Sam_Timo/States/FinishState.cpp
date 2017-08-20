@@ -14,6 +14,6 @@ void FinishState::Update()
 	pSimulation->SetRunning(rerun);
 	if (rerun)
 	{
-		pSimulation->SetState(std::make_shared<FinishState>(this->pSimulation));
+		pSimulation->SetState(std::make_shared<RunningState>(this->pSimulation));
 	}
 }
